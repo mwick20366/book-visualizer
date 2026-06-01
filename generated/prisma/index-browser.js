@@ -121,14 +121,6 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.PostScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  createdById: 'createdById'
-};
-
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -175,9 +167,65 @@ exports.Prisma.VerificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.BookScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  author: 'author',
+  status: 'status',
+  sourcePath: 'sourcePath',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.ChapterScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  order: 'order',
+  content: 'content',
+  summary: 'summary',
+  createdAt: 'createdAt',
+  bookId: 'bookId'
+};
+
+exports.Prisma.SceneScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  summary: 'summary',
+  mood: 'mood',
+  visualPrompt: 'visualPrompt',
+  order: 'order',
+  createdAt: 'createdAt',
+  chapterId: 'chapterId'
+};
+
+exports.Prisma.CharacterScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  visualTraits: 'visualTraits',
+  createdAt: 'createdAt',
+  bookId: 'bookId'
+};
+
+exports.Prisma.GeneratedAssetScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  imageUrl: 'imageUrl',
+  prompt: 'prompt',
+  model: 'model',
+  createdAt: 'createdAt',
+  sceneId: 'sceneId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -190,13 +238,23 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
 
 exports.Prisma.ModelName = {
-  Post: 'Post',
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  Book: 'Book',
+  Chapter: 'Chapter',
+  Scene: 'Scene',
+  Character: 'Character',
+  GeneratedAsset: 'GeneratedAsset'
 };
 
 /**

@@ -15,29 +15,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        String   @id @default(cuid())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  createdBy   User   @relation(fields: [createdById], references: [id])
-  createdById String
-
-  @@index([name])
-}
-
 model User {
-  id            String    @id
-  name          String //@db.Text
+  id            String  @id
+  name          String
   email         String
-  emailVerified Boolean   @default(false)
-  image         String? //@db.Text
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @default(now()) @updatedAt
-  sessions      Session[]
-  accounts      Account[]
-  posts         Post[]
+  emailVerified Boolean @default(false)
+  image         String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  sessions Session[]
+  accounts Account[]
+
+  books Book[]
 
   @@unique([email])
   @@map("user")
@@ -86,4 +77,94 @@ model Verification {
   updatedAt  DateTime @default(now()) @updatedAt
 
   @@map("verification")
+}
+
+model Book {
+  id String @id @default(cuid())
+
+  title  String
+  author String?
+
+  status String @default("uploaded")
+
+  sourcePath String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  chapters   Chapter[]
+  characters Character[]
+}
+
+model Chapter {
+  id String @id @default(cuid())
+
+  title String?
+  order Int
+
+  content String
+
+  summary String?
+
+  createdAt DateTime @default(now())
+
+  bookId String
+  book   Book   @relation(fields: [bookId], references: [id])
+
+  scenes Scene[]
+}
+
+model Scene {
+  id String @id @default(cuid())
+
+  title   String?
+  summary String
+
+  mood String?
+
+  visualPrompt String?
+
+  order Int
+
+  createdAt DateTime @default(now())
+
+  chapterId String
+  chapter   Chapter @relation(fields: [chapterId], references: [id])
+
+  assets GeneratedAsset[]
+}
+
+model Character {
+  id String @id @default(cuid())
+
+  name String
+
+  description String?
+
+  visualTraits Json?
+
+  createdAt DateTime @default(now())
+
+  bookId String
+  book   Book   @relation(fields: [bookId], references: [id])
+}
+
+model GeneratedAsset {
+  id String @id @default(cuid())
+
+  type String
+
+  imageUrl String
+
+  prompt String
+
+  model String?
+
+  createdAt DateTime @default(now())
+
+  sceneId String
+  scene   Scene  @relation(fields: [sceneId], references: [id])
 }
