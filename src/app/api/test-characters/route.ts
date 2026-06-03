@@ -2,45 +2,47 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/server/db";
 
-import {
-  extractCharacters,
-} from "@/server/ai/extract-characters";
+import { extractCharacters } from "@/server/ai/extract-characters";
 
-import {
-  persistCharacters,
-} from "@/server/ai/persist-characters";
+import { persistCharacters } from "@/server/ai/persist-characters";
 
-export async function GET() {
-  const book = await db.book.findFirst({
-    include: {
-      chapters: {
-        orderBy: {
-          order: "asc",
-        },
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const bookId = searchParams.get("bookId");
+
+  if (!bookId) {
+    return NextResponse.json(
+      {
+        error: "Missing bookId",
       },
+      {
+        status: 400,
+      },
+    );
+  }
+
+  const book = await db.book.findUnique({
+    where: {
+      id: bookId,
+    },
+    include: {
+      chapters: true,
     },
   });
 
   if (!book) {
-    return NextResponse.json(
-      { error: "No book found" },
-      { status: 404 },
-    );
+    return NextResponse.json({ error: "No book found" }, { status: 404 });
   }
 
-  const bookText = book.chapters
-    .map((chapter) => chapter.content)
-    .join("\n\n");
+  const bookText = book.chapters.map((chapter) => chapter.content).join("\n\n");
 
-  const extractionResult =
-    await extractCharacters(bookText);
+  const extractionResult = await extractCharacters(bookText);
 
-  const characters =
-    await persistCharacters({
-      bookId: book.id,
+  const characters = await persistCharacters({
+    bookId: book.id,
 
-      extractionResult,
-    });
+    extractionResult,
+  });
 
   return NextResponse.json({
     book: book.title,

@@ -17,6 +17,14 @@ export async function persistScenes({
   chapterId,
   extractionResult,
 }: PersistScenesInput) {
+  await db.generatedAsset.deleteMany({
+    where: {
+      scene: {
+        chapterId,
+      },
+    },
+  });
+
   await db.scene.deleteMany({
     where: {
       chapterId,
@@ -43,6 +51,10 @@ export async function persistScenes({
               visualDescription:
                 scene.visualDescription,
 
+              anchorText: scene.anchorText,
+
+              anchorIndex: scene.anchorIndex,
+              
               characters:
                 scene.characters,
 

@@ -1,5 +1,5 @@
 // src/server/services/books/parse-epub.ts
-
+import { JSDOM } from "jsdom";
 import EPub from "epub2";
 
 export type ParsedChapter = {
@@ -14,11 +14,25 @@ export type ParsedBook = {
   chapters: ParsedChapter[];
 };
 
-function stripHtml(html: string): string {
-  return html
-    .replace(/<[^>]*>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+function extractStructuredText(
+  html: string,
+): string {
+  const dom = new JSDOM(html);
+
+  const document =
+    dom.window.document;
+
+  const blocks = Array.from(
+    document.querySelectorAll(
+      "h1, h2, h3, h4, h5, h6, p",
+    ),
+  )
+    .map((element) =>
+      element.textContent?.trim(),
+    )
+    .filter(Boolean);
+
+  return blocks.join("\n\n");
 }
 
 export async function parseEpub(filePath: string): Promise<ParsedBook> {
@@ -44,7 +58,7 @@ export async function parseEpub(filePath: string): Promise<ParsedBook> {
 
                 chapters.push({
                   title: chapter.title ?? `Chapter ${index + 1}`,
-                  content: stripHtml(text ?? ""),
+                  content: extractStructuredText(text ?? ""),
                   order: index,
                 });
 

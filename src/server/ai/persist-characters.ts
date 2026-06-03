@@ -44,6 +44,9 @@ export async function persistCharacters({
 
               aliases: character.aliases,
               
+              castingArchetype:
+                character.castingArchetype,
+                
               rawAiOutput: character,
 
               bookId,

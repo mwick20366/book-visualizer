@@ -12,6 +12,8 @@ export type ExtractedCharacter = {
   appearance: string;
 
   personality: string;
+
+  castingArchetype?: string | null;
 };
 
 export type CharacterExtractionResult = {
@@ -43,6 +45,32 @@ Your task is to identify the most important recurring characters in a novel and 
 Include common aliases, shortened names, and titles by which the character may be referenced in scenes.
 Include formal names, surnames, titles, nicknames, and abbreviated references that may appear in scene extraction.
 
+For each character, choose exactly ONE classical cinematic actor archetype that best matches the character's appearance and demeanor.
+
+Do not provide multiple actors or comparisons.
+
+Each character must have a distinct cinematic archetype.
+
+Do not reuse the same actor archetype for multiple major characters.
+
+The archetype should function as a stable casting reference for visual continuity.
+
+Do NOT use modern celebrities.
+Prefer timeless classical Hollywood archetypes or descriptive cinematic comparisons.
+Prefer actors with highly distinctive facial structure and recognizable visual identity.
+
+Physical appearance descriptions must be highly specific and stable.
+
+Always specify:
+- hair color
+- hairstyle
+- facial hair
+- approximate age
+- skin tone
+- facial structure
+- distinguishing features
+- typical wardrobe
+
 Return ONLY valid JSON.
 
 Format:
@@ -54,6 +82,7 @@ Format:
       "aliases": ["string"],
       "description": "string",
       "appearance": "string",
+      "castingArchetype": "string",
       "personality": "string"
     }
   ]

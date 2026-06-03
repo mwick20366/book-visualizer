@@ -16,6 +16,10 @@ export type ExtractedScene = {
   location: string;
 
   visualDescription: string;
+
+  anchorText?: string;
+
+  anchorIndex?: number;
 };
 
 type OpenAIResponse = {

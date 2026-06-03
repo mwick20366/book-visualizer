@@ -12,6 +12,8 @@ type CharacterForContext = {
   appearance: string | null;
 
   personality: string | null;
+
+  castingArchetype?: string | null;
 };
 
 type BuildCharacterContextInput = {
@@ -65,14 +67,17 @@ ${matchingCharacters
     (character) => `
 ${character.name}
 
-Description:
-${character.description}
+Casting archetype:
+${character.castingArchetype ?? "None specified"}
 
 Appearance:
 ${character.appearance ?? "Unknown"}
 
 Personality:
 ${character.personality ?? "Unknown"}
+
+Description:
+${character.description}
 `,
   )
   .join("\n")}

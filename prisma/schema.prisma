@@ -131,6 +131,10 @@ model Scene {
 
   visualDescription String?
 
+  anchorText        String?
+
+  anchorIndex       Int?
+
   characters        Json?
 
   rawAiOutput       Json?
@@ -156,6 +160,7 @@ model Character {
 
   appearance  String?
 
+  castingArchetype String?
   personality String?
 
   rawAiOutput Json?

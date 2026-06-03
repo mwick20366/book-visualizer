@@ -1,23 +1,20 @@
 import { NextResponse } from "next/server";
-
-import { db } from "@/server/db";
-
 import { processBookScenes } from "@/server/ai/process-book-scenes";
 
-export async function GET() {
-  const book = await db.book.findFirst();
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const bookId = searchParams.get("bookId");
 
-  if (!book) {
+  if (!bookId) {
     return NextResponse.json(
-      { error: "No book found" },
-      { status: 404 },
+      { error: "Missing bookId" },
+      { status: 400 },
     );
   }
 
-  const result =
-    await processBookScenes({
-      bookId: book.id,
-    });
+  const result = await processBookScenes({
+    bookId,
+  });
 
   return NextResponse.json(result);
 }

@@ -2,38 +2,44 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/server/db";
 
-import { extractScenes } from "@/server/ai/extract-scenes";
-import { persistScenes } from "@/server/ai/persist-scenes";
+export async function GET(
+  request: Request,
+) {
+  const { searchParams } =
+    new URL(request.url);
 
-export async function GET() {
-  const chapter = await db.chapter.findFirst({
-    where: {
-      content: {
-        contains: "Utterson",
-      },
-    },
-  });
+  const bookId =
+    searchParams.get("bookId");
 
-  if (!chapter) {
+  if (!bookId) {
     return NextResponse.json(
-      { error: "No chapter found" },
-      { status: 404 },
+      {
+        error: "Missing bookId",
+      },
+      {
+        status: 400,
+      },
     );
   }
 
-  const result = await extractScenes(chapter.content);
+  const chapters =
+    await db.chapter.findMany({
+      where: {
+        bookId,
+      },
 
-  const savedScenes = await persistScenes({
-    chapterId: chapter.id,
+      orderBy: {
+        order: "asc",
+      },
 
-    scenes: result.scenes,
-  });
+      include: {
+        scenes: {
+          orderBy: {
+            order: "asc",
+          },
+        },
+      },
+    });
 
-  return NextResponse.json({
-    chapterTitle: chapter.title,
-
-    sceneCount: savedScenes.length,
-
-    scenes: savedScenes,
-  });
+  return NextResponse.json(chapters);
 }
