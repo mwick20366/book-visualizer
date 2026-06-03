@@ -1,6 +1,8 @@
 // src/server/services/books/parse-epub.ts
-import { JSDOM } from "jsdom";
-import EPub from "epub2";
+
+import AdmZip from "adm-zip";
+
+import * as cheerio from "cheerio";
 
 export type ParsedChapter = {
   title: string;
@@ -17,77 +19,154 @@ export type ParsedBook = {
 function extractStructuredText(
   html: string,
 ): string {
-  const dom = new JSDOM(html);
+  const $ = cheerio.load(html);
 
-  const document =
-    dom.window.document;
+  const blocks: string[] = [];
 
-  const blocks = Array.from(
-    document.querySelectorAll(
-      "h1, h2, h3, h4, h5, h6, p",
-    ),
-  )
-    .map((element) =>
-      element.textContent?.trim(),
-    )
-    .filter(Boolean);
+  $("h1, h2, h3, h4, h5, h6, p").each(
+    (_, element) => {
+      const text = $(element)
+        .text()
+        .trim();
+
+      if (text) {
+        blocks.push(text);
+      }
+    },
+  );
 
   return blocks.join("\n\n");
 }
 
-export async function parseEpub(filePath: string): Promise<ParsedBook> {
-  return new Promise((resolve, reject) => {
-    const epub = new EPub(filePath);
+function extractTitle(
+  html: string,
+  fallback: string,
+): string {
+  const $ = cheerio.load(html);
 
-    epub.on("error", (error) => {
-      reject(error);
+  return (
+    $("h1").first().text().trim() ||
+    $("h2").first().text().trim() ||
+    fallback
+  );
+}
+
+export async function parseEpub(
+  filePath: string,
+): Promise<ParsedBook> {
+  const zip = new AdmZip(filePath);
+
+  const entries = zip.getEntries();
+
+  let title = "Unknown Title";
+
+  let author: string | undefined;
+
+  const chapters: ParsedChapter[] = [];
+
+  for (
+    let index = 0;
+    index < entries.length;
+    index++
+  ) {
+    const entry = entries[index];
+
+    if (!entry) {
+      continue;
+    }
+
+    const lowerPath =
+      entry.entryName.toLowerCase();
+
+    // Metadata
+    if (
+      lowerPath.endsWith(".opf")
+    ) {
+      const xml =
+        entry
+          .getData()
+          .toString("utf-8");
+
+      const $ = cheerio.load(xml, {
+        xmlMode: true,
+      });
+
+      title =
+        $("dc\\:title")
+          .first()
+          .text()
+          .trim() || title;
+
+      author =
+        $("dc\\:creator")
+          .first()
+          .text()
+          .trim() || author;
+
+      continue;
+    }
+
+    // XHTML / HTML chapters
+    if (
+      !lowerPath.endsWith(".xhtml") &&
+      !lowerPath.endsWith(".html") &&
+      !lowerPath.endsWith(".htm")
+    ) {
+      continue;
+    }
+
+    const html =
+      entry
+        .getData()
+        .toString("utf-8");
+
+    const content =
+      extractStructuredText(html);
+
+    if (!content) {
+      continue;
+    }
+
+    const chapterTitle =
+      extractTitle(
+        html,
+        `Chapter ${chapters.length + 1}`,
+      );
+
+    chapters.push({
+      title: chapterTitle,
+
+      content,
+
+      order: chapters.length,
+    });
+  }
+
+  const cleanedChapters =
+    chapters.filter((chapter) => {
+      const lowerTitle =
+        chapter.title.toLowerCase();
+
+      return (
+        chapter.content.length > 500 &&
+        !chapter.content.includes(
+          "Project Gutenberg",
+        ) &&
+        !lowerTitle.includes("cover") &&
+        !lowerTitle.includes(
+          "contents",
+        ) &&
+        !lowerTitle.includes(
+          "copyright",
+        )
+      );
     });
 
-    epub.on("end", async () => {
-      try {
-        const chapters: ParsedChapter[] = [];
+  return {
+    title,
 
-        const chapterPromises = epub.flow.map(
-          (chapter, index) =>
-            new Promise<void>((chapterResolve, chapterReject) => {
-              epub.getChapter(chapter.id!, (error, text) => {
-                if (error) {
-                  chapterReject(error);
-                  return;
-                }
+    author,
 
-                chapters.push({
-                  title: chapter.title ?? `Chapter ${index + 1}`,
-                  content: extractStructuredText(text ?? ""),
-                  order: index,
-                });
-
-                chapterResolve();
-              });
-            }),
-        );
-
-        await Promise.all(chapterPromises);
-
-        const cleanedChapters = chapters.filter((chapter) => {
-          return (
-            chapter.content.length > 500 &&
-            !chapter.content.includes("Project Gutenberg") &&
-            !chapter.title.toLowerCase().includes("cover") &&
-            !chapter.title.toLowerCase().includes("contents")
-          );
-        });
-
-        resolve({
-          title: epub.metadata.title ?? "Unknown Title",
-          author: epub.metadata.creator,
-          chapters: cleanedChapters,
-        });
-      } catch (error) {
-        reject(error);
-      }
-    });
-
-    epub.parse();
-  });
+    chapters: cleanedChapters,
+  };
 }
