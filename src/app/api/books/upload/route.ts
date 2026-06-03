@@ -1,0 +1,92 @@
+// src/app/api/books/upload/route.ts
+
+import { mkdir, writeFile } from "fs/promises";
+import path from "path";
+
+import { NextResponse } from "next/server";
+
+import { db } from "@/server/db";
+import { parseEpub } from "@/server/services/books/parse-epub";
+
+export async function POST(req: Request) {
+  try {
+    const formData = await req.formData();
+
+    const file = formData.get("file") as File | null;
+
+    if (!file) {
+      return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
+    }
+
+    if (!file.name.endsWith(".epub")) {
+      return NextResponse.json(
+        { error: "Only EPUB files are supported" },
+        { status: 400 },
+      );
+    }
+
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    const bookId = crypto.randomUUID();
+
+    const uploadDir = path.join(process.cwd(), "uploads", bookId);
+
+    await mkdir(uploadDir, { recursive: true });
+
+    const filePath = path.join(uploadDir, file.name);
+
+    await writeFile(filePath, buffer);
+
+    // TEMP USER LOOKUP
+    let user = await db.user.findFirst();
+
+    if (!user) {
+      user = await db.user.create({
+        data: {
+          id: crypto.randomUUID(),
+          name: "Dev User",
+          email: "dev@example.com",
+          emailVerified: true,
+        },
+      });
+    }
+
+    // Parse EPUB
+    const parsedBook = await parseEpub(filePath);
+
+    // Create Book
+    const book = await db.book.create({
+      data: {
+        id: bookId,
+        title: parsedBook.title,
+        author: parsedBook.author,
+        fileName: file.name,
+        filePath,
+        status: "processed",
+        userId: user.id,
+
+        chapters: {
+          create: parsedBook.chapters.map((chapter) => ({
+            title: chapter.title,
+            content: chapter.content,
+            order: chapter.order,
+          })),
+        },
+      },
+
+      include: {
+        chapters: true,
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+      book,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return NextResponse.json({ error: "Upload failed" }, { status: 500 });
+  }
+}

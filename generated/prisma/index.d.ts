@@ -6173,6 +6173,8 @@ export namespace Prisma {
     title: string | null
     author: string | null
     status: string | null
+    fileName: string | null
+    filePath: string | null
     sourcePath: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6184,6 +6186,8 @@ export namespace Prisma {
     title: string | null
     author: string | null
     status: string | null
+    fileName: string | null
+    filePath: string | null
     sourcePath: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6195,6 +6199,8 @@ export namespace Prisma {
     title: number
     author: number
     status: number
+    fileName: number
+    filePath: number
     sourcePath: number
     createdAt: number
     updatedAt: number
@@ -6208,6 +6214,8 @@ export namespace Prisma {
     title?: true
     author?: true
     status?: true
+    fileName?: true
+    filePath?: true
     sourcePath?: true
     createdAt?: true
     updatedAt?: true
@@ -6219,6 +6227,8 @@ export namespace Prisma {
     title?: true
     author?: true
     status?: true
+    fileName?: true
+    filePath?: true
     sourcePath?: true
     createdAt?: true
     updatedAt?: true
@@ -6230,6 +6240,8 @@ export namespace Prisma {
     title?: true
     author?: true
     status?: true
+    fileName?: true
+    filePath?: true
     sourcePath?: true
     createdAt?: true
     updatedAt?: true
@@ -6314,6 +6326,8 @@ export namespace Prisma {
     title: string
     author: string | null
     status: string
+    fileName: string | null
+    filePath: string | null
     sourcePath: string | null
     createdAt: Date
     updatedAt: Date
@@ -6342,6 +6356,8 @@ export namespace Prisma {
     title?: boolean
     author?: boolean
     status?: boolean
+    fileName?: boolean
+    filePath?: boolean
     sourcePath?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6357,6 +6373,8 @@ export namespace Prisma {
     title?: boolean
     author?: boolean
     status?: boolean
+    fileName?: boolean
+    filePath?: boolean
     sourcePath?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6369,6 +6387,8 @@ export namespace Prisma {
     title?: boolean
     author?: boolean
     status?: boolean
+    fileName?: boolean
+    filePath?: boolean
     sourcePath?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6381,13 +6401,15 @@ export namespace Prisma {
     title?: boolean
     author?: boolean
     status?: boolean
+    fileName?: boolean
+    filePath?: boolean
     sourcePath?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
   }
 
-  export type BookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "author" | "status" | "sourcePath" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["book"]>
+  export type BookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "author" | "status" | "fileName" | "filePath" | "sourcePath" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["book"]>
   export type BookInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     chapters?: boolean | Book$chaptersArgs<ExtArgs>
@@ -6413,6 +6435,8 @@ export namespace Prisma {
       title: string
       author: string | null
       status: string
+      fileName: string | null
+      filePath: string | null
       sourcePath: string | null
       createdAt: Date
       updatedAt: Date
@@ -6847,6 +6871,8 @@ export namespace Prisma {
     readonly title: FieldRef<"Book", 'String'>
     readonly author: FieldRef<"Book", 'String'>
     readonly status: FieldRef<"Book", 'String'>
+    readonly fileName: FieldRef<"Book", 'String'>
+    readonly filePath: FieldRef<"Book", 'String'>
     readonly sourcePath: FieldRef<"Book", 'String'>
     readonly createdAt: FieldRef<"Book", 'DateTime'>
     readonly updatedAt: FieldRef<"Book", 'DateTime'>
@@ -8486,7 +8512,8 @@ export namespace Prisma {
     title: string | null
     summary: string | null
     mood: string | null
-    visualPrompt: string | null
+    location: string | null
+    visualDescription: string | null
     order: number | null
     createdAt: Date | null
     chapterId: string | null
@@ -8497,7 +8524,8 @@ export namespace Prisma {
     title: string | null
     summary: string | null
     mood: string | null
-    visualPrompt: string | null
+    location: string | null
+    visualDescription: string | null
     order: number | null
     createdAt: Date | null
     chapterId: string | null
@@ -8508,7 +8536,10 @@ export namespace Prisma {
     title: number
     summary: number
     mood: number
-    visualPrompt: number
+    location: number
+    visualDescription: number
+    characters: number
+    rawAiOutput: number
     order: number
     createdAt: number
     chapterId: number
@@ -8529,7 +8560,8 @@ export namespace Prisma {
     title?: true
     summary?: true
     mood?: true
-    visualPrompt?: true
+    location?: true
+    visualDescription?: true
     order?: true
     createdAt?: true
     chapterId?: true
@@ -8540,7 +8572,8 @@ export namespace Prisma {
     title?: true
     summary?: true
     mood?: true
-    visualPrompt?: true
+    location?: true
+    visualDescription?: true
     order?: true
     createdAt?: true
     chapterId?: true
@@ -8551,7 +8584,10 @@ export namespace Prisma {
     title?: true
     summary?: true
     mood?: true
-    visualPrompt?: true
+    location?: true
+    visualDescription?: true
+    characters?: true
+    rawAiOutput?: true
     order?: true
     createdAt?: true
     chapterId?: true
@@ -8646,10 +8682,13 @@ export namespace Prisma {
 
   export type SceneGroupByOutputType = {
     id: string
-    title: string | null
+    title: string
     summary: string
     mood: string | null
-    visualPrompt: string | null
+    location: string | null
+    visualDescription: string | null
+    characters: JsonValue | null
+    rawAiOutput: JsonValue | null
     order: number
     createdAt: Date
     chapterId: string
@@ -8679,7 +8718,10 @@ export namespace Prisma {
     title?: boolean
     summary?: boolean
     mood?: boolean
-    visualPrompt?: boolean
+    location?: boolean
+    visualDescription?: boolean
+    characters?: boolean
+    rawAiOutput?: boolean
     order?: boolean
     createdAt?: boolean
     chapterId?: boolean
@@ -8693,7 +8735,10 @@ export namespace Prisma {
     title?: boolean
     summary?: boolean
     mood?: boolean
-    visualPrompt?: boolean
+    location?: boolean
+    visualDescription?: boolean
+    characters?: boolean
+    rawAiOutput?: boolean
     order?: boolean
     createdAt?: boolean
     chapterId?: boolean
@@ -8705,7 +8750,10 @@ export namespace Prisma {
     title?: boolean
     summary?: boolean
     mood?: boolean
-    visualPrompt?: boolean
+    location?: boolean
+    visualDescription?: boolean
+    characters?: boolean
+    rawAiOutput?: boolean
     order?: boolean
     createdAt?: boolean
     chapterId?: boolean
@@ -8717,13 +8765,16 @@ export namespace Prisma {
     title?: boolean
     summary?: boolean
     mood?: boolean
-    visualPrompt?: boolean
+    location?: boolean
+    visualDescription?: boolean
+    characters?: boolean
+    rawAiOutput?: boolean
     order?: boolean
     createdAt?: boolean
     chapterId?: boolean
   }
 
-  export type SceneOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "summary" | "mood" | "visualPrompt" | "order" | "createdAt" | "chapterId", ExtArgs["result"]["scene"]>
+  export type SceneOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "summary" | "mood" | "location" | "visualDescription" | "characters" | "rawAiOutput" | "order" | "createdAt" | "chapterId", ExtArgs["result"]["scene"]>
   export type SceneInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     chapter?: boolean | ChapterDefaultArgs<ExtArgs>
     assets?: boolean | Scene$assetsArgs<ExtArgs>
@@ -8744,10 +8795,13 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      title: string | null
+      title: string
       summary: string
       mood: string | null
-      visualPrompt: string | null
+      location: string | null
+      visualDescription: string | null
+      characters: Prisma.JsonValue | null
+      rawAiOutput: Prisma.JsonValue | null
       order: number
       createdAt: Date
       chapterId: string
@@ -9180,7 +9234,10 @@ export namespace Prisma {
     readonly title: FieldRef<"Scene", 'String'>
     readonly summary: FieldRef<"Scene", 'String'>
     readonly mood: FieldRef<"Scene", 'String'>
-    readonly visualPrompt: FieldRef<"Scene", 'String'>
+    readonly location: FieldRef<"Scene", 'String'>
+    readonly visualDescription: FieldRef<"Scene", 'String'>
+    readonly characters: FieldRef<"Scene", 'Json'>
+    readonly rawAiOutput: FieldRef<"Scene", 'Json'>
     readonly order: FieldRef<"Scene", 'Int'>
     readonly createdAt: FieldRef<"Scene", 'DateTime'>
     readonly chapterId: FieldRef<"Scene", 'String'>
@@ -9636,6 +9693,8 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
+    appearance: string | null
+    personality: string | null
     createdAt: Date | null
     bookId: string | null
   }
@@ -9644,6 +9703,8 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
+    appearance: string | null
+    personality: string | null
     createdAt: Date | null
     bookId: string | null
   }
@@ -9651,8 +9712,11 @@ export namespace Prisma {
   export type CharacterCountAggregateOutputType = {
     id: number
     name: number
+    aliases: number
     description: number
-    visualTraits: number
+    appearance: number
+    personality: number
+    rawAiOutput: number
     createdAt: number
     bookId: number
     _all: number
@@ -9663,6 +9727,8 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    appearance?: true
+    personality?: true
     createdAt?: true
     bookId?: true
   }
@@ -9671,6 +9737,8 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    appearance?: true
+    personality?: true
     createdAt?: true
     bookId?: true
   }
@@ -9678,8 +9746,11 @@ export namespace Prisma {
   export type CharacterCountAggregateInputType = {
     id?: true
     name?: true
+    aliases?: true
     description?: true
-    visualTraits?: true
+    appearance?: true
+    personality?: true
+    rawAiOutput?: true
     createdAt?: true
     bookId?: true
     _all?: true
@@ -9760,8 +9831,11 @@ export namespace Prisma {
   export type CharacterGroupByOutputType = {
     id: string
     name: string
-    description: string | null
-    visualTraits: JsonValue | null
+    aliases: JsonValue | null
+    description: string
+    appearance: string | null
+    personality: string | null
+    rawAiOutput: JsonValue | null
     createdAt: Date
     bookId: string
     _count: CharacterCountAggregateOutputType | null
@@ -9786,8 +9860,11 @@ export namespace Prisma {
   export type CharacterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    aliases?: boolean
     description?: boolean
-    visualTraits?: boolean
+    appearance?: boolean
+    personality?: boolean
+    rawAiOutput?: boolean
     createdAt?: boolean
     bookId?: boolean
     book?: boolean | BookDefaultArgs<ExtArgs>
@@ -9796,8 +9873,11 @@ export namespace Prisma {
   export type CharacterSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    aliases?: boolean
     description?: boolean
-    visualTraits?: boolean
+    appearance?: boolean
+    personality?: boolean
+    rawAiOutput?: boolean
     createdAt?: boolean
     bookId?: boolean
     book?: boolean | BookDefaultArgs<ExtArgs>
@@ -9806,8 +9886,11 @@ export namespace Prisma {
   export type CharacterSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    aliases?: boolean
     description?: boolean
-    visualTraits?: boolean
+    appearance?: boolean
+    personality?: boolean
+    rawAiOutput?: boolean
     createdAt?: boolean
     bookId?: boolean
     book?: boolean | BookDefaultArgs<ExtArgs>
@@ -9816,13 +9899,16 @@ export namespace Prisma {
   export type CharacterSelectScalar = {
     id?: boolean
     name?: boolean
+    aliases?: boolean
     description?: boolean
-    visualTraits?: boolean
+    appearance?: boolean
+    personality?: boolean
+    rawAiOutput?: boolean
     createdAt?: boolean
     bookId?: boolean
   }
 
-  export type CharacterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "visualTraits" | "createdAt" | "bookId", ExtArgs["result"]["character"]>
+  export type CharacterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "aliases" | "description" | "appearance" | "personality" | "rawAiOutput" | "createdAt" | "bookId", ExtArgs["result"]["character"]>
   export type CharacterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     book?: boolean | BookDefaultArgs<ExtArgs>
   }
@@ -9841,8 +9927,11 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      description: string | null
-      visualTraits: Prisma.JsonValue | null
+      aliases: Prisma.JsonValue | null
+      description: string
+      appearance: string | null
+      personality: string | null
+      rawAiOutput: Prisma.JsonValue | null
       createdAt: Date
       bookId: string
     }, ExtArgs["result"]["character"]>
@@ -10271,8 +10360,11 @@ export namespace Prisma {
   interface CharacterFieldRefs {
     readonly id: FieldRef<"Character", 'String'>
     readonly name: FieldRef<"Character", 'String'>
+    readonly aliases: FieldRef<"Character", 'Json'>
     readonly description: FieldRef<"Character", 'String'>
-    readonly visualTraits: FieldRef<"Character", 'Json'>
+    readonly appearance: FieldRef<"Character", 'String'>
+    readonly personality: FieldRef<"Character", 'String'>
+    readonly rawAiOutput: FieldRef<"Character", 'Json'>
     readonly createdAt: FieldRef<"Character", 'DateTime'>
     readonly bookId: FieldRef<"Character", 'String'>
   }
@@ -10702,9 +10794,8 @@ export namespace Prisma {
   export type GeneratedAssetMinAggregateOutputType = {
     id: string | null
     type: string | null
-    imageUrl: string | null
     prompt: string | null
-    model: string | null
+    imageUrl: string | null
     createdAt: Date | null
     sceneId: string | null
   }
@@ -10712,9 +10803,8 @@ export namespace Prisma {
   export type GeneratedAssetMaxAggregateOutputType = {
     id: string | null
     type: string | null
-    imageUrl: string | null
     prompt: string | null
-    model: string | null
+    imageUrl: string | null
     createdAt: Date | null
     sceneId: string | null
   }
@@ -10722,9 +10812,8 @@ export namespace Prisma {
   export type GeneratedAssetCountAggregateOutputType = {
     id: number
     type: number
-    imageUrl: number
     prompt: number
-    model: number
+    imageUrl: number
     createdAt: number
     sceneId: number
     _all: number
@@ -10734,9 +10823,8 @@ export namespace Prisma {
   export type GeneratedAssetMinAggregateInputType = {
     id?: true
     type?: true
-    imageUrl?: true
     prompt?: true
-    model?: true
+    imageUrl?: true
     createdAt?: true
     sceneId?: true
   }
@@ -10744,9 +10832,8 @@ export namespace Prisma {
   export type GeneratedAssetMaxAggregateInputType = {
     id?: true
     type?: true
-    imageUrl?: true
     prompt?: true
-    model?: true
+    imageUrl?: true
     createdAt?: true
     sceneId?: true
   }
@@ -10754,9 +10841,8 @@ export namespace Prisma {
   export type GeneratedAssetCountAggregateInputType = {
     id?: true
     type?: true
-    imageUrl?: true
     prompt?: true
-    model?: true
+    imageUrl?: true
     createdAt?: true
     sceneId?: true
     _all?: true
@@ -10837,9 +10923,8 @@ export namespace Prisma {
   export type GeneratedAssetGroupByOutputType = {
     id: string
     type: string
-    imageUrl: string
     prompt: string
-    model: string | null
+    imageUrl: string | null
     createdAt: Date
     sceneId: string
     _count: GeneratedAssetCountAggregateOutputType | null
@@ -10864,9 +10949,8 @@ export namespace Prisma {
   export type GeneratedAssetSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     type?: boolean
-    imageUrl?: boolean
     prompt?: boolean
-    model?: boolean
+    imageUrl?: boolean
     createdAt?: boolean
     sceneId?: boolean
     scene?: boolean | SceneDefaultArgs<ExtArgs>
@@ -10875,9 +10959,8 @@ export namespace Prisma {
   export type GeneratedAssetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     type?: boolean
-    imageUrl?: boolean
     prompt?: boolean
-    model?: boolean
+    imageUrl?: boolean
     createdAt?: boolean
     sceneId?: boolean
     scene?: boolean | SceneDefaultArgs<ExtArgs>
@@ -10886,9 +10969,8 @@ export namespace Prisma {
   export type GeneratedAssetSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     type?: boolean
-    imageUrl?: boolean
     prompt?: boolean
-    model?: boolean
+    imageUrl?: boolean
     createdAt?: boolean
     sceneId?: boolean
     scene?: boolean | SceneDefaultArgs<ExtArgs>
@@ -10897,14 +10979,13 @@ export namespace Prisma {
   export type GeneratedAssetSelectScalar = {
     id?: boolean
     type?: boolean
-    imageUrl?: boolean
     prompt?: boolean
-    model?: boolean
+    imageUrl?: boolean
     createdAt?: boolean
     sceneId?: boolean
   }
 
-  export type GeneratedAssetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "imageUrl" | "prompt" | "model" | "createdAt" | "sceneId", ExtArgs["result"]["generatedAsset"]>
+  export type GeneratedAssetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "prompt" | "imageUrl" | "createdAt" | "sceneId", ExtArgs["result"]["generatedAsset"]>
   export type GeneratedAssetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     scene?: boolean | SceneDefaultArgs<ExtArgs>
   }
@@ -10923,9 +11004,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       type: string
-      imageUrl: string
       prompt: string
-      model: string | null
+      imageUrl: string | null
       createdAt: Date
       sceneId: string
     }, ExtArgs["result"]["generatedAsset"]>
@@ -11354,9 +11434,8 @@ export namespace Prisma {
   interface GeneratedAssetFieldRefs {
     readonly id: FieldRef<"GeneratedAsset", 'String'>
     readonly type: FieldRef<"GeneratedAsset", 'String'>
-    readonly imageUrl: FieldRef<"GeneratedAsset", 'String'>
     readonly prompt: FieldRef<"GeneratedAsset", 'String'>
-    readonly model: FieldRef<"GeneratedAsset", 'String'>
+    readonly imageUrl: FieldRef<"GeneratedAsset", 'String'>
     readonly createdAt: FieldRef<"GeneratedAsset", 'DateTime'>
     readonly sceneId: FieldRef<"GeneratedAsset", 'String'>
   }
@@ -11850,6 +11929,8 @@ export namespace Prisma {
     title: 'title',
     author: 'author',
     status: 'status',
+    fileName: 'fileName',
+    filePath: 'filePath',
     sourcePath: 'sourcePath',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -11877,7 +11958,10 @@ export namespace Prisma {
     title: 'title',
     summary: 'summary',
     mood: 'mood',
-    visualPrompt: 'visualPrompt',
+    location: 'location',
+    visualDescription: 'visualDescription',
+    characters: 'characters',
+    rawAiOutput: 'rawAiOutput',
     order: 'order',
     createdAt: 'createdAt',
     chapterId: 'chapterId'
@@ -11889,8 +11973,11 @@ export namespace Prisma {
   export const CharacterScalarFieldEnum: {
     id: 'id',
     name: 'name',
+    aliases: 'aliases',
     description: 'description',
-    visualTraits: 'visualTraits',
+    appearance: 'appearance',
+    personality: 'personality',
+    rawAiOutput: 'rawAiOutput',
     createdAt: 'createdAt',
     bookId: 'bookId'
   };
@@ -11901,9 +11988,8 @@ export namespace Prisma {
   export const GeneratedAssetScalarFieldEnum: {
     id: 'id',
     type: 'type',
-    imageUrl: 'imageUrl',
     prompt: 'prompt',
-    model: 'model',
+    imageUrl: 'imageUrl',
     createdAt: 'createdAt',
     sceneId: 'sceneId'
   };
@@ -12338,6 +12424,8 @@ export namespace Prisma {
     title?: StringFilter<"Book"> | string
     author?: StringNullableFilter<"Book"> | string | null
     status?: StringFilter<"Book"> | string
+    fileName?: StringNullableFilter<"Book"> | string | null
+    filePath?: StringNullableFilter<"Book"> | string | null
     sourcePath?: StringNullableFilter<"Book"> | string | null
     createdAt?: DateTimeFilter<"Book"> | Date | string
     updatedAt?: DateTimeFilter<"Book"> | Date | string
@@ -12352,6 +12440,8 @@ export namespace Prisma {
     title?: SortOrder
     author?: SortOrderInput | SortOrder
     status?: SortOrder
+    fileName?: SortOrderInput | SortOrder
+    filePath?: SortOrderInput | SortOrder
     sourcePath?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12369,6 +12459,8 @@ export namespace Prisma {
     title?: StringFilter<"Book"> | string
     author?: StringNullableFilter<"Book"> | string | null
     status?: StringFilter<"Book"> | string
+    fileName?: StringNullableFilter<"Book"> | string | null
+    filePath?: StringNullableFilter<"Book"> | string | null
     sourcePath?: StringNullableFilter<"Book"> | string | null
     createdAt?: DateTimeFilter<"Book"> | Date | string
     updatedAt?: DateTimeFilter<"Book"> | Date | string
@@ -12383,6 +12475,8 @@ export namespace Prisma {
     title?: SortOrder
     author?: SortOrderInput | SortOrder
     status?: SortOrder
+    fileName?: SortOrderInput | SortOrder
+    filePath?: SortOrderInput | SortOrder
     sourcePath?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12400,6 +12494,8 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Book"> | string
     author?: StringNullableWithAggregatesFilter<"Book"> | string | null
     status?: StringWithAggregatesFilter<"Book"> | string
+    fileName?: StringNullableWithAggregatesFilter<"Book"> | string | null
+    filePath?: StringNullableWithAggregatesFilter<"Book"> | string | null
     sourcePath?: StringNullableWithAggregatesFilter<"Book"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Book"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Book"> | Date | string
@@ -12481,10 +12577,13 @@ export namespace Prisma {
     OR?: SceneWhereInput[]
     NOT?: SceneWhereInput | SceneWhereInput[]
     id?: StringFilter<"Scene"> | string
-    title?: StringNullableFilter<"Scene"> | string | null
+    title?: StringFilter<"Scene"> | string
     summary?: StringFilter<"Scene"> | string
     mood?: StringNullableFilter<"Scene"> | string | null
-    visualPrompt?: StringNullableFilter<"Scene"> | string | null
+    location?: StringNullableFilter<"Scene"> | string | null
+    visualDescription?: StringNullableFilter<"Scene"> | string | null
+    characters?: JsonNullableFilter<"Scene">
+    rawAiOutput?: JsonNullableFilter<"Scene">
     order?: IntFilter<"Scene"> | number
     createdAt?: DateTimeFilter<"Scene"> | Date | string
     chapterId?: StringFilter<"Scene"> | string
@@ -12494,10 +12593,13 @@ export namespace Prisma {
 
   export type SceneOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrderInput | SortOrder
+    title?: SortOrder
     summary?: SortOrder
     mood?: SortOrderInput | SortOrder
-    visualPrompt?: SortOrderInput | SortOrder
+    location?: SortOrderInput | SortOrder
+    visualDescription?: SortOrderInput | SortOrder
+    characters?: SortOrderInput | SortOrder
+    rawAiOutput?: SortOrderInput | SortOrder
     order?: SortOrder
     createdAt?: SortOrder
     chapterId?: SortOrder
@@ -12510,10 +12612,13 @@ export namespace Prisma {
     AND?: SceneWhereInput | SceneWhereInput[]
     OR?: SceneWhereInput[]
     NOT?: SceneWhereInput | SceneWhereInput[]
-    title?: StringNullableFilter<"Scene"> | string | null
+    title?: StringFilter<"Scene"> | string
     summary?: StringFilter<"Scene"> | string
     mood?: StringNullableFilter<"Scene"> | string | null
-    visualPrompt?: StringNullableFilter<"Scene"> | string | null
+    location?: StringNullableFilter<"Scene"> | string | null
+    visualDescription?: StringNullableFilter<"Scene"> | string | null
+    characters?: JsonNullableFilter<"Scene">
+    rawAiOutput?: JsonNullableFilter<"Scene">
     order?: IntFilter<"Scene"> | number
     createdAt?: DateTimeFilter<"Scene"> | Date | string
     chapterId?: StringFilter<"Scene"> | string
@@ -12523,10 +12628,13 @@ export namespace Prisma {
 
   export type SceneOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrderInput | SortOrder
+    title?: SortOrder
     summary?: SortOrder
     mood?: SortOrderInput | SortOrder
-    visualPrompt?: SortOrderInput | SortOrder
+    location?: SortOrderInput | SortOrder
+    visualDescription?: SortOrderInput | SortOrder
+    characters?: SortOrderInput | SortOrder
+    rawAiOutput?: SortOrderInput | SortOrder
     order?: SortOrder
     createdAt?: SortOrder
     chapterId?: SortOrder
@@ -12542,10 +12650,13 @@ export namespace Prisma {
     OR?: SceneScalarWhereWithAggregatesInput[]
     NOT?: SceneScalarWhereWithAggregatesInput | SceneScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Scene"> | string
-    title?: StringNullableWithAggregatesFilter<"Scene"> | string | null
+    title?: StringWithAggregatesFilter<"Scene"> | string
     summary?: StringWithAggregatesFilter<"Scene"> | string
     mood?: StringNullableWithAggregatesFilter<"Scene"> | string | null
-    visualPrompt?: StringNullableWithAggregatesFilter<"Scene"> | string | null
+    location?: StringNullableWithAggregatesFilter<"Scene"> | string | null
+    visualDescription?: StringNullableWithAggregatesFilter<"Scene"> | string | null
+    characters?: JsonNullableWithAggregatesFilter<"Scene">
+    rawAiOutput?: JsonNullableWithAggregatesFilter<"Scene">
     order?: IntWithAggregatesFilter<"Scene"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Scene"> | Date | string
     chapterId?: StringWithAggregatesFilter<"Scene"> | string
@@ -12557,8 +12668,11 @@ export namespace Prisma {
     NOT?: CharacterWhereInput | CharacterWhereInput[]
     id?: StringFilter<"Character"> | string
     name?: StringFilter<"Character"> | string
-    description?: StringNullableFilter<"Character"> | string | null
-    visualTraits?: JsonNullableFilter<"Character">
+    aliases?: JsonNullableFilter<"Character">
+    description?: StringFilter<"Character"> | string
+    appearance?: StringNullableFilter<"Character"> | string | null
+    personality?: StringNullableFilter<"Character"> | string | null
+    rawAiOutput?: JsonNullableFilter<"Character">
     createdAt?: DateTimeFilter<"Character"> | Date | string
     bookId?: StringFilter<"Character"> | string
     book?: XOR<BookScalarRelationFilter, BookWhereInput>
@@ -12567,8 +12681,11 @@ export namespace Prisma {
   export type CharacterOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    description?: SortOrderInput | SortOrder
-    visualTraits?: SortOrderInput | SortOrder
+    aliases?: SortOrderInput | SortOrder
+    description?: SortOrder
+    appearance?: SortOrderInput | SortOrder
+    personality?: SortOrderInput | SortOrder
+    rawAiOutput?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     bookId?: SortOrder
     book?: BookOrderByWithRelationInput
@@ -12580,8 +12697,11 @@ export namespace Prisma {
     OR?: CharacterWhereInput[]
     NOT?: CharacterWhereInput | CharacterWhereInput[]
     name?: StringFilter<"Character"> | string
-    description?: StringNullableFilter<"Character"> | string | null
-    visualTraits?: JsonNullableFilter<"Character">
+    aliases?: JsonNullableFilter<"Character">
+    description?: StringFilter<"Character"> | string
+    appearance?: StringNullableFilter<"Character"> | string | null
+    personality?: StringNullableFilter<"Character"> | string | null
+    rawAiOutput?: JsonNullableFilter<"Character">
     createdAt?: DateTimeFilter<"Character"> | Date | string
     bookId?: StringFilter<"Character"> | string
     book?: XOR<BookScalarRelationFilter, BookWhereInput>
@@ -12590,8 +12710,11 @@ export namespace Prisma {
   export type CharacterOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    description?: SortOrderInput | SortOrder
-    visualTraits?: SortOrderInput | SortOrder
+    aliases?: SortOrderInput | SortOrder
+    description?: SortOrder
+    appearance?: SortOrderInput | SortOrder
+    personality?: SortOrderInput | SortOrder
+    rawAiOutput?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     bookId?: SortOrder
     _count?: CharacterCountOrderByAggregateInput
@@ -12605,8 +12728,11 @@ export namespace Prisma {
     NOT?: CharacterScalarWhereWithAggregatesInput | CharacterScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Character"> | string
     name?: StringWithAggregatesFilter<"Character"> | string
-    description?: StringNullableWithAggregatesFilter<"Character"> | string | null
-    visualTraits?: JsonNullableWithAggregatesFilter<"Character">
+    aliases?: JsonNullableWithAggregatesFilter<"Character">
+    description?: StringWithAggregatesFilter<"Character"> | string
+    appearance?: StringNullableWithAggregatesFilter<"Character"> | string | null
+    personality?: StringNullableWithAggregatesFilter<"Character"> | string | null
+    rawAiOutput?: JsonNullableWithAggregatesFilter<"Character">
     createdAt?: DateTimeWithAggregatesFilter<"Character"> | Date | string
     bookId?: StringWithAggregatesFilter<"Character"> | string
   }
@@ -12617,9 +12743,8 @@ export namespace Prisma {
     NOT?: GeneratedAssetWhereInput | GeneratedAssetWhereInput[]
     id?: StringFilter<"GeneratedAsset"> | string
     type?: StringFilter<"GeneratedAsset"> | string
-    imageUrl?: StringFilter<"GeneratedAsset"> | string
     prompt?: StringFilter<"GeneratedAsset"> | string
-    model?: StringNullableFilter<"GeneratedAsset"> | string | null
+    imageUrl?: StringNullableFilter<"GeneratedAsset"> | string | null
     createdAt?: DateTimeFilter<"GeneratedAsset"> | Date | string
     sceneId?: StringFilter<"GeneratedAsset"> | string
     scene?: XOR<SceneScalarRelationFilter, SceneWhereInput>
@@ -12628,9 +12753,8 @@ export namespace Prisma {
   export type GeneratedAssetOrderByWithRelationInput = {
     id?: SortOrder
     type?: SortOrder
-    imageUrl?: SortOrder
     prompt?: SortOrder
-    model?: SortOrderInput | SortOrder
+    imageUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     sceneId?: SortOrder
     scene?: SceneOrderByWithRelationInput
@@ -12642,9 +12766,8 @@ export namespace Prisma {
     OR?: GeneratedAssetWhereInput[]
     NOT?: GeneratedAssetWhereInput | GeneratedAssetWhereInput[]
     type?: StringFilter<"GeneratedAsset"> | string
-    imageUrl?: StringFilter<"GeneratedAsset"> | string
     prompt?: StringFilter<"GeneratedAsset"> | string
-    model?: StringNullableFilter<"GeneratedAsset"> | string | null
+    imageUrl?: StringNullableFilter<"GeneratedAsset"> | string | null
     createdAt?: DateTimeFilter<"GeneratedAsset"> | Date | string
     sceneId?: StringFilter<"GeneratedAsset"> | string
     scene?: XOR<SceneScalarRelationFilter, SceneWhereInput>
@@ -12653,9 +12776,8 @@ export namespace Prisma {
   export type GeneratedAssetOrderByWithAggregationInput = {
     id?: SortOrder
     type?: SortOrder
-    imageUrl?: SortOrder
     prompt?: SortOrder
-    model?: SortOrderInput | SortOrder
+    imageUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     sceneId?: SortOrder
     _count?: GeneratedAssetCountOrderByAggregateInput
@@ -12669,9 +12791,8 @@ export namespace Prisma {
     NOT?: GeneratedAssetScalarWhereWithAggregatesInput | GeneratedAssetScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"GeneratedAsset"> | string
     type?: StringWithAggregatesFilter<"GeneratedAsset"> | string
-    imageUrl?: StringWithAggregatesFilter<"GeneratedAsset"> | string
     prompt?: StringWithAggregatesFilter<"GeneratedAsset"> | string
-    model?: StringNullableWithAggregatesFilter<"GeneratedAsset"> | string | null
+    imageUrl?: StringNullableWithAggregatesFilter<"GeneratedAsset"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"GeneratedAsset"> | Date | string
     sceneId?: StringWithAggregatesFilter<"GeneratedAsset"> | string
   }
@@ -13013,6 +13134,8 @@ export namespace Prisma {
     title: string
     author?: string | null
     status?: string
+    fileName?: string | null
+    filePath?: string | null
     sourcePath?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13026,6 +13149,8 @@ export namespace Prisma {
     title: string
     author?: string | null
     status?: string
+    fileName?: string | null
+    filePath?: string | null
     sourcePath?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13039,6 +13164,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13052,6 +13179,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13065,6 +13194,8 @@ export namespace Prisma {
     title: string
     author?: string | null
     status?: string
+    fileName?: string | null
+    filePath?: string | null
     sourcePath?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13076,6 +13207,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13086,6 +13219,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13167,10 +13302,13 @@ export namespace Prisma {
 
   export type SceneCreateInput = {
     id?: string
-    title?: string | null
+    title: string
     summary: string
     mood?: string | null
-    visualPrompt?: string | null
+    location?: string | null
+    visualDescription?: string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
     chapter: ChapterCreateNestedOneWithoutScenesInput
@@ -13179,10 +13317,13 @@ export namespace Prisma {
 
   export type SceneUncheckedCreateInput = {
     id?: string
-    title?: string | null
+    title: string
     summary: string
     mood?: string | null
-    visualPrompt?: string | null
+    location?: string | null
+    visualDescription?: string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
     chapterId: string
@@ -13191,10 +13332,13 @@ export namespace Prisma {
 
   export type SceneUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
     mood?: NullableStringFieldUpdateOperationsInput | string | null
-    visualPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chapter?: ChapterUpdateOneRequiredWithoutScenesNestedInput
@@ -13203,10 +13347,13 @@ export namespace Prisma {
 
   export type SceneUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
     mood?: NullableStringFieldUpdateOperationsInput | string | null
-    visualPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chapterId?: StringFieldUpdateOperationsInput | string
@@ -13215,10 +13362,13 @@ export namespace Prisma {
 
   export type SceneCreateManyInput = {
     id?: string
-    title?: string | null
+    title: string
     summary: string
     mood?: string | null
-    visualPrompt?: string | null
+    location?: string | null
+    visualDescription?: string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
     chapterId: string
@@ -13226,20 +13376,26 @@ export namespace Prisma {
 
   export type SceneUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
     mood?: NullableStringFieldUpdateOperationsInput | string | null
-    visualPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SceneUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
     mood?: NullableStringFieldUpdateOperationsInput | string | null
-    visualPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chapterId?: StringFieldUpdateOperationsInput | string
@@ -13248,8 +13404,11 @@ export namespace Prisma {
   export type CharacterCreateInput = {
     id?: string
     name: string
-    description?: string | null
-    visualTraits?: NullableJsonNullValueInput | InputJsonValue
+    aliases?: NullableJsonNullValueInput | InputJsonValue
+    description: string
+    appearance?: string | null
+    personality?: string | null
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     book: BookCreateNestedOneWithoutCharactersInput
   }
@@ -13257,8 +13416,11 @@ export namespace Prisma {
   export type CharacterUncheckedCreateInput = {
     id?: string
     name: string
-    description?: string | null
-    visualTraits?: NullableJsonNullValueInput | InputJsonValue
+    aliases?: NullableJsonNullValueInput | InputJsonValue
+    description: string
+    appearance?: string | null
+    personality?: string | null
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     bookId: string
   }
@@ -13266,8 +13428,11 @@ export namespace Prisma {
   export type CharacterUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    visualTraits?: NullableJsonNullValueInput | InputJsonValue
+    aliases?: NullableJsonNullValueInput | InputJsonValue
+    description?: StringFieldUpdateOperationsInput | string
+    appearance?: NullableStringFieldUpdateOperationsInput | string | null
+    personality?: NullableStringFieldUpdateOperationsInput | string | null
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     book?: BookUpdateOneRequiredWithoutCharactersNestedInput
   }
@@ -13275,8 +13440,11 @@ export namespace Prisma {
   export type CharacterUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    visualTraits?: NullableJsonNullValueInput | InputJsonValue
+    aliases?: NullableJsonNullValueInput | InputJsonValue
+    description?: StringFieldUpdateOperationsInput | string
+    appearance?: NullableStringFieldUpdateOperationsInput | string | null
+    personality?: NullableStringFieldUpdateOperationsInput | string | null
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookId?: StringFieldUpdateOperationsInput | string
   }
@@ -13284,8 +13452,11 @@ export namespace Prisma {
   export type CharacterCreateManyInput = {
     id?: string
     name: string
-    description?: string | null
-    visualTraits?: NullableJsonNullValueInput | InputJsonValue
+    aliases?: NullableJsonNullValueInput | InputJsonValue
+    description: string
+    appearance?: string | null
+    personality?: string | null
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     bookId: string
   }
@@ -13293,16 +13464,22 @@ export namespace Prisma {
   export type CharacterUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    visualTraits?: NullableJsonNullValueInput | InputJsonValue
+    aliases?: NullableJsonNullValueInput | InputJsonValue
+    description?: StringFieldUpdateOperationsInput | string
+    appearance?: NullableStringFieldUpdateOperationsInput | string | null
+    personality?: NullableStringFieldUpdateOperationsInput | string | null
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CharacterUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    visualTraits?: NullableJsonNullValueInput | InputJsonValue
+    aliases?: NullableJsonNullValueInput | InputJsonValue
+    description?: StringFieldUpdateOperationsInput | string
+    appearance?: NullableStringFieldUpdateOperationsInput | string | null
+    personality?: NullableStringFieldUpdateOperationsInput | string | null
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookId?: StringFieldUpdateOperationsInput | string
   }
@@ -13310,9 +13487,8 @@ export namespace Prisma {
   export type GeneratedAssetCreateInput = {
     id?: string
     type: string
-    imageUrl: string
     prompt: string
-    model?: string | null
+    imageUrl?: string | null
     createdAt?: Date | string
     scene: SceneCreateNestedOneWithoutAssetsInput
   }
@@ -13320,9 +13496,8 @@ export namespace Prisma {
   export type GeneratedAssetUncheckedCreateInput = {
     id?: string
     type: string
-    imageUrl: string
     prompt: string
-    model?: string | null
+    imageUrl?: string | null
     createdAt?: Date | string
     sceneId: string
   }
@@ -13330,9 +13505,8 @@ export namespace Prisma {
   export type GeneratedAssetUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
-    model?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     scene?: SceneUpdateOneRequiredWithoutAssetsNestedInput
   }
@@ -13340,9 +13514,8 @@ export namespace Prisma {
   export type GeneratedAssetUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
-    model?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sceneId?: StringFieldUpdateOperationsInput | string
   }
@@ -13350,9 +13523,8 @@ export namespace Prisma {
   export type GeneratedAssetCreateManyInput = {
     id?: string
     type: string
-    imageUrl: string
     prompt: string
-    model?: string | null
+    imageUrl?: string | null
     createdAt?: Date | string
     sceneId: string
   }
@@ -13360,18 +13532,16 @@ export namespace Prisma {
   export type GeneratedAssetUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
-    model?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GeneratedAssetUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
-    model?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sceneId?: StringFieldUpdateOperationsInput | string
   }
@@ -13708,6 +13878,8 @@ export namespace Prisma {
     title?: SortOrder
     author?: SortOrder
     status?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
     sourcePath?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13719,6 +13891,8 @@ export namespace Prisma {
     title?: SortOrder
     author?: SortOrder
     status?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
     sourcePath?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13730,6 +13904,8 @@ export namespace Prisma {
     title?: SortOrder
     author?: SortOrder
     status?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
     sourcePath?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13815,62 +13991,6 @@ export namespace Prisma {
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
   }
-
-  export type ChapterScalarRelationFilter = {
-    is?: ChapterWhereInput
-    isNot?: ChapterWhereInput
-  }
-
-  export type GeneratedAssetListRelationFilter = {
-    every?: GeneratedAssetWhereInput
-    some?: GeneratedAssetWhereInput
-    none?: GeneratedAssetWhereInput
-  }
-
-  export type GeneratedAssetOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type SceneCountOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    summary?: SortOrder
-    mood?: SortOrder
-    visualPrompt?: SortOrder
-    order?: SortOrder
-    createdAt?: SortOrder
-    chapterId?: SortOrder
-  }
-
-  export type SceneAvgOrderByAggregateInput = {
-    order?: SortOrder
-  }
-
-  export type SceneMaxOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    summary?: SortOrder
-    mood?: SortOrder
-    visualPrompt?: SortOrder
-    order?: SortOrder
-    createdAt?: SortOrder
-    chapterId?: SortOrder
-  }
-
-  export type SceneMinOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    summary?: SortOrder
-    mood?: SortOrder
-    visualPrompt?: SortOrder
-    order?: SortOrder
-    createdAt?: SortOrder
-    chapterId?: SortOrder
-  }
-
-  export type SceneSumOrderByAggregateInput = {
-    order?: SortOrder
-  }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -13895,29 +14015,65 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type CharacterCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    description?: SortOrder
-    visualTraits?: SortOrder
-    createdAt?: SortOrder
-    bookId?: SortOrder
+  export type ChapterScalarRelationFilter = {
+    is?: ChapterWhereInput
+    isNot?: ChapterWhereInput
   }
 
-  export type CharacterMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-    bookId?: SortOrder
+  export type GeneratedAssetListRelationFilter = {
+    every?: GeneratedAssetWhereInput
+    some?: GeneratedAssetWhereInput
+    none?: GeneratedAssetWhereInput
   }
 
-  export type CharacterMinOrderByAggregateInput = {
+  export type GeneratedAssetOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SceneCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    description?: SortOrder
+    title?: SortOrder
+    summary?: SortOrder
+    mood?: SortOrder
+    location?: SortOrder
+    visualDescription?: SortOrder
+    characters?: SortOrder
+    rawAiOutput?: SortOrder
+    order?: SortOrder
     createdAt?: SortOrder
-    bookId?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type SceneAvgOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type SceneMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    summary?: SortOrder
+    mood?: SortOrder
+    location?: SortOrder
+    visualDescription?: SortOrder
+    order?: SortOrder
+    createdAt?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type SceneMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    summary?: SortOrder
+    mood?: SortOrder
+    location?: SortOrder
+    visualDescription?: SortOrder
+    order?: SortOrder
+    createdAt?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type SceneSumOrderByAggregateInput = {
+    order?: SortOrder
   }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -13946,6 +14102,38 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
+  export type CharacterCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    aliases?: SortOrder
+    description?: SortOrder
+    appearance?: SortOrder
+    personality?: SortOrder
+    rawAiOutput?: SortOrder
+    createdAt?: SortOrder
+    bookId?: SortOrder
+  }
+
+  export type CharacterMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    appearance?: SortOrder
+    personality?: SortOrder
+    createdAt?: SortOrder
+    bookId?: SortOrder
+  }
+
+  export type CharacterMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    appearance?: SortOrder
+    personality?: SortOrder
+    createdAt?: SortOrder
+    bookId?: SortOrder
+  }
+
   export type SceneScalarRelationFilter = {
     is?: SceneWhereInput
     isNot?: SceneWhereInput
@@ -13954,9 +14142,8 @@ export namespace Prisma {
   export type GeneratedAssetCountOrderByAggregateInput = {
     id?: SortOrder
     type?: SortOrder
-    imageUrl?: SortOrder
     prompt?: SortOrder
-    model?: SortOrder
+    imageUrl?: SortOrder
     createdAt?: SortOrder
     sceneId?: SortOrder
   }
@@ -13964,9 +14151,8 @@ export namespace Prisma {
   export type GeneratedAssetMaxOrderByAggregateInput = {
     id?: SortOrder
     type?: SortOrder
-    imageUrl?: SortOrder
     prompt?: SortOrder
-    model?: SortOrder
+    imageUrl?: SortOrder
     createdAt?: SortOrder
     sceneId?: SortOrder
   }
@@ -13974,9 +14160,8 @@ export namespace Prisma {
   export type GeneratedAssetMinOrderByAggregateInput = {
     id?: SortOrder
     type?: SortOrder
-    imageUrl?: SortOrder
     prompt?: SortOrder
-    model?: SortOrder
+    imageUrl?: SortOrder
     createdAt?: SortOrder
     sceneId?: SortOrder
   }
@@ -14673,6 +14858,8 @@ export namespace Prisma {
     title: string
     author?: string | null
     status?: string
+    fileName?: string | null
+    filePath?: string | null
     sourcePath?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14685,6 +14872,8 @@ export namespace Prisma {
     title: string
     author?: string | null
     status?: string
+    fileName?: string | null
+    filePath?: string | null
     sourcePath?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14791,6 +14980,8 @@ export namespace Prisma {
     title?: StringFilter<"Book"> | string
     author?: StringNullableFilter<"Book"> | string | null
     status?: StringFilter<"Book"> | string
+    fileName?: StringNullableFilter<"Book"> | string | null
+    filePath?: StringNullableFilter<"Book"> | string | null
     sourcePath?: StringNullableFilter<"Book"> | string | null
     createdAt?: DateTimeFilter<"Book"> | Date | string
     updatedAt?: DateTimeFilter<"Book"> | Date | string
@@ -14987,16 +15178,22 @@ export namespace Prisma {
   export type CharacterCreateWithoutBookInput = {
     id?: string
     name: string
-    description?: string | null
-    visualTraits?: NullableJsonNullValueInput | InputJsonValue
+    aliases?: NullableJsonNullValueInput | InputJsonValue
+    description: string
+    appearance?: string | null
+    personality?: string | null
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
   export type CharacterUncheckedCreateWithoutBookInput = {
     id?: string
     name: string
-    description?: string | null
-    visualTraits?: NullableJsonNullValueInput | InputJsonValue
+    aliases?: NullableJsonNullValueInput | InputJsonValue
+    description: string
+    appearance?: string | null
+    personality?: string | null
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
@@ -15096,8 +15293,11 @@ export namespace Prisma {
     NOT?: CharacterScalarWhereInput | CharacterScalarWhereInput[]
     id?: StringFilter<"Character"> | string
     name?: StringFilter<"Character"> | string
-    description?: StringNullableFilter<"Character"> | string | null
-    visualTraits?: JsonNullableFilter<"Character">
+    aliases?: JsonNullableFilter<"Character">
+    description?: StringFilter<"Character"> | string
+    appearance?: StringNullableFilter<"Character"> | string | null
+    personality?: StringNullableFilter<"Character"> | string | null
+    rawAiOutput?: JsonNullableFilter<"Character">
     createdAt?: DateTimeFilter<"Character"> | Date | string
     bookId?: StringFilter<"Character"> | string
   }
@@ -15107,6 +15307,8 @@ export namespace Prisma {
     title: string
     author?: string | null
     status?: string
+    fileName?: string | null
+    filePath?: string | null
     sourcePath?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15119,6 +15321,8 @@ export namespace Prisma {
     title: string
     author?: string | null
     status?: string
+    fileName?: string | null
+    filePath?: string | null
     sourcePath?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15133,10 +15337,13 @@ export namespace Prisma {
 
   export type SceneCreateWithoutChapterInput = {
     id?: string
-    title?: string | null
+    title: string
     summary: string
     mood?: string | null
-    visualPrompt?: string | null
+    location?: string | null
+    visualDescription?: string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
     assets?: GeneratedAssetCreateNestedManyWithoutSceneInput
@@ -15144,10 +15351,13 @@ export namespace Prisma {
 
   export type SceneUncheckedCreateWithoutChapterInput = {
     id?: string
-    title?: string | null
+    title: string
     summary: string
     mood?: string | null
-    visualPrompt?: string | null
+    location?: string | null
+    visualDescription?: string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
     assets?: GeneratedAssetUncheckedCreateNestedManyWithoutSceneInput
@@ -15179,6 +15389,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15191,6 +15403,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15219,10 +15433,13 @@ export namespace Prisma {
     OR?: SceneScalarWhereInput[]
     NOT?: SceneScalarWhereInput | SceneScalarWhereInput[]
     id?: StringFilter<"Scene"> | string
-    title?: StringNullableFilter<"Scene"> | string | null
+    title?: StringFilter<"Scene"> | string
     summary?: StringFilter<"Scene"> | string
     mood?: StringNullableFilter<"Scene"> | string | null
-    visualPrompt?: StringNullableFilter<"Scene"> | string | null
+    location?: StringNullableFilter<"Scene"> | string | null
+    visualDescription?: StringNullableFilter<"Scene"> | string | null
+    characters?: JsonNullableFilter<"Scene">
+    rawAiOutput?: JsonNullableFilter<"Scene">
     order?: IntFilter<"Scene"> | number
     createdAt?: DateTimeFilter<"Scene"> | Date | string
     chapterId?: StringFilter<"Scene"> | string
@@ -15256,18 +15473,16 @@ export namespace Prisma {
   export type GeneratedAssetCreateWithoutSceneInput = {
     id?: string
     type: string
-    imageUrl: string
     prompt: string
-    model?: string | null
+    imageUrl?: string | null
     createdAt?: Date | string
   }
 
   export type GeneratedAssetUncheckedCreateWithoutSceneInput = {
     id?: string
     type: string
-    imageUrl: string
     prompt: string
-    model?: string | null
+    imageUrl?: string | null
     createdAt?: Date | string
   }
 
@@ -15334,9 +15549,8 @@ export namespace Prisma {
     NOT?: GeneratedAssetScalarWhereInput | GeneratedAssetScalarWhereInput[]
     id?: StringFilter<"GeneratedAsset"> | string
     type?: StringFilter<"GeneratedAsset"> | string
-    imageUrl?: StringFilter<"GeneratedAsset"> | string
     prompt?: StringFilter<"GeneratedAsset"> | string
-    model?: StringNullableFilter<"GeneratedAsset"> | string | null
+    imageUrl?: StringNullableFilter<"GeneratedAsset"> | string | null
     createdAt?: DateTimeFilter<"GeneratedAsset"> | Date | string
     sceneId?: StringFilter<"GeneratedAsset"> | string
   }
@@ -15346,6 +15560,8 @@ export namespace Prisma {
     title: string
     author?: string | null
     status?: string
+    fileName?: string | null
+    filePath?: string | null
     sourcePath?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15358,6 +15574,8 @@ export namespace Prisma {
     title: string
     author?: string | null
     status?: string
+    fileName?: string | null
+    filePath?: string | null
     sourcePath?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15386,6 +15604,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15398,6 +15618,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15407,10 +15629,13 @@ export namespace Prisma {
 
   export type SceneCreateWithoutAssetsInput = {
     id?: string
-    title?: string | null
+    title: string
     summary: string
     mood?: string | null
-    visualPrompt?: string | null
+    location?: string | null
+    visualDescription?: string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
     chapter: ChapterCreateNestedOneWithoutScenesInput
@@ -15418,10 +15643,13 @@ export namespace Prisma {
 
   export type SceneUncheckedCreateWithoutAssetsInput = {
     id?: string
-    title?: string | null
+    title: string
     summary: string
     mood?: string | null
-    visualPrompt?: string | null
+    location?: string | null
+    visualDescription?: string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
     chapterId: string
@@ -15445,10 +15673,13 @@ export namespace Prisma {
 
   export type SceneUpdateWithoutAssetsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
     mood?: NullableStringFieldUpdateOperationsInput | string | null
-    visualPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chapter?: ChapterUpdateOneRequiredWithoutScenesNestedInput
@@ -15456,10 +15687,13 @@ export namespace Prisma {
 
   export type SceneUncheckedUpdateWithoutAssetsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
     mood?: NullableStringFieldUpdateOperationsInput | string | null
-    visualPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chapterId?: StringFieldUpdateOperationsInput | string
@@ -15495,6 +15729,8 @@ export namespace Prisma {
     title: string
     author?: string | null
     status?: string
+    fileName?: string | null
+    filePath?: string | null
     sourcePath?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15580,6 +15816,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15592,6 +15830,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15604,6 +15844,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15621,8 +15863,11 @@ export namespace Prisma {
   export type CharacterCreateManyBookInput = {
     id?: string
     name: string
-    description?: string | null
-    visualTraits?: NullableJsonNullValueInput | InputJsonValue
+    aliases?: NullableJsonNullValueInput | InputJsonValue
+    description: string
+    appearance?: string | null
+    personality?: string | null
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
@@ -15658,43 +15903,58 @@ export namespace Prisma {
   export type CharacterUpdateWithoutBookInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    visualTraits?: NullableJsonNullValueInput | InputJsonValue
+    aliases?: NullableJsonNullValueInput | InputJsonValue
+    description?: StringFieldUpdateOperationsInput | string
+    appearance?: NullableStringFieldUpdateOperationsInput | string | null
+    personality?: NullableStringFieldUpdateOperationsInput | string | null
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CharacterUncheckedUpdateWithoutBookInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    visualTraits?: NullableJsonNullValueInput | InputJsonValue
+    aliases?: NullableJsonNullValueInput | InputJsonValue
+    description?: StringFieldUpdateOperationsInput | string
+    appearance?: NullableStringFieldUpdateOperationsInput | string | null
+    personality?: NullableStringFieldUpdateOperationsInput | string | null
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CharacterUncheckedUpdateManyWithoutBookInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    visualTraits?: NullableJsonNullValueInput | InputJsonValue
+    aliases?: NullableJsonNullValueInput | InputJsonValue
+    description?: StringFieldUpdateOperationsInput | string
+    appearance?: NullableStringFieldUpdateOperationsInput | string | null
+    personality?: NullableStringFieldUpdateOperationsInput | string | null
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SceneCreateManyChapterInput = {
     id?: string
-    title?: string | null
+    title: string
     summary: string
     mood?: string | null
-    visualPrompt?: string | null
+    location?: string | null
+    visualDescription?: string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
   }
 
   export type SceneUpdateWithoutChapterInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
     mood?: NullableStringFieldUpdateOperationsInput | string | null
-    visualPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assets?: GeneratedAssetUpdateManyWithoutSceneNestedInput
@@ -15702,10 +15962,13 @@ export namespace Prisma {
 
   export type SceneUncheckedUpdateWithoutChapterInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
     mood?: NullableStringFieldUpdateOperationsInput | string | null
-    visualPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assets?: GeneratedAssetUncheckedUpdateManyWithoutSceneNestedInput
@@ -15713,10 +15976,13 @@ export namespace Prisma {
 
   export type SceneUncheckedUpdateManyWithoutChapterInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
     mood?: NullableStringFieldUpdateOperationsInput | string | null
-    visualPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    characters?: NullableJsonNullValueInput | InputJsonValue
+    rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15724,36 +15990,32 @@ export namespace Prisma {
   export type GeneratedAssetCreateManySceneInput = {
     id?: string
     type: string
-    imageUrl: string
     prompt: string
-    model?: string | null
+    imageUrl?: string | null
     createdAt?: Date | string
   }
 
   export type GeneratedAssetUpdateWithoutSceneInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
-    model?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GeneratedAssetUncheckedUpdateWithoutSceneInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
-    model?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GeneratedAssetUncheckedUpdateManyWithoutSceneInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
-    model?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

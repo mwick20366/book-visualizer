@@ -87,6 +87,8 @@ model Book {
 
   status      String   @default("uploaded")
 
+  fileName String?
+  filePath String?
   sourcePath  String?
 
   createdAt   DateTime @default(now())
@@ -118,53 +120,63 @@ model Chapter {
 }
 
 model Scene {
-  id              String   @id @default(cuid())
+  id                String   @id @default(cuid())
 
-  title           String?
-  summary         String
+  title             String
+  summary           String
 
-  mood            String?
+  mood              String?
 
-  visualPrompt    String?
+  location          String?
 
-  order           Int
+  visualDescription String?
 
-  createdAt       DateTime @default(now())
+  characters        Json?
 
-  chapterId       String
-  chapter         Chapter @relation(fields: [chapterId], references: [id])
+  rawAiOutput       Json?
 
-  assets          GeneratedAsset[]
+  order             Int
+
+  createdAt         DateTime @default(now())
+
+  chapterId         String
+  chapter           Chapter @relation(fields: [chapterId], references: [id])
+
+  assets            GeneratedAsset[]
 }
 
 model Character {
-  id              String   @id @default(cuid())
+  id          String   @id @default(cuid())
 
-  name            String
+  name        String
 
-  description     String?
+  aliases     Json?
 
-  visualTraits    Json?
+  description String
 
-  createdAt       DateTime @default(now())
+  appearance  String?
 
-  bookId          String
-  book            Book @relation(fields: [bookId], references: [id])
+  personality String?
+
+  rawAiOutput Json?
+
+  createdAt   DateTime @default(now())
+
+  bookId      String
+  book        Book @relation(fields: [bookId], references: [id])
 }
 
 model GeneratedAsset {
-  id              String   @id @default(cuid())
+  id          String   @id @default(cuid())
 
-  type            String
+  type        String
 
-  imageUrl        String
+  prompt      String
 
-  prompt          String
+  imageUrl    String?
 
-  model           String?
+  createdAt   DateTime @default(now())
 
-  createdAt       DateTime @default(now())
-
-  sceneId         String
-  scene           Scene @relation(fields: [sceneId], references: [id])
+  sceneId      String
+  scene        Scene @relation(fields: [sceneId], references: [id])
 }

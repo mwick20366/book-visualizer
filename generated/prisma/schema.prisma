@@ -87,6 +87,8 @@ model Book {
 
   status String @default("uploaded")
 
+  fileName   String?
+  filePath   String?
   sourcePath String?
 
   createdAt DateTime @default(now())
@@ -120,12 +122,18 @@ model Chapter {
 model Scene {
   id String @id @default(cuid())
 
-  title   String?
+  title   String
   summary String
 
   mood String?
 
-  visualPrompt String?
+  location String?
+
+  visualDescription String?
+
+  characters Json?
+
+  rawAiOutput Json?
 
   order Int
 
@@ -142,9 +150,15 @@ model Character {
 
   name String
 
-  description String?
+  aliases Json?
 
-  visualTraits Json?
+  description String
+
+  appearance String?
+
+  personality String?
+
+  rawAiOutput Json?
 
   createdAt DateTime @default(now())
 
@@ -157,11 +171,9 @@ model GeneratedAsset {
 
   type String
 
-  imageUrl String
-
   prompt String
 
-  model String?
+  imageUrl String?
 
   createdAt DateTime @default(now())
 

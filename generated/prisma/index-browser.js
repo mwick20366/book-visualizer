@@ -172,6 +172,8 @@ exports.Prisma.BookScalarFieldEnum = {
   title: 'title',
   author: 'author',
   status: 'status',
+  fileName: 'fileName',
+  filePath: 'filePath',
   sourcePath: 'sourcePath',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -193,7 +195,10 @@ exports.Prisma.SceneScalarFieldEnum = {
   title: 'title',
   summary: 'summary',
   mood: 'mood',
-  visualPrompt: 'visualPrompt',
+  location: 'location',
+  visualDescription: 'visualDescription',
+  characters: 'characters',
+  rawAiOutput: 'rawAiOutput',
   order: 'order',
   createdAt: 'createdAt',
   chapterId: 'chapterId'
@@ -202,8 +207,11 @@ exports.Prisma.SceneScalarFieldEnum = {
 exports.Prisma.CharacterScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  aliases: 'aliases',
   description: 'description',
-  visualTraits: 'visualTraits',
+  appearance: 'appearance',
+  personality: 'personality',
+  rawAiOutput: 'rawAiOutput',
   createdAt: 'createdAt',
   bookId: 'bookId'
 };
@@ -211,9 +219,8 @@ exports.Prisma.CharacterScalarFieldEnum = {
 exports.Prisma.GeneratedAssetScalarFieldEnum = {
   id: 'id',
   type: 'type',
-  imageUrl: 'imageUrl',
   prompt: 'prompt',
-  model: 'model',
+  imageUrl: 'imageUrl',
   createdAt: 'createdAt',
   sceneId: 'sceneId'
 };

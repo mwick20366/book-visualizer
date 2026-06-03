@@ -3,17 +3,17 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { LatestPost } from "@/app/_components/post";
-import { auth } from "@/server/better-auth";
-import { getSession } from "@/server/better-auth/server";
-import { api, HydrateClient } from "@/trpc/server";
+// import { auth } from "@/server/better-auth";
+// import { getSession } from "@/server/better-auth/server";
+// import { api, HydrateClient } from "@/trpc/server";
 
 export default async function Home() {
   const hello = await api.post.hello({ text: "from tRPC" });
-  const session = await getSession();
+  // const session = await getSession();
 
-  if (session) {
-    void api.post.getLatest.prefetch();
-  }
+  // if (session) {
+  //   void api.post.getLatest.prefetch();
+  // }
 
   return (
     <HydrateClient>
@@ -53,9 +53,9 @@ export default async function Home() {
 
             <div className="flex flex-col items-center justify-center gap-4">
               <p className="text-center text-2xl text-white">
-                {session && <span>Logged in as {session.user?.name}</span>}
+                {/* {session && <span>Logged in as {session.user?.name}</span>} */}
               </p>
-              {!session ? (
+              {/* {!session ? (
                 <form>
                   <button
                     className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
@@ -91,11 +91,11 @@ export default async function Home() {
                     Sign out
                   </button>
                 </form>
-              )}
+              )} */}
             </div>
           </div>
 
-          {session?.user && <LatestPost />}
+          {/* {session?.user && <LatestPost />} */}
         </div>
       </main>
     </HydrateClient>
