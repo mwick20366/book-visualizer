@@ -37,7 +37,7 @@ export default async function BooksPage() {
           {books.map((book) => (
             <Link
               key={book.id}
-              href={`/dashboard/books/${book.id}`}
+              href={`/dashboard/books/${book.id}/read`}
               className="
                 rounded-2xl
                 border
