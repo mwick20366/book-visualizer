@@ -96,6 +96,11 @@ Cinematography:
 - not centered symmetrically unless dramatically necessary
 - include substantial environmental context around characters
 
+Cinematic lighting.
+Professional film-grade exposure.
+Night scenes should appear illuminated and readable, with visible environmental detail.
+Avoid images that are excessively dark or difficult to interpret.
+
 Style requirements:
 - highly detailed
 - emotionally evocative

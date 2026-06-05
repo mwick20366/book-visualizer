@@ -105,6 +105,7 @@ export default async function ReadPage({ params }: ReadPageProps) {
                                   sceneId={scene.id}
                                   title={scene.title}
                                   summary={scene.summary}
+                                  visualDescription={scene.visualDescription!}
                                   existingImageUrl={image?.imageUrl}
                                 />
                                 {/* {image ? (

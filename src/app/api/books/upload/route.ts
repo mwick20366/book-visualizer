@@ -7,6 +7,7 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/server/db";
 import { parseEpub } from "@/server/services/books/parse-epub";
+import { processBook } from "@/server/services/books/process-book";
 
 export async function POST(req: Request) {
   try {
@@ -67,11 +68,13 @@ export async function POST(req: Request) {
         userId: user.id,
 
         chapters: {
-          create: parsedBook.chapters.map((chapter) => ({
-            title: chapter.title,
-            content: chapter.content,
-            order: chapter.order,
-          })),
+          create: parsedBook.chapters
+            .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+            .map((chapter, index) => ({
+              title: chapter.title,
+              content: chapter.content,
+              order: index + 1,
+            })),
         },
       },
 
@@ -79,6 +82,8 @@ export async function POST(req: Request) {
         chapters: true,
       },
     });
+
+    void processBook(book.id);
 
     return NextResponse.json({
       success: true,

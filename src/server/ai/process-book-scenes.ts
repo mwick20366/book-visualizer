@@ -8,9 +8,10 @@ import { persistScenes } from "./persist-scenes";
 
 type ProcessBookScenesInput = {
   bookId: string;
+  chapterId?: string;
 };
 
-export async function processBookScenes({ bookId }: ProcessBookScenesInput) {
+export async function processBookScenes({ bookId, chapterId }: ProcessBookScenesInput) {
   const book = await db.book.findUnique({
     where: {
       id: bookId,
@@ -32,6 +33,10 @@ export async function processBookScenes({ bookId }: ProcessBookScenesInput) {
   const results = [];
 
   for (const chapter of book.chapters) {
+    if (chapterId && chapter.id !== chapterId) {
+      continue;
+    }
+
     console.log(`Processing ${chapter.title}...`);
 
     if (!chapter.content?.trim()) {

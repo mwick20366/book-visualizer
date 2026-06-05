@@ -60,6 +60,25 @@ export type Character = $Result.DefaultSelection<Prisma.$CharacterPayload>
 export type GeneratedAsset = $Result.DefaultSelection<Prisma.$GeneratedAssetPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const ProcessingStatus: {
+  pending: 'pending',
+  processing: 'processing',
+  ready: 'ready',
+  failed: 'failed'
+};
+
+export type ProcessingStatus = (typeof ProcessingStatus)[keyof typeof ProcessingStatus]
+
+}
+
+export type ProcessingStatus = $Enums.ProcessingStatus
+
+export const ProcessingStatus: typeof $Enums.ProcessingStatus
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -6172,10 +6191,12 @@ export namespace Prisma {
     id: string | null
     title: string | null
     author: string | null
+    processingStatus: string | null
     status: string | null
     fileName: string | null
     filePath: string | null
     sourcePath: string | null
+    heroImageUrl: string | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
@@ -6185,10 +6206,12 @@ export namespace Prisma {
     id: string | null
     title: string | null
     author: string | null
+    processingStatus: string | null
     status: string | null
     fileName: string | null
     filePath: string | null
     sourcePath: string | null
+    heroImageUrl: string | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
@@ -6198,10 +6221,12 @@ export namespace Prisma {
     id: number
     title: number
     author: number
+    processingStatus: number
     status: number
     fileName: number
     filePath: number
     sourcePath: number
+    heroImageUrl: number
     createdAt: number
     updatedAt: number
     userId: number
@@ -6213,10 +6238,12 @@ export namespace Prisma {
     id?: true
     title?: true
     author?: true
+    processingStatus?: true
     status?: true
     fileName?: true
     filePath?: true
     sourcePath?: true
+    heroImageUrl?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -6226,10 +6253,12 @@ export namespace Prisma {
     id?: true
     title?: true
     author?: true
+    processingStatus?: true
     status?: true
     fileName?: true
     filePath?: true
     sourcePath?: true
+    heroImageUrl?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -6239,10 +6268,12 @@ export namespace Prisma {
     id?: true
     title?: true
     author?: true
+    processingStatus?: true
     status?: true
     fileName?: true
     filePath?: true
     sourcePath?: true
+    heroImageUrl?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -6325,10 +6356,12 @@ export namespace Prisma {
     id: string
     title: string
     author: string | null
+    processingStatus: string
     status: string
     fileName: string | null
     filePath: string | null
     sourcePath: string | null
+    heroImageUrl: string | null
     createdAt: Date
     updatedAt: Date
     userId: string
@@ -6355,10 +6388,12 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     author?: boolean
+    processingStatus?: boolean
     status?: boolean
     fileName?: boolean
     filePath?: boolean
     sourcePath?: boolean
+    heroImageUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -6372,10 +6407,12 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     author?: boolean
+    processingStatus?: boolean
     status?: boolean
     fileName?: boolean
     filePath?: boolean
     sourcePath?: boolean
+    heroImageUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -6386,10 +6423,12 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     author?: boolean
+    processingStatus?: boolean
     status?: boolean
     fileName?: boolean
     filePath?: boolean
     sourcePath?: boolean
+    heroImageUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -6400,16 +6439,18 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     author?: boolean
+    processingStatus?: boolean
     status?: boolean
     fileName?: boolean
     filePath?: boolean
     sourcePath?: boolean
+    heroImageUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
   }
 
-  export type BookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "author" | "status" | "fileName" | "filePath" | "sourcePath" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["book"]>
+  export type BookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "author" | "processingStatus" | "status" | "fileName" | "filePath" | "sourcePath" | "heroImageUrl" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["book"]>
   export type BookInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     chapters?: boolean | Book$chaptersArgs<ExtArgs>
@@ -6434,10 +6475,12 @@ export namespace Prisma {
       id: string
       title: string
       author: string | null
+      processingStatus: string
       status: string
       fileName: string | null
       filePath: string | null
       sourcePath: string | null
+      heroImageUrl: string | null
       createdAt: Date
       updatedAt: Date
       userId: string
@@ -6870,10 +6913,12 @@ export namespace Prisma {
     readonly id: FieldRef<"Book", 'String'>
     readonly title: FieldRef<"Book", 'String'>
     readonly author: FieldRef<"Book", 'String'>
+    readonly processingStatus: FieldRef<"Book", 'String'>
     readonly status: FieldRef<"Book", 'String'>
     readonly fileName: FieldRef<"Book", 'String'>
     readonly filePath: FieldRef<"Book", 'String'>
     readonly sourcePath: FieldRef<"Book", 'String'>
+    readonly heroImageUrl: FieldRef<"Book", 'String'>
     readonly createdAt: FieldRef<"Book", 'DateTime'>
     readonly updatedAt: FieldRef<"Book", 'DateTime'>
     readonly userId: FieldRef<"Book", 'String'>
@@ -7362,8 +7407,9 @@ export namespace Prisma {
   export type ChapterMinAggregateOutputType = {
     id: string | null
     title: string | null
-    order: number | null
     content: string | null
+    order: number | null
+    processingStatus: $Enums.ProcessingStatus | null
     summary: string | null
     createdAt: Date | null
     bookId: string | null
@@ -7372,8 +7418,9 @@ export namespace Prisma {
   export type ChapterMaxAggregateOutputType = {
     id: string | null
     title: string | null
-    order: number | null
     content: string | null
+    order: number | null
+    processingStatus: $Enums.ProcessingStatus | null
     summary: string | null
     createdAt: Date | null
     bookId: string | null
@@ -7382,8 +7429,9 @@ export namespace Prisma {
   export type ChapterCountAggregateOutputType = {
     id: number
     title: number
-    order: number
     content: number
+    order: number
+    processingStatus: number
     summary: number
     createdAt: number
     bookId: number
@@ -7402,8 +7450,9 @@ export namespace Prisma {
   export type ChapterMinAggregateInputType = {
     id?: true
     title?: true
-    order?: true
     content?: true
+    order?: true
+    processingStatus?: true
     summary?: true
     createdAt?: true
     bookId?: true
@@ -7412,8 +7461,9 @@ export namespace Prisma {
   export type ChapterMaxAggregateInputType = {
     id?: true
     title?: true
-    order?: true
     content?: true
+    order?: true
+    processingStatus?: true
     summary?: true
     createdAt?: true
     bookId?: true
@@ -7422,8 +7472,9 @@ export namespace Prisma {
   export type ChapterCountAggregateInputType = {
     id?: true
     title?: true
-    order?: true
     content?: true
+    order?: true
+    processingStatus?: true
     summary?: true
     createdAt?: true
     bookId?: true
@@ -7519,8 +7570,9 @@ export namespace Prisma {
   export type ChapterGroupByOutputType = {
     id: string
     title: string | null
-    order: number
     content: string
+    order: number
+    processingStatus: $Enums.ProcessingStatus
     summary: string | null
     createdAt: Date
     bookId: string
@@ -7548,8 +7600,9 @@ export namespace Prisma {
   export type ChapterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    order?: boolean
     content?: boolean
+    order?: boolean
+    processingStatus?: boolean
     summary?: boolean
     createdAt?: boolean
     bookId?: boolean
@@ -7561,8 +7614,9 @@ export namespace Prisma {
   export type ChapterSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    order?: boolean
     content?: boolean
+    order?: boolean
+    processingStatus?: boolean
     summary?: boolean
     createdAt?: boolean
     bookId?: boolean
@@ -7572,8 +7626,9 @@ export namespace Prisma {
   export type ChapterSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    order?: boolean
     content?: boolean
+    order?: boolean
+    processingStatus?: boolean
     summary?: boolean
     createdAt?: boolean
     bookId?: boolean
@@ -7583,14 +7638,15 @@ export namespace Prisma {
   export type ChapterSelectScalar = {
     id?: boolean
     title?: boolean
-    order?: boolean
     content?: boolean
+    order?: boolean
+    processingStatus?: boolean
     summary?: boolean
     createdAt?: boolean
     bookId?: boolean
   }
 
-  export type ChapterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "order" | "content" | "summary" | "createdAt" | "bookId", ExtArgs["result"]["chapter"]>
+  export type ChapterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "order" | "processingStatus" | "summary" | "createdAt" | "bookId", ExtArgs["result"]["chapter"]>
   export type ChapterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     book?: boolean | BookDefaultArgs<ExtArgs>
     scenes?: boolean | Chapter$scenesArgs<ExtArgs>
@@ -7612,8 +7668,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       title: string | null
-      order: number
       content: string
+      order: number
+      processingStatus: $Enums.ProcessingStatus
       summary: string | null
       createdAt: Date
       bookId: string
@@ -8044,8 +8101,9 @@ export namespace Prisma {
   interface ChapterFieldRefs {
     readonly id: FieldRef<"Chapter", 'String'>
     readonly title: FieldRef<"Chapter", 'String'>
-    readonly order: FieldRef<"Chapter", 'Int'>
     readonly content: FieldRef<"Chapter", 'String'>
+    readonly order: FieldRef<"Chapter", 'Int'>
+    readonly processingStatus: FieldRef<"Chapter", 'ProcessingStatus'>
     readonly summary: FieldRef<"Chapter", 'String'>
     readonly createdAt: FieldRef<"Chapter", 'DateTime'>
     readonly bookId: FieldRef<"Chapter", 'String'>
@@ -10838,6 +10896,7 @@ export namespace Prisma {
     id: string | null
     type: string | null
     prompt: string | null
+    caption: string | null
     imageUrl: string | null
     createdAt: Date | null
     sceneId: string | null
@@ -10847,6 +10906,7 @@ export namespace Prisma {
     id: string | null
     type: string | null
     prompt: string | null
+    caption: string | null
     imageUrl: string | null
     createdAt: Date | null
     sceneId: string | null
@@ -10856,6 +10916,7 @@ export namespace Prisma {
     id: number
     type: number
     prompt: number
+    caption: number
     imageUrl: number
     createdAt: number
     sceneId: number
@@ -10867,6 +10928,7 @@ export namespace Prisma {
     id?: true
     type?: true
     prompt?: true
+    caption?: true
     imageUrl?: true
     createdAt?: true
     sceneId?: true
@@ -10876,6 +10938,7 @@ export namespace Prisma {
     id?: true
     type?: true
     prompt?: true
+    caption?: true
     imageUrl?: true
     createdAt?: true
     sceneId?: true
@@ -10885,6 +10948,7 @@ export namespace Prisma {
     id?: true
     type?: true
     prompt?: true
+    caption?: true
     imageUrl?: true
     createdAt?: true
     sceneId?: true
@@ -10967,6 +11031,7 @@ export namespace Prisma {
     id: string
     type: string
     prompt: string
+    caption: string | null
     imageUrl: string | null
     createdAt: Date
     sceneId: string
@@ -10993,6 +11058,7 @@ export namespace Prisma {
     id?: boolean
     type?: boolean
     prompt?: boolean
+    caption?: boolean
     imageUrl?: boolean
     createdAt?: boolean
     sceneId?: boolean
@@ -11003,6 +11069,7 @@ export namespace Prisma {
     id?: boolean
     type?: boolean
     prompt?: boolean
+    caption?: boolean
     imageUrl?: boolean
     createdAt?: boolean
     sceneId?: boolean
@@ -11013,6 +11080,7 @@ export namespace Prisma {
     id?: boolean
     type?: boolean
     prompt?: boolean
+    caption?: boolean
     imageUrl?: boolean
     createdAt?: boolean
     sceneId?: boolean
@@ -11023,12 +11091,13 @@ export namespace Prisma {
     id?: boolean
     type?: boolean
     prompt?: boolean
+    caption?: boolean
     imageUrl?: boolean
     createdAt?: boolean
     sceneId?: boolean
   }
 
-  export type GeneratedAssetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "prompt" | "imageUrl" | "createdAt" | "sceneId", ExtArgs["result"]["generatedAsset"]>
+  export type GeneratedAssetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "prompt" | "caption" | "imageUrl" | "createdAt" | "sceneId", ExtArgs["result"]["generatedAsset"]>
   export type GeneratedAssetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     scene?: boolean | SceneDefaultArgs<ExtArgs>
   }
@@ -11048,6 +11117,7 @@ export namespace Prisma {
       id: string
       type: string
       prompt: string
+      caption: string | null
       imageUrl: string | null
       createdAt: Date
       sceneId: string
@@ -11478,6 +11548,7 @@ export namespace Prisma {
     readonly id: FieldRef<"GeneratedAsset", 'String'>
     readonly type: FieldRef<"GeneratedAsset", 'String'>
     readonly prompt: FieldRef<"GeneratedAsset", 'String'>
+    readonly caption: FieldRef<"GeneratedAsset", 'String'>
     readonly imageUrl: FieldRef<"GeneratedAsset", 'String'>
     readonly createdAt: FieldRef<"GeneratedAsset", 'DateTime'>
     readonly sceneId: FieldRef<"GeneratedAsset", 'String'>
@@ -11971,10 +12042,12 @@ export namespace Prisma {
     id: 'id',
     title: 'title',
     author: 'author',
+    processingStatus: 'processingStatus',
     status: 'status',
     fileName: 'fileName',
     filePath: 'filePath',
     sourcePath: 'sourcePath',
+    heroImageUrl: 'heroImageUrl',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId'
@@ -11986,8 +12059,9 @@ export namespace Prisma {
   export const ChapterScalarFieldEnum: {
     id: 'id',
     title: 'title',
-    order: 'order',
     content: 'content',
+    order: 'order',
+    processingStatus: 'processingStatus',
     summary: 'summary',
     createdAt: 'createdAt',
     bookId: 'bookId'
@@ -12035,6 +12109,7 @@ export namespace Prisma {
     id: 'id',
     type: 'type',
     prompt: 'prompt',
+    caption: 'caption',
     imageUrl: 'imageUrl',
     createdAt: 'createdAt',
     sceneId: 'sceneId'
@@ -12135,6 +12210,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ProcessingStatus'
+   */
+  export type EnumProcessingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProcessingStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ProcessingStatus[]'
+   */
+  export type ListEnumProcessingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProcessingStatus[]'>
     
 
 
@@ -12469,10 +12558,12 @@ export namespace Prisma {
     id?: StringFilter<"Book"> | string
     title?: StringFilter<"Book"> | string
     author?: StringNullableFilter<"Book"> | string | null
+    processingStatus?: StringFilter<"Book"> | string
     status?: StringFilter<"Book"> | string
     fileName?: StringNullableFilter<"Book"> | string | null
     filePath?: StringNullableFilter<"Book"> | string | null
     sourcePath?: StringNullableFilter<"Book"> | string | null
+    heroImageUrl?: StringNullableFilter<"Book"> | string | null
     createdAt?: DateTimeFilter<"Book"> | Date | string
     updatedAt?: DateTimeFilter<"Book"> | Date | string
     userId?: StringFilter<"Book"> | string
@@ -12485,10 +12576,12 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     author?: SortOrderInput | SortOrder
+    processingStatus?: SortOrder
     status?: SortOrder
     fileName?: SortOrderInput | SortOrder
     filePath?: SortOrderInput | SortOrder
     sourcePath?: SortOrderInput | SortOrder
+    heroImageUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -12504,10 +12597,12 @@ export namespace Prisma {
     NOT?: BookWhereInput | BookWhereInput[]
     title?: StringFilter<"Book"> | string
     author?: StringNullableFilter<"Book"> | string | null
+    processingStatus?: StringFilter<"Book"> | string
     status?: StringFilter<"Book"> | string
     fileName?: StringNullableFilter<"Book"> | string | null
     filePath?: StringNullableFilter<"Book"> | string | null
     sourcePath?: StringNullableFilter<"Book"> | string | null
+    heroImageUrl?: StringNullableFilter<"Book"> | string | null
     createdAt?: DateTimeFilter<"Book"> | Date | string
     updatedAt?: DateTimeFilter<"Book"> | Date | string
     userId?: StringFilter<"Book"> | string
@@ -12520,10 +12615,12 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     author?: SortOrderInput | SortOrder
+    processingStatus?: SortOrder
     status?: SortOrder
     fileName?: SortOrderInput | SortOrder
     filePath?: SortOrderInput | SortOrder
     sourcePath?: SortOrderInput | SortOrder
+    heroImageUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -12539,10 +12636,12 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Book"> | string
     title?: StringWithAggregatesFilter<"Book"> | string
     author?: StringNullableWithAggregatesFilter<"Book"> | string | null
+    processingStatus?: StringWithAggregatesFilter<"Book"> | string
     status?: StringWithAggregatesFilter<"Book"> | string
     fileName?: StringNullableWithAggregatesFilter<"Book"> | string | null
     filePath?: StringNullableWithAggregatesFilter<"Book"> | string | null
     sourcePath?: StringNullableWithAggregatesFilter<"Book"> | string | null
+    heroImageUrl?: StringNullableWithAggregatesFilter<"Book"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Book"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Book"> | Date | string
     userId?: StringWithAggregatesFilter<"Book"> | string
@@ -12554,8 +12653,9 @@ export namespace Prisma {
     NOT?: ChapterWhereInput | ChapterWhereInput[]
     id?: StringFilter<"Chapter"> | string
     title?: StringNullableFilter<"Chapter"> | string | null
-    order?: IntFilter<"Chapter"> | number
     content?: StringFilter<"Chapter"> | string
+    order?: IntFilter<"Chapter"> | number
+    processingStatus?: EnumProcessingStatusFilter<"Chapter"> | $Enums.ProcessingStatus
     summary?: StringNullableFilter<"Chapter"> | string | null
     createdAt?: DateTimeFilter<"Chapter"> | Date | string
     bookId?: StringFilter<"Chapter"> | string
@@ -12566,8 +12666,9 @@ export namespace Prisma {
   export type ChapterOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrderInput | SortOrder
-    order?: SortOrder
     content?: SortOrder
+    order?: SortOrder
+    processingStatus?: SortOrder
     summary?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     bookId?: SortOrder
@@ -12581,8 +12682,9 @@ export namespace Prisma {
     OR?: ChapterWhereInput[]
     NOT?: ChapterWhereInput | ChapterWhereInput[]
     title?: StringNullableFilter<"Chapter"> | string | null
-    order?: IntFilter<"Chapter"> | number
     content?: StringFilter<"Chapter"> | string
+    order?: IntFilter<"Chapter"> | number
+    processingStatus?: EnumProcessingStatusFilter<"Chapter"> | $Enums.ProcessingStatus
     summary?: StringNullableFilter<"Chapter"> | string | null
     createdAt?: DateTimeFilter<"Chapter"> | Date | string
     bookId?: StringFilter<"Chapter"> | string
@@ -12593,8 +12695,9 @@ export namespace Prisma {
   export type ChapterOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrderInput | SortOrder
-    order?: SortOrder
     content?: SortOrder
+    order?: SortOrder
+    processingStatus?: SortOrder
     summary?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     bookId?: SortOrder
@@ -12611,8 +12714,9 @@ export namespace Prisma {
     NOT?: ChapterScalarWhereWithAggregatesInput | ChapterScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Chapter"> | string
     title?: StringNullableWithAggregatesFilter<"Chapter"> | string | null
-    order?: IntWithAggregatesFilter<"Chapter"> | number
     content?: StringWithAggregatesFilter<"Chapter"> | string
+    order?: IntWithAggregatesFilter<"Chapter"> | number
+    processingStatus?: EnumProcessingStatusWithAggregatesFilter<"Chapter"> | $Enums.ProcessingStatus
     summary?: StringNullableWithAggregatesFilter<"Chapter"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Chapter"> | Date | string
     bookId?: StringWithAggregatesFilter<"Chapter"> | string
@@ -12805,6 +12909,7 @@ export namespace Prisma {
     id?: StringFilter<"GeneratedAsset"> | string
     type?: StringFilter<"GeneratedAsset"> | string
     prompt?: StringFilter<"GeneratedAsset"> | string
+    caption?: StringNullableFilter<"GeneratedAsset"> | string | null
     imageUrl?: StringNullableFilter<"GeneratedAsset"> | string | null
     createdAt?: DateTimeFilter<"GeneratedAsset"> | Date | string
     sceneId?: StringFilter<"GeneratedAsset"> | string
@@ -12815,6 +12920,7 @@ export namespace Prisma {
     id?: SortOrder
     type?: SortOrder
     prompt?: SortOrder
+    caption?: SortOrderInput | SortOrder
     imageUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     sceneId?: SortOrder
@@ -12828,6 +12934,7 @@ export namespace Prisma {
     NOT?: GeneratedAssetWhereInput | GeneratedAssetWhereInput[]
     type?: StringFilter<"GeneratedAsset"> | string
     prompt?: StringFilter<"GeneratedAsset"> | string
+    caption?: StringNullableFilter<"GeneratedAsset"> | string | null
     imageUrl?: StringNullableFilter<"GeneratedAsset"> | string | null
     createdAt?: DateTimeFilter<"GeneratedAsset"> | Date | string
     sceneId?: StringFilter<"GeneratedAsset"> | string
@@ -12838,6 +12945,7 @@ export namespace Prisma {
     id?: SortOrder
     type?: SortOrder
     prompt?: SortOrder
+    caption?: SortOrderInput | SortOrder
     imageUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     sceneId?: SortOrder
@@ -12853,6 +12961,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"GeneratedAsset"> | string
     type?: StringWithAggregatesFilter<"GeneratedAsset"> | string
     prompt?: StringWithAggregatesFilter<"GeneratedAsset"> | string
+    caption?: StringNullableWithAggregatesFilter<"GeneratedAsset"> | string | null
     imageUrl?: StringNullableWithAggregatesFilter<"GeneratedAsset"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"GeneratedAsset"> | Date | string
     sceneId?: StringWithAggregatesFilter<"GeneratedAsset"> | string
@@ -13194,10 +13303,12 @@ export namespace Prisma {
     id?: string
     title: string
     author?: string | null
+    processingStatus?: string
     status?: string
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
+    heroImageUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutBooksInput
@@ -13209,10 +13320,12 @@ export namespace Prisma {
     id?: string
     title: string
     author?: string | null
+    processingStatus?: string
     status?: string
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
+    heroImageUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -13224,10 +13337,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutBooksNestedInput
@@ -13239,10 +13354,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -13254,10 +13371,12 @@ export namespace Prisma {
     id?: string
     title: string
     author?: string | null
+    processingStatus?: string
     status?: string
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
+    heroImageUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -13267,10 +13386,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13279,10 +13400,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -13291,8 +13414,9 @@ export namespace Prisma {
   export type ChapterCreateInput = {
     id?: string
     title?: string | null
-    order: number
     content: string
+    order: number
+    processingStatus?: $Enums.ProcessingStatus
     summary?: string | null
     createdAt?: Date | string
     book: BookCreateNestedOneWithoutChaptersInput
@@ -13302,8 +13426,9 @@ export namespace Prisma {
   export type ChapterUncheckedCreateInput = {
     id?: string
     title?: string | null
-    order: number
     content: string
+    order: number
+    processingStatus?: $Enums.ProcessingStatus
     summary?: string | null
     createdAt?: Date | string
     bookId: string
@@ -13313,8 +13438,9 @@ export namespace Prisma {
   export type ChapterUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    processingStatus?: EnumProcessingStatusFieldUpdateOperationsInput | $Enums.ProcessingStatus
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     book?: BookUpdateOneRequiredWithoutChaptersNestedInput
@@ -13324,8 +13450,9 @@ export namespace Prisma {
   export type ChapterUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    processingStatus?: EnumProcessingStatusFieldUpdateOperationsInput | $Enums.ProcessingStatus
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookId?: StringFieldUpdateOperationsInput | string
@@ -13335,8 +13462,9 @@ export namespace Prisma {
   export type ChapterCreateManyInput = {
     id?: string
     title?: string | null
-    order: number
     content: string
+    order: number
+    processingStatus?: $Enums.ProcessingStatus
     summary?: string | null
     createdAt?: Date | string
     bookId: string
@@ -13345,8 +13473,9 @@ export namespace Prisma {
   export type ChapterUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    processingStatus?: EnumProcessingStatusFieldUpdateOperationsInput | $Enums.ProcessingStatus
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13354,8 +13483,9 @@ export namespace Prisma {
   export type ChapterUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    processingStatus?: EnumProcessingStatusFieldUpdateOperationsInput | $Enums.ProcessingStatus
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookId?: StringFieldUpdateOperationsInput | string
@@ -13570,6 +13700,7 @@ export namespace Prisma {
     id?: string
     type: string
     prompt: string
+    caption?: string | null
     imageUrl?: string | null
     createdAt?: Date | string
     scene: SceneCreateNestedOneWithoutAssetsInput
@@ -13579,6 +13710,7 @@ export namespace Prisma {
     id?: string
     type: string
     prompt: string
+    caption?: string | null
     imageUrl?: string | null
     createdAt?: Date | string
     sceneId: string
@@ -13588,6 +13720,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     scene?: SceneUpdateOneRequiredWithoutAssetsNestedInput
@@ -13597,6 +13730,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sceneId?: StringFieldUpdateOperationsInput | string
@@ -13606,6 +13740,7 @@ export namespace Prisma {
     id?: string
     type: string
     prompt: string
+    caption?: string | null
     imageUrl?: string | null
     createdAt?: Date | string
     sceneId: string
@@ -13615,6 +13750,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13623,6 +13759,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sceneId?: StringFieldUpdateOperationsInput | string
@@ -13959,10 +14096,12 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     author?: SortOrder
+    processingStatus?: SortOrder
     status?: SortOrder
     fileName?: SortOrder
     filePath?: SortOrder
     sourcePath?: SortOrder
+    heroImageUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -13972,10 +14111,12 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     author?: SortOrder
+    processingStatus?: SortOrder
     status?: SortOrder
     fileName?: SortOrder
     filePath?: SortOrder
     sourcePath?: SortOrder
+    heroImageUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -13985,10 +14126,12 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     author?: SortOrder
+    processingStatus?: SortOrder
     status?: SortOrder
     fileName?: SortOrder
     filePath?: SortOrder
     sourcePath?: SortOrder
+    heroImageUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -14003,6 +14146,13 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type EnumProcessingStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProcessingStatus | EnumProcessingStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ProcessingStatus[] | ListEnumProcessingStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProcessingStatus[] | ListEnumProcessingStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumProcessingStatusFilter<$PrismaModel> | $Enums.ProcessingStatus
   }
 
   export type BookScalarRelationFilter = {
@@ -14023,8 +14173,9 @@ export namespace Prisma {
   export type ChapterCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    order?: SortOrder
     content?: SortOrder
+    order?: SortOrder
+    processingStatus?: SortOrder
     summary?: SortOrder
     createdAt?: SortOrder
     bookId?: SortOrder
@@ -14037,8 +14188,9 @@ export namespace Prisma {
   export type ChapterMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    order?: SortOrder
     content?: SortOrder
+    order?: SortOrder
+    processingStatus?: SortOrder
     summary?: SortOrder
     createdAt?: SortOrder
     bookId?: SortOrder
@@ -14047,8 +14199,9 @@ export namespace Prisma {
   export type ChapterMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    order?: SortOrder
     content?: SortOrder
+    order?: SortOrder
+    processingStatus?: SortOrder
     summary?: SortOrder
     createdAt?: SortOrder
     bookId?: SortOrder
@@ -14072,6 +14225,16 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type EnumProcessingStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProcessingStatus | EnumProcessingStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ProcessingStatus[] | ListEnumProcessingStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProcessingStatus[] | ListEnumProcessingStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumProcessingStatusWithAggregatesFilter<$PrismaModel> | $Enums.ProcessingStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProcessingStatusFilter<$PrismaModel>
+    _max?: NestedEnumProcessingStatusFilter<$PrismaModel>
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -14263,6 +14426,7 @@ export namespace Prisma {
     id?: SortOrder
     type?: SortOrder
     prompt?: SortOrder
+    caption?: SortOrder
     imageUrl?: SortOrder
     createdAt?: SortOrder
     sceneId?: SortOrder
@@ -14272,6 +14436,7 @@ export namespace Prisma {
     id?: SortOrder
     type?: SortOrder
     prompt?: SortOrder
+    caption?: SortOrder
     imageUrl?: SortOrder
     createdAt?: SortOrder
     sceneId?: SortOrder
@@ -14281,6 +14446,7 @@ export namespace Prisma {
     id?: SortOrder
     type?: SortOrder
     prompt?: SortOrder
+    caption?: SortOrder
     imageUrl?: SortOrder
     createdAt?: SortOrder
     sceneId?: SortOrder
@@ -14586,6 +14752,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type EnumProcessingStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ProcessingStatus
+  }
+
   export type BookUpdateOneRequiredWithoutChaptersNestedInput = {
     create?: XOR<BookCreateWithoutChaptersInput, BookUncheckedCreateWithoutChaptersInput>
     connectOrCreate?: BookCreateOrConnectWithoutChaptersInput
@@ -14861,6 +15031,13 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumProcessingStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProcessingStatus | EnumProcessingStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ProcessingStatus[] | ListEnumProcessingStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProcessingStatus[] | ListEnumProcessingStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumProcessingStatusFilter<$PrismaModel> | $Enums.ProcessingStatus
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -14886,6 +15063,16 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumProcessingStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProcessingStatus | EnumProcessingStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ProcessingStatus[] | ListEnumProcessingStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProcessingStatus[] | ListEnumProcessingStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumProcessingStatusWithAggregatesFilter<$PrismaModel> | $Enums.ProcessingStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProcessingStatusFilter<$PrismaModel>
+    _max?: NestedEnumProcessingStatusFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -15012,10 +15199,12 @@ export namespace Prisma {
     id?: string
     title: string
     author?: string | null
+    processingStatus?: string
     status?: string
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
+    heroImageUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     chapters?: ChapterCreateNestedManyWithoutBookInput
@@ -15026,10 +15215,12 @@ export namespace Prisma {
     id?: string
     title: string
     author?: string | null
+    processingStatus?: string
     status?: string
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
+    heroImageUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     chapters?: ChapterUncheckedCreateNestedManyWithoutBookInput
@@ -15134,10 +15325,12 @@ export namespace Prisma {
     id?: StringFilter<"Book"> | string
     title?: StringFilter<"Book"> | string
     author?: StringNullableFilter<"Book"> | string | null
+    processingStatus?: StringFilter<"Book"> | string
     status?: StringFilter<"Book"> | string
     fileName?: StringNullableFilter<"Book"> | string | null
     filePath?: StringNullableFilter<"Book"> | string | null
     sourcePath?: StringNullableFilter<"Book"> | string | null
+    heroImageUrl?: StringNullableFilter<"Book"> | string | null
     createdAt?: DateTimeFilter<"Book"> | Date | string
     updatedAt?: DateTimeFilter<"Book"> | Date | string
     userId?: StringFilter<"Book"> | string
@@ -15303,8 +15496,9 @@ export namespace Prisma {
   export type ChapterCreateWithoutBookInput = {
     id?: string
     title?: string | null
-    order: number
     content: string
+    order: number
+    processingStatus?: $Enums.ProcessingStatus
     summary?: string | null
     createdAt?: Date | string
     scenes?: SceneCreateNestedManyWithoutChapterInput
@@ -15313,8 +15507,9 @@ export namespace Prisma {
   export type ChapterUncheckedCreateWithoutBookInput = {
     id?: string
     title?: string | null
-    order: number
     content: string
+    order: number
+    processingStatus?: $Enums.ProcessingStatus
     summary?: string | null
     createdAt?: Date | string
     scenes?: SceneUncheckedCreateNestedManyWithoutChapterInput
@@ -15421,8 +15616,9 @@ export namespace Prisma {
     NOT?: ChapterScalarWhereInput | ChapterScalarWhereInput[]
     id?: StringFilter<"Chapter"> | string
     title?: StringNullableFilter<"Chapter"> | string | null
-    order?: IntFilter<"Chapter"> | number
     content?: StringFilter<"Chapter"> | string
+    order?: IntFilter<"Chapter"> | number
+    processingStatus?: EnumProcessingStatusFilter<"Chapter"> | $Enums.ProcessingStatus
     summary?: StringNullableFilter<"Chapter"> | string | null
     createdAt?: DateTimeFilter<"Chapter"> | Date | string
     bookId?: StringFilter<"Chapter"> | string
@@ -15464,10 +15660,12 @@ export namespace Prisma {
     id?: string
     title: string
     author?: string | null
+    processingStatus?: string
     status?: string
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
+    heroImageUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutBooksInput
@@ -15478,10 +15676,12 @@ export namespace Prisma {
     id?: string
     title: string
     author?: string | null
+    processingStatus?: string
     status?: string
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
+    heroImageUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -15550,10 +15750,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutBooksNestedInput
@@ -15564,10 +15766,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -15612,8 +15816,9 @@ export namespace Prisma {
   export type ChapterCreateWithoutScenesInput = {
     id?: string
     title?: string | null
-    order: number
     content: string
+    order: number
+    processingStatus?: $Enums.ProcessingStatus
     summary?: string | null
     createdAt?: Date | string
     book: BookCreateNestedOneWithoutChaptersInput
@@ -15622,8 +15827,9 @@ export namespace Prisma {
   export type ChapterUncheckedCreateWithoutScenesInput = {
     id?: string
     title?: string | null
-    order: number
     content: string
+    order: number
+    processingStatus?: $Enums.ProcessingStatus
     summary?: string | null
     createdAt?: Date | string
     bookId: string
@@ -15638,6 +15844,7 @@ export namespace Prisma {
     id?: string
     type: string
     prompt: string
+    caption?: string | null
     imageUrl?: string | null
     createdAt?: Date | string
   }
@@ -15646,6 +15853,7 @@ export namespace Prisma {
     id?: string
     type: string
     prompt: string
+    caption?: string | null
     imageUrl?: string | null
     createdAt?: Date | string
   }
@@ -15674,8 +15882,9 @@ export namespace Prisma {
   export type ChapterUpdateWithoutScenesInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    processingStatus?: EnumProcessingStatusFieldUpdateOperationsInput | $Enums.ProcessingStatus
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     book?: BookUpdateOneRequiredWithoutChaptersNestedInput
@@ -15684,8 +15893,9 @@ export namespace Prisma {
   export type ChapterUncheckedUpdateWithoutScenesInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    processingStatus?: EnumProcessingStatusFieldUpdateOperationsInput | $Enums.ProcessingStatus
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookId?: StringFieldUpdateOperationsInput | string
@@ -15714,6 +15924,7 @@ export namespace Prisma {
     id?: StringFilter<"GeneratedAsset"> | string
     type?: StringFilter<"GeneratedAsset"> | string
     prompt?: StringFilter<"GeneratedAsset"> | string
+    caption?: StringNullableFilter<"GeneratedAsset"> | string | null
     imageUrl?: StringNullableFilter<"GeneratedAsset"> | string | null
     createdAt?: DateTimeFilter<"GeneratedAsset"> | Date | string
     sceneId?: StringFilter<"GeneratedAsset"> | string
@@ -15723,10 +15934,12 @@ export namespace Prisma {
     id?: string
     title: string
     author?: string | null
+    processingStatus?: string
     status?: string
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
+    heroImageUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutBooksInput
@@ -15737,10 +15950,12 @@ export namespace Prisma {
     id?: string
     title: string
     author?: string | null
+    processingStatus?: string
     status?: string
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
+    heroImageUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -15767,10 +15982,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutBooksNestedInput
@@ -15781,10 +15998,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -15900,10 +16119,12 @@ export namespace Prisma {
     id?: string
     title: string
     author?: string | null
+    processingStatus?: string
     status?: string
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
+    heroImageUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15987,10 +16208,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chapters?: ChapterUpdateManyWithoutBookNestedInput
@@ -16001,10 +16224,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chapters?: ChapterUncheckedUpdateManyWithoutBookNestedInput
@@ -16015,10 +16240,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
+    heroImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16026,8 +16253,9 @@ export namespace Prisma {
   export type ChapterCreateManyBookInput = {
     id?: string
     title?: string | null
-    order: number
     content: string
+    order: number
+    processingStatus?: $Enums.ProcessingStatus
     summary?: string | null
     createdAt?: Date | string
   }
@@ -16047,8 +16275,9 @@ export namespace Prisma {
   export type ChapterUpdateWithoutBookInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    processingStatus?: EnumProcessingStatusFieldUpdateOperationsInput | $Enums.ProcessingStatus
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     scenes?: SceneUpdateManyWithoutChapterNestedInput
@@ -16057,8 +16286,9 @@ export namespace Prisma {
   export type ChapterUncheckedUpdateWithoutBookInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    processingStatus?: EnumProcessingStatusFieldUpdateOperationsInput | $Enums.ProcessingStatus
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     scenes?: SceneUncheckedUpdateManyWithoutChapterNestedInput
@@ -16067,8 +16297,9 @@ export namespace Prisma {
   export type ChapterUncheckedUpdateManyWithoutBookInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    order?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    processingStatus?: EnumProcessingStatusFieldUpdateOperationsInput | $Enums.ProcessingStatus
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16175,6 +16406,7 @@ export namespace Prisma {
     id?: string
     type: string
     prompt: string
+    caption?: string | null
     imageUrl?: string | null
     createdAt?: Date | string
   }
@@ -16183,6 +16415,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16191,6 +16424,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16199,6 +16433,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     prompt?: StringFieldUpdateOperationsInput | string
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

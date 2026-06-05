@@ -9,6 +9,8 @@ export type ExtractedScene = {
 
   summary: string;
 
+  caption: string;
+  
   mood: string;
 
   characters: string[];

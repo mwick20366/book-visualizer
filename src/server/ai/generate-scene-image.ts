@@ -5,6 +5,7 @@ import { db } from "@/server/db";
 import { openai } from "./openai";
 
 import { buildImagePrompt } from "./build-image-prompt";
+import { generateCaption } from "./generate-caption";
 
 type GenerateSceneImageInput = {
   sceneId: string;
@@ -14,7 +15,7 @@ type GenerateSceneImageInput = {
 
 export type GeneratedSceneImage = {
   prompt: string;
-
+  caption: string;
   imageUrl: string;
 };
 
@@ -43,6 +44,13 @@ export async function generateSceneImage({
   if (!scene) {
     throw new Error("Scene not found");
   }
+
+  const caption = await generateCaption({
+    title: scene.title,
+    summary: scene.summary,
+    mood: scene.mood ?? undefined,
+    location: scene.location ?? undefined,
+  });
 
   const prompt = buildImagePrompt({
     scene,
@@ -75,7 +83,7 @@ export async function generateSceneImage({
 
   return {
     prompt,
-
+    caption,
     imageUrl,
   };
 }

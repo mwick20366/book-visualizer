@@ -39,6 +39,8 @@ export async function POST(
 
       prompt: result.prompt,
 
+      caption: result.caption,
+
       imageUrl: result.imageUrl,
 
       sceneId: scene.id,
@@ -48,5 +50,6 @@ export async function POST(
   return NextResponse.json({
     success: true,
     imageUrl: result.imageUrl,
+    caption: result.caption,
   });
 }

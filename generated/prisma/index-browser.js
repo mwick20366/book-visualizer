@@ -171,10 +171,12 @@ exports.Prisma.BookScalarFieldEnum = {
   id: 'id',
   title: 'title',
   author: 'author',
+  processingStatus: 'processingStatus',
   status: 'status',
   fileName: 'fileName',
   filePath: 'filePath',
   sourcePath: 'sourcePath',
+  heroImageUrl: 'heroImageUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId'
@@ -183,8 +185,9 @@ exports.Prisma.BookScalarFieldEnum = {
 exports.Prisma.ChapterScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  order: 'order',
   content: 'content',
+  order: 'order',
+  processingStatus: 'processingStatus',
   summary: 'summary',
   createdAt: 'createdAt',
   bookId: 'bookId'
@@ -223,6 +226,7 @@ exports.Prisma.GeneratedAssetScalarFieldEnum = {
   id: 'id',
   type: 'type',
   prompt: 'prompt',
+  caption: 'caption',
   imageUrl: 'imageUrl',
   createdAt: 'createdAt',
   sceneId: 'sceneId'
@@ -253,7 +257,12 @@ exports.Prisma.JsonNullValueFilter = {
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
-
+exports.ProcessingStatus = exports.$Enums.ProcessingStatus = {
+  pending: 'pending',
+  processing: 'processing',
+  ready: 'ready',
+  failed: 'failed'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',

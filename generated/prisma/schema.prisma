@@ -85,11 +85,14 @@ model Book {
   title  String
   author String?
 
-  status String @default("uploaded")
+  processingStatus String @default("UPLOADING")
+  status           String @default("uploaded")
 
   fileName   String?
   filePath   String?
   sourcePath String?
+
+  heroImageUrl String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -101,13 +104,21 @@ model Book {
   characters Character[]
 }
 
+enum ProcessingStatus {
+  pending
+  processing
+  ready
+  failed
+}
+
 model Chapter {
   id String @id @default(cuid())
 
-  title String?
-  order Int
-
+  title   String?
   content String
+  order   Int
+
+  processingStatus ProcessingStatus @default(processing)
 
   summary String?
 
@@ -177,6 +188,8 @@ model GeneratedAsset {
   type String
 
   prompt String
+
+  caption String?
 
   imageUrl String?
 
