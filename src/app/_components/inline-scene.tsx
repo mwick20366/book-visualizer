@@ -16,6 +16,26 @@ type InlineSceneProps = {
   existingCaption?: string | null;
 };
 
+function buildTeaser(
+  visualDescription: string,
+  maxWords = 10,
+) {
+  const words =
+    visualDescription
+      .trim()
+      .split(/\s+/);
+
+  if (
+    words.length <= maxWords
+  ) {
+    return visualDescription;
+  }
+
+  return `${words
+    .slice(0, maxWords)
+    .join(" ")}...`;
+}
+
 export function InlineScene({
   sceneId,
   title,
@@ -28,19 +48,13 @@ export function InlineScene({
 
   const [showVisualizer, setShowVisualizer] = useState(false);
 
-  const [showCaption, setShowCaption] = useState(!!existingCaption);
-
   const [showImage, setShowImage] = useState(!!existingImageUrl);
 
   const [imageUrl, setImageUrl] = useState(existingImageUrl);
 
-  const [caption, setCaption] = useState(existingCaption);
-
   const [revealedText, setRevealedText] = useState("");
 
-  useEffect(() => {
-    console.log("caption", caption);
-  }, [caption]);
+  const teaser = buildTeaser(visualDescription, 10);
 
   useEffect(() => {
     if (!isLoading) {
@@ -54,9 +68,9 @@ export function InlineScene({
     const interval = setInterval(() => {
       index++;
 
-      setRevealedText(visualDescription.slice(0, index));
+      setRevealedText(teaser.slice(0, index));
 
-      if (index >= visualDescription.length) {
+      if (index >= teaser.length) {
         clearInterval(interval);
       }
     }, 130);
@@ -87,14 +101,14 @@ export function InlineScene({
         const data: {
           imageUrl: string;
 
-          caption: string;
+          // caption: string;
         } = await response.json();
 
         console.log("Received image data:", data);
 
         setImageUrl(data.imageUrl);
 
-        setCaption(data.caption);
+        // setCaption(data.caption);
 
         // Small pause so the
         // cinematic layer breathes
@@ -104,7 +118,7 @@ export function InlineScene({
           setShowImage(true);
 
           setTimeout(() => {
-            setShowCaption(true);
+            // setShowCaption(true);
           }, 1200);
 
           setIsLoading(false);
@@ -168,7 +182,7 @@ export function InlineScene({
                 Visualizing Scene
               </div>
 
-              <p className="font-serif text-lg leading-9 tracking-[0.015em] text-zinc-200">
+              <p className="font-serif text-base leading-7 tracking-[0.015em] text-zinc-200">
                 {revealedText}
 
                 <span className="ml-1 inline-block animate-pulse text-zinc-500">
@@ -196,12 +210,12 @@ export function InlineScene({
 
       <div
         className={`relative z-40 min-h-[72px] transition-opacity duration-[2200ms] ${
-          showImage && caption ? "opacity-100" : "opacity-0"
+          existingCaption ? "opacity-100" : "opacity-0"
         } `}
       >
-        {caption && (
+        {existingCaption && (
           <div className="px-5 py-4">
-            <p className="text-sm leading-6 text-zinc-500 italic">{caption}</p>
+            <p className="text-sm leading-6 text-zinc-500 italic">{existingCaption}</p>
           </div>
         )}
       </div>

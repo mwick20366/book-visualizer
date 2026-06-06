@@ -8574,6 +8574,7 @@ export namespace Prisma {
     mood: string | null
     location: string | null
     visualDescription: string | null
+    caption: string | null
     anchorText: string | null
     anchorIndex: number | null
     order: number | null
@@ -8588,6 +8589,7 @@ export namespace Prisma {
     mood: string | null
     location: string | null
     visualDescription: string | null
+    caption: string | null
     anchorText: string | null
     anchorIndex: number | null
     order: number | null
@@ -8602,6 +8604,7 @@ export namespace Prisma {
     mood: number
     location: number
     visualDescription: number
+    caption: number
     anchorText: number
     anchorIndex: number
     characters: number
@@ -8630,6 +8633,7 @@ export namespace Prisma {
     mood?: true
     location?: true
     visualDescription?: true
+    caption?: true
     anchorText?: true
     anchorIndex?: true
     order?: true
@@ -8644,6 +8648,7 @@ export namespace Prisma {
     mood?: true
     location?: true
     visualDescription?: true
+    caption?: true
     anchorText?: true
     anchorIndex?: true
     order?: true
@@ -8658,6 +8663,7 @@ export namespace Prisma {
     mood?: true
     location?: true
     visualDescription?: true
+    caption?: true
     anchorText?: true
     anchorIndex?: true
     characters?: true
@@ -8761,6 +8767,7 @@ export namespace Prisma {
     mood: string | null
     location: string | null
     visualDescription: string | null
+    caption: string | null
     anchorText: string | null
     anchorIndex: number | null
     characters: JsonValue | null
@@ -8796,6 +8803,7 @@ export namespace Prisma {
     mood?: boolean
     location?: boolean
     visualDescription?: boolean
+    caption?: boolean
     anchorText?: boolean
     anchorIndex?: boolean
     characters?: boolean
@@ -8815,6 +8823,7 @@ export namespace Prisma {
     mood?: boolean
     location?: boolean
     visualDescription?: boolean
+    caption?: boolean
     anchorText?: boolean
     anchorIndex?: boolean
     characters?: boolean
@@ -8832,6 +8841,7 @@ export namespace Prisma {
     mood?: boolean
     location?: boolean
     visualDescription?: boolean
+    caption?: boolean
     anchorText?: boolean
     anchorIndex?: boolean
     characters?: boolean
@@ -8849,6 +8859,7 @@ export namespace Prisma {
     mood?: boolean
     location?: boolean
     visualDescription?: boolean
+    caption?: boolean
     anchorText?: boolean
     anchorIndex?: boolean
     characters?: boolean
@@ -8858,7 +8869,7 @@ export namespace Prisma {
     chapterId?: boolean
   }
 
-  export type SceneOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "summary" | "mood" | "location" | "visualDescription" | "anchorText" | "anchorIndex" | "characters" | "rawAiOutput" | "order" | "createdAt" | "chapterId", ExtArgs["result"]["scene"]>
+  export type SceneOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "summary" | "mood" | "location" | "visualDescription" | "caption" | "anchorText" | "anchorIndex" | "characters" | "rawAiOutput" | "order" | "createdAt" | "chapterId", ExtArgs["result"]["scene"]>
   export type SceneInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     chapter?: boolean | ChapterDefaultArgs<ExtArgs>
     assets?: boolean | Scene$assetsArgs<ExtArgs>
@@ -8884,6 +8895,7 @@ export namespace Prisma {
       mood: string | null
       location: string | null
       visualDescription: string | null
+      caption: string | null
       anchorText: string | null
       anchorIndex: number | null
       characters: Prisma.JsonValue | null
@@ -9322,6 +9334,7 @@ export namespace Prisma {
     readonly mood: FieldRef<"Scene", 'String'>
     readonly location: FieldRef<"Scene", 'String'>
     readonly visualDescription: FieldRef<"Scene", 'String'>
+    readonly caption: FieldRef<"Scene", 'String'>
     readonly anchorText: FieldRef<"Scene", 'String'>
     readonly anchorIndex: FieldRef<"Scene", 'Int'>
     readonly characters: FieldRef<"Scene", 'Json'>
@@ -12077,6 +12090,7 @@ export namespace Prisma {
     mood: 'mood',
     location: 'location',
     visualDescription: 'visualDescription',
+    caption: 'caption',
     anchorText: 'anchorText',
     anchorIndex: 'anchorIndex',
     characters: 'characters',
@@ -12732,6 +12746,7 @@ export namespace Prisma {
     mood?: StringNullableFilter<"Scene"> | string | null
     location?: StringNullableFilter<"Scene"> | string | null
     visualDescription?: StringNullableFilter<"Scene"> | string | null
+    caption?: StringNullableFilter<"Scene"> | string | null
     anchorText?: StringNullableFilter<"Scene"> | string | null
     anchorIndex?: IntNullableFilter<"Scene"> | number | null
     characters?: JsonNullableFilter<"Scene">
@@ -12750,6 +12765,7 @@ export namespace Prisma {
     mood?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     visualDescription?: SortOrderInput | SortOrder
+    caption?: SortOrderInput | SortOrder
     anchorText?: SortOrderInput | SortOrder
     anchorIndex?: SortOrderInput | SortOrder
     characters?: SortOrderInput | SortOrder
@@ -12771,6 +12787,7 @@ export namespace Prisma {
     mood?: StringNullableFilter<"Scene"> | string | null
     location?: StringNullableFilter<"Scene"> | string | null
     visualDescription?: StringNullableFilter<"Scene"> | string | null
+    caption?: StringNullableFilter<"Scene"> | string | null
     anchorText?: StringNullableFilter<"Scene"> | string | null
     anchorIndex?: IntNullableFilter<"Scene"> | number | null
     characters?: JsonNullableFilter<"Scene">
@@ -12789,6 +12806,7 @@ export namespace Prisma {
     mood?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     visualDescription?: SortOrderInput | SortOrder
+    caption?: SortOrderInput | SortOrder
     anchorText?: SortOrderInput | SortOrder
     anchorIndex?: SortOrderInput | SortOrder
     characters?: SortOrderInput | SortOrder
@@ -12813,6 +12831,7 @@ export namespace Prisma {
     mood?: StringNullableWithAggregatesFilter<"Scene"> | string | null
     location?: StringNullableWithAggregatesFilter<"Scene"> | string | null
     visualDescription?: StringNullableWithAggregatesFilter<"Scene"> | string | null
+    caption?: StringNullableWithAggregatesFilter<"Scene"> | string | null
     anchorText?: StringNullableWithAggregatesFilter<"Scene"> | string | null
     anchorIndex?: IntNullableWithAggregatesFilter<"Scene"> | number | null
     characters?: JsonNullableWithAggregatesFilter<"Scene">
@@ -13498,6 +13517,7 @@ export namespace Prisma {
     mood?: string | null
     location?: string | null
     visualDescription?: string | null
+    caption?: string | null
     anchorText?: string | null
     anchorIndex?: number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -13515,6 +13535,7 @@ export namespace Prisma {
     mood?: string | null
     location?: string | null
     visualDescription?: string | null
+    caption?: string | null
     anchorText?: string | null
     anchorIndex?: number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -13532,6 +13553,7 @@ export namespace Prisma {
     mood?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     anchorText?: NullableStringFieldUpdateOperationsInput | string | null
     anchorIndex?: NullableIntFieldUpdateOperationsInput | number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -13549,6 +13571,7 @@ export namespace Prisma {
     mood?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     anchorText?: NullableStringFieldUpdateOperationsInput | string | null
     anchorIndex?: NullableIntFieldUpdateOperationsInput | number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -13566,6 +13589,7 @@ export namespace Prisma {
     mood?: string | null
     location?: string | null
     visualDescription?: string | null
+    caption?: string | null
     anchorText?: string | null
     anchorIndex?: number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -13582,6 +13606,7 @@ export namespace Prisma {
     mood?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     anchorText?: NullableStringFieldUpdateOperationsInput | string | null
     anchorIndex?: NullableIntFieldUpdateOperationsInput | number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -13597,6 +13622,7 @@ export namespace Prisma {
     mood?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     anchorText?: NullableStringFieldUpdateOperationsInput | string | null
     anchorIndex?: NullableIntFieldUpdateOperationsInput | number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -14293,6 +14319,7 @@ export namespace Prisma {
     mood?: SortOrder
     location?: SortOrder
     visualDescription?: SortOrder
+    caption?: SortOrder
     anchorText?: SortOrder
     anchorIndex?: SortOrder
     characters?: SortOrder
@@ -14314,6 +14341,7 @@ export namespace Prisma {
     mood?: SortOrder
     location?: SortOrder
     visualDescription?: SortOrder
+    caption?: SortOrder
     anchorText?: SortOrder
     anchorIndex?: SortOrder
     order?: SortOrder
@@ -14328,6 +14356,7 @@ export namespace Prisma {
     mood?: SortOrder
     location?: SortOrder
     visualDescription?: SortOrder
+    caption?: SortOrder
     anchorText?: SortOrder
     anchorIndex?: SortOrder
     order?: SortOrder
@@ -15700,6 +15729,7 @@ export namespace Prisma {
     mood?: string | null
     location?: string | null
     visualDescription?: string | null
+    caption?: string | null
     anchorText?: string | null
     anchorIndex?: number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -15716,6 +15746,7 @@ export namespace Prisma {
     mood?: string | null
     location?: string | null
     visualDescription?: string | null
+    caption?: string | null
     anchorText?: string | null
     anchorIndex?: number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -15804,6 +15835,7 @@ export namespace Prisma {
     mood?: StringNullableFilter<"Scene"> | string | null
     location?: StringNullableFilter<"Scene"> | string | null
     visualDescription?: StringNullableFilter<"Scene"> | string | null
+    caption?: StringNullableFilter<"Scene"> | string | null
     anchorText?: StringNullableFilter<"Scene"> | string | null
     anchorIndex?: IntNullableFilter<"Scene"> | number | null
     characters?: JsonNullableFilter<"Scene">
@@ -16017,6 +16049,7 @@ export namespace Prisma {
     mood?: string | null
     location?: string | null
     visualDescription?: string | null
+    caption?: string | null
     anchorText?: string | null
     anchorIndex?: number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -16033,6 +16066,7 @@ export namespace Prisma {
     mood?: string | null
     location?: string | null
     visualDescription?: string | null
+    caption?: string | null
     anchorText?: string | null
     anchorIndex?: number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -16065,6 +16099,7 @@ export namespace Prisma {
     mood?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     anchorText?: NullableStringFieldUpdateOperationsInput | string | null
     anchorIndex?: NullableIntFieldUpdateOperationsInput | number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -16081,6 +16116,7 @@ export namespace Prisma {
     mood?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     anchorText?: NullableStringFieldUpdateOperationsInput | string | null
     anchorIndex?: NullableIntFieldUpdateOperationsInput | number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -16347,6 +16383,7 @@ export namespace Prisma {
     mood?: string | null
     location?: string | null
     visualDescription?: string | null
+    caption?: string | null
     anchorText?: string | null
     anchorIndex?: number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -16362,6 +16399,7 @@ export namespace Prisma {
     mood?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     anchorText?: NullableStringFieldUpdateOperationsInput | string | null
     anchorIndex?: NullableIntFieldUpdateOperationsInput | number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -16378,6 +16416,7 @@ export namespace Prisma {
     mood?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     anchorText?: NullableStringFieldUpdateOperationsInput | string | null
     anchorIndex?: NullableIntFieldUpdateOperationsInput | number | null
     characters?: NullableJsonNullValueInput | InputJsonValue
@@ -16394,6 +16433,7 @@ export namespace Prisma {
     mood?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     visualDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
     anchorText?: NullableStringFieldUpdateOperationsInput | string | null
     anchorIndex?: NullableIntFieldUpdateOperationsInput | number | null
     characters?: NullableJsonNullValueInput | InputJsonValue

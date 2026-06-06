@@ -200,6 +200,7 @@ exports.Prisma.SceneScalarFieldEnum = {
   mood: 'mood',
   location: 'location',
   visualDescription: 'visualDescription',
+  caption: 'caption',
   anchorText: 'anchorText',
   anchorIndex: 'anchorIndex',
   characters: 'characters',

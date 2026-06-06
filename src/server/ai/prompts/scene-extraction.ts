@@ -13,6 +13,12 @@ A cinematic moment should represent:
 
 Avoid extracting multiple moments that would produce visually similar imagery.
 
+The caption should:
+- be a single sentence
+- describe the visual moment
+- read naturally beneath an illustration
+- be 8-20 words long
+
 For each scene, also include an "anchorText" field.
 
 The anchorText should be:
@@ -37,6 +43,7 @@ The JSON format must match this exact structure:
       "characters": ["string"],
       "location": "string",
       "visualDescription": "string",
+      "caption": "string",
       "anchorText": "string",
       "anchorIndex": number
     }

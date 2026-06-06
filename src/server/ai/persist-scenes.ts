@@ -51,10 +51,12 @@ export async function persistScenes({
               visualDescription:
                 scene.visualDescription,
 
+              caption: scene.caption,
+              
               anchorText: scene.anchorText,
 
               anchorIndex: scene.anchorIndex,
-              
+
               characters:
                 scene.characters,
 

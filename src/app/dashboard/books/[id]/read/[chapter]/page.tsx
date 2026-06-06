@@ -79,6 +79,8 @@ export default async function ReadChapterPage({
     notFound();
   }
 
+  console.log("currentChapter", currentChapter);
+  
   if (currentChapter.processingStatus !== "ready") {
     await prepareChapter(currentChapter.id);
 
@@ -173,7 +175,7 @@ export default async function ReadChapterPage({
                         summary={scene.summary}
                         visualDescription={scene.visualDescription!}
                         existingImageUrl={image?.imageUrl}
-                        existingCaption={image?.caption}
+                        existingCaption={scene?.caption ?? image?.caption}
                       />
                     );
                   })}

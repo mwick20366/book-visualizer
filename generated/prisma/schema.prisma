@@ -142,6 +142,8 @@ model Scene {
 
   visualDescription String?
 
+  caption String?
+
   anchorText String?
 
   anchorIndex Int?
