@@ -52,9 +52,9 @@ function extractTitle(
 }
 
 export async function parseEpub(
-  filePath: string,
+  buffer: Buffer,
 ): Promise<ParsedBook> {
-  const zip = new AdmZip(filePath);
+  const zip = new AdmZip(buffer);
 
   const entries = zip.getEntries();
 

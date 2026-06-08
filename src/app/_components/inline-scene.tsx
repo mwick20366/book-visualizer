@@ -1,6 +1,9 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import { FilmCountdown } from "./film-countdown";
 
 type InlineSceneProps = {
   sceneId: string;
@@ -16,24 +19,14 @@ type InlineSceneProps = {
   existingCaption?: string | null;
 };
 
-function buildTeaser(
-  visualDescription: string,
-  maxWords = 10,
-) {
-  const words =
-    visualDescription
-      .trim()
-      .split(/\s+/);
+function buildTeaser(visualDescription: string, maxWords = 10) {
+  const words = visualDescription.trim().split(/\s+/);
 
-  if (
-    words.length <= maxWords
-  ) {
+  if (words.length <= maxWords) {
     return visualDescription;
   }
 
-  return `${words
-    .slice(0, maxWords)
-    .join(" ")}...`;
+  return `${words.slice(0, maxWords).join(" ")}...`;
 }
 
 export function InlineScene({
@@ -46,6 +39,8 @@ export function InlineScene({
 }: InlineSceneProps) {
   const [isLoading, setIsLoading] = useState(false);
 
+  const router = useRouter();
+
   const [showVisualizer, setShowVisualizer] = useState(false);
 
   const [showImage, setShowImage] = useState(!!existingImageUrl);
@@ -53,30 +48,36 @@ export function InlineScene({
   const [imageUrl, setImageUrl] = useState(existingImageUrl);
 
   const [revealedText, setRevealedText] = useState("");
+  const [progress, setProgress] = useState(0);
 
-  const teaser = buildTeaser(visualDescription, 10);
+  const teaser = buildTeaser(summary, 10);
 
   useEffect(() => {
     if (!isLoading) {
+      setProgress(0);
+      setRevealedText("");
+
       return;
     }
 
-    setRevealedText("");
+    const DURATION_MS = 60_000;
 
-    let index = 0;
+    const startedAt = Date.now();
 
     const interval = setInterval(() => {
-      index++;
+      const elapsed = Date.now() - startedAt;
 
-      setRevealedText(teaser.slice(0, index));
+      const nextProgress = Math.min(elapsed / DURATION_MS, 0.95);
 
-      if (index >= teaser.length) {
-        clearInterval(interval);
-      }
-    }, 130);
+      setProgress(nextProgress);
+
+      const visibleChars = Math.floor(teaser.length * nextProgress);
+
+      setRevealedText(teaser.slice(0, visibleChars));
+    }, 100);
 
     return () => clearInterval(interval);
-  }, [isLoading, visualDescription]);
+  }, [isLoading, teaser]);
 
   async function generateImage() {
     try {
@@ -99,14 +100,23 @@ export function InlineScene({
         }
 
         const data: {
+          blocked?: boolean;
           imageUrl: string;
-
-          // caption: string;
         } = await response.json();
+
+        if (data.blocked) {
+          toast.error("This scene is unavailable for illustration.");
+
+          router.refresh();
+
+          return;
+        }
 
         console.log("Received image data:", data);
 
         setImageUrl(data.imageUrl);
+
+        setProgress(1);
 
         // setCaption(data.caption);
 
@@ -117,12 +127,8 @@ export function InlineScene({
         setTimeout(() => {
           setShowImage(true);
 
-          setTimeout(() => {
-            // setShowCaption(true);
-          }, 1200);
-
           setIsLoading(false);
-        }, 100);
+        }, 400);
       }, 300);
     } catch (error) {
       console.error(error);
@@ -178,17 +184,30 @@ export function InlineScene({
 
           <div className="absolute inset-0 flex items-center justify-center p-12 md:p-20">
             <div className="max-w-md text-center">
+              {isLoading && !showImage && <FilmCountdown progress={progress} />}
+
               <div className="mb-6 text-xs tracking-[0.35em] text-zinc-500 uppercase">
                 Visualizing Scene
               </div>
 
-              <p className="font-serif text-base leading-7 tracking-[0.015em] text-zinc-200">
+              {/* <p className="font-serif text-base leading-7 tracking-[0.015em] text-zinc-200">
                 {revealedText}
 
                 <span className="ml-1 inline-block animate-pulse text-zinc-500">
                   |
                 </span>
               </p>
+
+              <div className="mt-8">
+                <div className="h-[2px] w-full overflow-hidden rounded-full bg-white/10">
+                  <div
+                    className="h-full rounded-full bg-white/40 transition-[width] duration-200"
+                    style={{
+                      width: `${progress * 100}%`,
+                    }}
+                  />
+                </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -215,7 +234,9 @@ export function InlineScene({
       >
         {existingCaption && (
           <div className="px-5 py-4">
-            <p className="text-sm leading-6 text-zinc-500 italic">{existingCaption}</p>
+            <p className="text-sm leading-6 text-zinc-500 italic">
+              {existingCaption}
+            </p>
           </div>
         )}
       </div>

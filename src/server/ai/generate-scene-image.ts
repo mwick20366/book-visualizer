@@ -15,8 +15,9 @@ type GenerateSceneImageInput = {
 
 export type GeneratedSceneImage = {
   prompt: string;
-  caption: string;
-  imageUrl: string;
+  // caption: string;
+  imageBuffer: Buffer;
+  generationTimeMs: number;
 };
 
 export async function generateSceneImage({
@@ -45,45 +46,48 @@ export async function generateSceneImage({
     throw new Error("Scene not found");
   }
 
-  const caption = await generateCaption({
-    title: scene.title,
-    summary: scene.summary,
-    mood: scene.mood ?? undefined,
-    location: scene.location ?? undefined,
-  });
+  // const caption = await generateCaption({
+  //   title: scene.title,
+  //   summary: scene.summary,
+  //   mood: scene.mood ?? undefined,
+  //   location: scene.location ?? undefined,
+  // });
 
   const prompt = buildImagePrompt({
     scene,
 
-    characters:
-      scene.chapter.book.characters,
+    characters: scene.chapter.book.characters,
 
     styleGuide,
   });
 
-  const response =
-    await openai.images.generate({
-      model: "gpt-image-1",
+  console.log("Generated prompt:", prompt);
 
-      prompt,
+  const startedAt = Date.now();
 
-      size: "1536x1024",
-    });
+  const response = await openai.images.generate({
+    model: "gpt-image-1",
 
-  const imageBase64 =
-    response.data?.[0]?.b64_json;
+    prompt,
+
+    size: "1536x1024",
+  });
+
+  const generationTimeMs = Date.now() - startedAt;
+  const imageBase64 = response.data?.[0]?.b64_json;
 
   if (!imageBase64) {
-    throw new Error(
-      "No image returned from OpenAI",
-    );
+    throw new Error("No image returned from OpenAI");
   }
 
-  const imageUrl = `data:image/png;base64,${imageBase64}`;
+  // const imageUrl = `data:image/png;base64,${imageBase64}`;
+
+  const imageBuffer = Buffer.from(imageBase64, "base64");
 
   return {
     prompt,
-    caption,
-    imageUrl,
+    generationTimeMs,
+    // caption,
+    imageBuffer,
   };
 }

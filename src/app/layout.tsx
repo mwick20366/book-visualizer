@@ -1,3 +1,6 @@
+// src/app/layout.tsx
+
+import { Toaster } from "sonner";
 import "@/styles/globals.css";
 
 import { type Metadata } from "next";
@@ -33,6 +36,7 @@ export default function RootLayout({
       <body className={specialElite.variable}>
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
+      <Toaster richColors position="bottom-right" />
     </html>
   );
 }

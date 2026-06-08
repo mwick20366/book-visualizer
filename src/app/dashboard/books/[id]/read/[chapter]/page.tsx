@@ -79,8 +79,6 @@ export default async function ReadChapterPage({
     notFound();
   }
 
-  console.log("currentChapter", currentChapter);
-  
   if (currentChapter.processingStatus !== "ready") {
     await prepareChapter(currentChapter.id);
 
@@ -163,6 +161,10 @@ export default async function ReadChapterPage({
                   <p>{paragraph}</p>
 
                   {matchingScenes.map((scene) => {
+                    if (scene.isHidden) {
+                      return null;
+                    }
+                    
                     const image = scene.assets.find(
                       (asset) => asset.type === "image",
                     );

@@ -173,6 +173,7 @@ exports.Prisma.BookScalarFieldEnum = {
   author: 'author',
   processingStatus: 'processingStatus',
   status: 'status',
+  sourceKey: 'sourceKey',
   fileName: 'fileName',
   filePath: 'filePath',
   sourcePath: 'sourcePath',
@@ -207,6 +208,7 @@ exports.Prisma.SceneScalarFieldEnum = {
   rawAiOutput: 'rawAiOutput',
   order: 'order',
   createdAt: 'createdAt',
+  isHidden: 'isHidden',
   chapterId: 'chapterId'
 };
 
@@ -230,6 +232,7 @@ exports.Prisma.GeneratedAssetScalarFieldEnum = {
   caption: 'caption',
   imageUrl: 'imageUrl',
   createdAt: 'createdAt',
+  generationTimeMs: 'generationTimeMs',
   sceneId: 'sceneId'
 };
 

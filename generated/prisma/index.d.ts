@@ -6193,6 +6193,7 @@ export namespace Prisma {
     author: string | null
     processingStatus: string | null
     status: string | null
+    sourceKey: string | null
     fileName: string | null
     filePath: string | null
     sourcePath: string | null
@@ -6208,6 +6209,7 @@ export namespace Prisma {
     author: string | null
     processingStatus: string | null
     status: string | null
+    sourceKey: string | null
     fileName: string | null
     filePath: string | null
     sourcePath: string | null
@@ -6223,6 +6225,7 @@ export namespace Prisma {
     author: number
     processingStatus: number
     status: number
+    sourceKey: number
     fileName: number
     filePath: number
     sourcePath: number
@@ -6240,6 +6243,7 @@ export namespace Prisma {
     author?: true
     processingStatus?: true
     status?: true
+    sourceKey?: true
     fileName?: true
     filePath?: true
     sourcePath?: true
@@ -6255,6 +6259,7 @@ export namespace Prisma {
     author?: true
     processingStatus?: true
     status?: true
+    sourceKey?: true
     fileName?: true
     filePath?: true
     sourcePath?: true
@@ -6270,6 +6275,7 @@ export namespace Prisma {
     author?: true
     processingStatus?: true
     status?: true
+    sourceKey?: true
     fileName?: true
     filePath?: true
     sourcePath?: true
@@ -6358,6 +6364,7 @@ export namespace Prisma {
     author: string | null
     processingStatus: string
     status: string
+    sourceKey: string | null
     fileName: string | null
     filePath: string | null
     sourcePath: string | null
@@ -6390,6 +6397,7 @@ export namespace Prisma {
     author?: boolean
     processingStatus?: boolean
     status?: boolean
+    sourceKey?: boolean
     fileName?: boolean
     filePath?: boolean
     sourcePath?: boolean
@@ -6409,6 +6417,7 @@ export namespace Prisma {
     author?: boolean
     processingStatus?: boolean
     status?: boolean
+    sourceKey?: boolean
     fileName?: boolean
     filePath?: boolean
     sourcePath?: boolean
@@ -6425,6 +6434,7 @@ export namespace Prisma {
     author?: boolean
     processingStatus?: boolean
     status?: boolean
+    sourceKey?: boolean
     fileName?: boolean
     filePath?: boolean
     sourcePath?: boolean
@@ -6441,6 +6451,7 @@ export namespace Prisma {
     author?: boolean
     processingStatus?: boolean
     status?: boolean
+    sourceKey?: boolean
     fileName?: boolean
     filePath?: boolean
     sourcePath?: boolean
@@ -6450,7 +6461,7 @@ export namespace Prisma {
     userId?: boolean
   }
 
-  export type BookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "author" | "processingStatus" | "status" | "fileName" | "filePath" | "sourcePath" | "heroImageUrl" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["book"]>
+  export type BookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "author" | "processingStatus" | "status" | "sourceKey" | "fileName" | "filePath" | "sourcePath" | "heroImageUrl" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["book"]>
   export type BookInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     chapters?: boolean | Book$chaptersArgs<ExtArgs>
@@ -6477,6 +6488,7 @@ export namespace Prisma {
       author: string | null
       processingStatus: string
       status: string
+      sourceKey: string | null
       fileName: string | null
       filePath: string | null
       sourcePath: string | null
@@ -6915,6 +6927,7 @@ export namespace Prisma {
     readonly author: FieldRef<"Book", 'String'>
     readonly processingStatus: FieldRef<"Book", 'String'>
     readonly status: FieldRef<"Book", 'String'>
+    readonly sourceKey: FieldRef<"Book", 'String'>
     readonly fileName: FieldRef<"Book", 'String'>
     readonly filePath: FieldRef<"Book", 'String'>
     readonly sourcePath: FieldRef<"Book", 'String'>
@@ -8579,6 +8592,7 @@ export namespace Prisma {
     anchorIndex: number | null
     order: number | null
     createdAt: Date | null
+    isHidden: boolean | null
     chapterId: string | null
   }
 
@@ -8594,6 +8608,7 @@ export namespace Prisma {
     anchorIndex: number | null
     order: number | null
     createdAt: Date | null
+    isHidden: boolean | null
     chapterId: string | null
   }
 
@@ -8611,6 +8626,7 @@ export namespace Prisma {
     rawAiOutput: number
     order: number
     createdAt: number
+    isHidden: number
     chapterId: number
     _all: number
   }
@@ -8638,6 +8654,7 @@ export namespace Prisma {
     anchorIndex?: true
     order?: true
     createdAt?: true
+    isHidden?: true
     chapterId?: true
   }
 
@@ -8653,6 +8670,7 @@ export namespace Prisma {
     anchorIndex?: true
     order?: true
     createdAt?: true
+    isHidden?: true
     chapterId?: true
   }
 
@@ -8670,6 +8688,7 @@ export namespace Prisma {
     rawAiOutput?: true
     order?: true
     createdAt?: true
+    isHidden?: true
     chapterId?: true
     _all?: true
   }
@@ -8774,6 +8793,7 @@ export namespace Prisma {
     rawAiOutput: JsonValue | null
     order: number
     createdAt: Date
+    isHidden: boolean
     chapterId: string
     _count: SceneCountAggregateOutputType | null
     _avg: SceneAvgAggregateOutputType | null
@@ -8810,6 +8830,7 @@ export namespace Prisma {
     rawAiOutput?: boolean
     order?: boolean
     createdAt?: boolean
+    isHidden?: boolean
     chapterId?: boolean
     chapter?: boolean | ChapterDefaultArgs<ExtArgs>
     assets?: boolean | Scene$assetsArgs<ExtArgs>
@@ -8830,6 +8851,7 @@ export namespace Prisma {
     rawAiOutput?: boolean
     order?: boolean
     createdAt?: boolean
+    isHidden?: boolean
     chapterId?: boolean
     chapter?: boolean | ChapterDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["scene"]>
@@ -8848,6 +8870,7 @@ export namespace Prisma {
     rawAiOutput?: boolean
     order?: boolean
     createdAt?: boolean
+    isHidden?: boolean
     chapterId?: boolean
     chapter?: boolean | ChapterDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["scene"]>
@@ -8866,10 +8889,11 @@ export namespace Prisma {
     rawAiOutput?: boolean
     order?: boolean
     createdAt?: boolean
+    isHidden?: boolean
     chapterId?: boolean
   }
 
-  export type SceneOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "summary" | "mood" | "location" | "visualDescription" | "caption" | "anchorText" | "anchorIndex" | "characters" | "rawAiOutput" | "order" | "createdAt" | "chapterId", ExtArgs["result"]["scene"]>
+  export type SceneOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "summary" | "mood" | "location" | "visualDescription" | "caption" | "anchorText" | "anchorIndex" | "characters" | "rawAiOutput" | "order" | "createdAt" | "isHidden" | "chapterId", ExtArgs["result"]["scene"]>
   export type SceneInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     chapter?: boolean | ChapterDefaultArgs<ExtArgs>
     assets?: boolean | Scene$assetsArgs<ExtArgs>
@@ -8902,6 +8926,7 @@ export namespace Prisma {
       rawAiOutput: Prisma.JsonValue | null
       order: number
       createdAt: Date
+      isHidden: boolean
       chapterId: string
     }, ExtArgs["result"]["scene"]>
     composites: {}
@@ -9341,6 +9366,7 @@ export namespace Prisma {
     readonly rawAiOutput: FieldRef<"Scene", 'Json'>
     readonly order: FieldRef<"Scene", 'Int'>
     readonly createdAt: FieldRef<"Scene", 'DateTime'>
+    readonly isHidden: FieldRef<"Scene", 'Boolean'>
     readonly chapterId: FieldRef<"Scene", 'String'>
   }
     
@@ -10901,8 +10927,18 @@ export namespace Prisma {
 
   export type AggregateGeneratedAsset = {
     _count: GeneratedAssetCountAggregateOutputType | null
+    _avg: GeneratedAssetAvgAggregateOutputType | null
+    _sum: GeneratedAssetSumAggregateOutputType | null
     _min: GeneratedAssetMinAggregateOutputType | null
     _max: GeneratedAssetMaxAggregateOutputType | null
+  }
+
+  export type GeneratedAssetAvgAggregateOutputType = {
+    generationTimeMs: number | null
+  }
+
+  export type GeneratedAssetSumAggregateOutputType = {
+    generationTimeMs: number | null
   }
 
   export type GeneratedAssetMinAggregateOutputType = {
@@ -10912,6 +10948,7 @@ export namespace Prisma {
     caption: string | null
     imageUrl: string | null
     createdAt: Date | null
+    generationTimeMs: number | null
     sceneId: string | null
   }
 
@@ -10922,6 +10959,7 @@ export namespace Prisma {
     caption: string | null
     imageUrl: string | null
     createdAt: Date | null
+    generationTimeMs: number | null
     sceneId: string | null
   }
 
@@ -10932,10 +10970,19 @@ export namespace Prisma {
     caption: number
     imageUrl: number
     createdAt: number
+    generationTimeMs: number
     sceneId: number
     _all: number
   }
 
+
+  export type GeneratedAssetAvgAggregateInputType = {
+    generationTimeMs?: true
+  }
+
+  export type GeneratedAssetSumAggregateInputType = {
+    generationTimeMs?: true
+  }
 
   export type GeneratedAssetMinAggregateInputType = {
     id?: true
@@ -10944,6 +10991,7 @@ export namespace Prisma {
     caption?: true
     imageUrl?: true
     createdAt?: true
+    generationTimeMs?: true
     sceneId?: true
   }
 
@@ -10954,6 +11002,7 @@ export namespace Prisma {
     caption?: true
     imageUrl?: true
     createdAt?: true
+    generationTimeMs?: true
     sceneId?: true
   }
 
@@ -10964,6 +11013,7 @@ export namespace Prisma {
     caption?: true
     imageUrl?: true
     createdAt?: true
+    generationTimeMs?: true
     sceneId?: true
     _all?: true
   }
@@ -11006,6 +11056,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: GeneratedAssetAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GeneratedAssetSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: GeneratedAssetMinAggregateInputType
@@ -11036,6 +11098,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: GeneratedAssetCountAggregateInputType | true
+    _avg?: GeneratedAssetAvgAggregateInputType
+    _sum?: GeneratedAssetSumAggregateInputType
     _min?: GeneratedAssetMinAggregateInputType
     _max?: GeneratedAssetMaxAggregateInputType
   }
@@ -11047,8 +11111,11 @@ export namespace Prisma {
     caption: string | null
     imageUrl: string | null
     createdAt: Date
+    generationTimeMs: number | null
     sceneId: string
     _count: GeneratedAssetCountAggregateOutputType | null
+    _avg: GeneratedAssetAvgAggregateOutputType | null
+    _sum: GeneratedAssetSumAggregateOutputType | null
     _min: GeneratedAssetMinAggregateOutputType | null
     _max: GeneratedAssetMaxAggregateOutputType | null
   }
@@ -11074,6 +11141,7 @@ export namespace Prisma {
     caption?: boolean
     imageUrl?: boolean
     createdAt?: boolean
+    generationTimeMs?: boolean
     sceneId?: boolean
     scene?: boolean | SceneDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["generatedAsset"]>
@@ -11085,6 +11153,7 @@ export namespace Prisma {
     caption?: boolean
     imageUrl?: boolean
     createdAt?: boolean
+    generationTimeMs?: boolean
     sceneId?: boolean
     scene?: boolean | SceneDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["generatedAsset"]>
@@ -11096,6 +11165,7 @@ export namespace Prisma {
     caption?: boolean
     imageUrl?: boolean
     createdAt?: boolean
+    generationTimeMs?: boolean
     sceneId?: boolean
     scene?: boolean | SceneDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["generatedAsset"]>
@@ -11107,10 +11177,11 @@ export namespace Prisma {
     caption?: boolean
     imageUrl?: boolean
     createdAt?: boolean
+    generationTimeMs?: boolean
     sceneId?: boolean
   }
 
-  export type GeneratedAssetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "prompt" | "caption" | "imageUrl" | "createdAt" | "sceneId", ExtArgs["result"]["generatedAsset"]>
+  export type GeneratedAssetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "prompt" | "caption" | "imageUrl" | "createdAt" | "generationTimeMs" | "sceneId", ExtArgs["result"]["generatedAsset"]>
   export type GeneratedAssetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     scene?: boolean | SceneDefaultArgs<ExtArgs>
   }
@@ -11133,6 +11204,7 @@ export namespace Prisma {
       caption: string | null
       imageUrl: string | null
       createdAt: Date
+      generationTimeMs: number | null
       sceneId: string
     }, ExtArgs["result"]["generatedAsset"]>
     composites: {}
@@ -11564,6 +11636,7 @@ export namespace Prisma {
     readonly caption: FieldRef<"GeneratedAsset", 'String'>
     readonly imageUrl: FieldRef<"GeneratedAsset", 'String'>
     readonly createdAt: FieldRef<"GeneratedAsset", 'DateTime'>
+    readonly generationTimeMs: FieldRef<"GeneratedAsset", 'Int'>
     readonly sceneId: FieldRef<"GeneratedAsset", 'String'>
   }
     
@@ -12057,6 +12130,7 @@ export namespace Prisma {
     author: 'author',
     processingStatus: 'processingStatus',
     status: 'status',
+    sourceKey: 'sourceKey',
     fileName: 'fileName',
     filePath: 'filePath',
     sourcePath: 'sourcePath',
@@ -12097,6 +12171,7 @@ export namespace Prisma {
     rawAiOutput: 'rawAiOutput',
     order: 'order',
     createdAt: 'createdAt',
+    isHidden: 'isHidden',
     chapterId: 'chapterId'
   };
 
@@ -12126,6 +12201,7 @@ export namespace Prisma {
     caption: 'caption',
     imageUrl: 'imageUrl',
     createdAt: 'createdAt',
+    generationTimeMs: 'generationTimeMs',
     sceneId: 'sceneId'
   };
 
@@ -12574,6 +12650,7 @@ export namespace Prisma {
     author?: StringNullableFilter<"Book"> | string | null
     processingStatus?: StringFilter<"Book"> | string
     status?: StringFilter<"Book"> | string
+    sourceKey?: StringNullableFilter<"Book"> | string | null
     fileName?: StringNullableFilter<"Book"> | string | null
     filePath?: StringNullableFilter<"Book"> | string | null
     sourcePath?: StringNullableFilter<"Book"> | string | null
@@ -12592,6 +12669,7 @@ export namespace Prisma {
     author?: SortOrderInput | SortOrder
     processingStatus?: SortOrder
     status?: SortOrder
+    sourceKey?: SortOrderInput | SortOrder
     fileName?: SortOrderInput | SortOrder
     filePath?: SortOrderInput | SortOrder
     sourcePath?: SortOrderInput | SortOrder
@@ -12613,6 +12691,7 @@ export namespace Prisma {
     author?: StringNullableFilter<"Book"> | string | null
     processingStatus?: StringFilter<"Book"> | string
     status?: StringFilter<"Book"> | string
+    sourceKey?: StringNullableFilter<"Book"> | string | null
     fileName?: StringNullableFilter<"Book"> | string | null
     filePath?: StringNullableFilter<"Book"> | string | null
     sourcePath?: StringNullableFilter<"Book"> | string | null
@@ -12631,6 +12710,7 @@ export namespace Prisma {
     author?: SortOrderInput | SortOrder
     processingStatus?: SortOrder
     status?: SortOrder
+    sourceKey?: SortOrderInput | SortOrder
     fileName?: SortOrderInput | SortOrder
     filePath?: SortOrderInput | SortOrder
     sourcePath?: SortOrderInput | SortOrder
@@ -12652,6 +12732,7 @@ export namespace Prisma {
     author?: StringNullableWithAggregatesFilter<"Book"> | string | null
     processingStatus?: StringWithAggregatesFilter<"Book"> | string
     status?: StringWithAggregatesFilter<"Book"> | string
+    sourceKey?: StringNullableWithAggregatesFilter<"Book"> | string | null
     fileName?: StringNullableWithAggregatesFilter<"Book"> | string | null
     filePath?: StringNullableWithAggregatesFilter<"Book"> | string | null
     sourcePath?: StringNullableWithAggregatesFilter<"Book"> | string | null
@@ -12753,6 +12834,7 @@ export namespace Prisma {
     rawAiOutput?: JsonNullableFilter<"Scene">
     order?: IntFilter<"Scene"> | number
     createdAt?: DateTimeFilter<"Scene"> | Date | string
+    isHidden?: BoolFilter<"Scene"> | boolean
     chapterId?: StringFilter<"Scene"> | string
     chapter?: XOR<ChapterScalarRelationFilter, ChapterWhereInput>
     assets?: GeneratedAssetListRelationFilter
@@ -12772,6 +12854,7 @@ export namespace Prisma {
     rawAiOutput?: SortOrderInput | SortOrder
     order?: SortOrder
     createdAt?: SortOrder
+    isHidden?: SortOrder
     chapterId?: SortOrder
     chapter?: ChapterOrderByWithRelationInput
     assets?: GeneratedAssetOrderByRelationAggregateInput
@@ -12794,6 +12877,7 @@ export namespace Prisma {
     rawAiOutput?: JsonNullableFilter<"Scene">
     order?: IntFilter<"Scene"> | number
     createdAt?: DateTimeFilter<"Scene"> | Date | string
+    isHidden?: BoolFilter<"Scene"> | boolean
     chapterId?: StringFilter<"Scene"> | string
     chapter?: XOR<ChapterScalarRelationFilter, ChapterWhereInput>
     assets?: GeneratedAssetListRelationFilter
@@ -12813,6 +12897,7 @@ export namespace Prisma {
     rawAiOutput?: SortOrderInput | SortOrder
     order?: SortOrder
     createdAt?: SortOrder
+    isHidden?: SortOrder
     chapterId?: SortOrder
     _count?: SceneCountOrderByAggregateInput
     _avg?: SceneAvgOrderByAggregateInput
@@ -12838,6 +12923,7 @@ export namespace Prisma {
     rawAiOutput?: JsonNullableWithAggregatesFilter<"Scene">
     order?: IntWithAggregatesFilter<"Scene"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Scene"> | Date | string
+    isHidden?: BoolWithAggregatesFilter<"Scene"> | boolean
     chapterId?: StringWithAggregatesFilter<"Scene"> | string
   }
 
@@ -12931,6 +13017,7 @@ export namespace Prisma {
     caption?: StringNullableFilter<"GeneratedAsset"> | string | null
     imageUrl?: StringNullableFilter<"GeneratedAsset"> | string | null
     createdAt?: DateTimeFilter<"GeneratedAsset"> | Date | string
+    generationTimeMs?: IntNullableFilter<"GeneratedAsset"> | number | null
     sceneId?: StringFilter<"GeneratedAsset"> | string
     scene?: XOR<SceneScalarRelationFilter, SceneWhereInput>
   }
@@ -12942,6 +13029,7 @@ export namespace Prisma {
     caption?: SortOrderInput | SortOrder
     imageUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    generationTimeMs?: SortOrderInput | SortOrder
     sceneId?: SortOrder
     scene?: SceneOrderByWithRelationInput
   }
@@ -12956,6 +13044,7 @@ export namespace Prisma {
     caption?: StringNullableFilter<"GeneratedAsset"> | string | null
     imageUrl?: StringNullableFilter<"GeneratedAsset"> | string | null
     createdAt?: DateTimeFilter<"GeneratedAsset"> | Date | string
+    generationTimeMs?: IntNullableFilter<"GeneratedAsset"> | number | null
     sceneId?: StringFilter<"GeneratedAsset"> | string
     scene?: XOR<SceneScalarRelationFilter, SceneWhereInput>
   }, "id">
@@ -12967,10 +13056,13 @@ export namespace Prisma {
     caption?: SortOrderInput | SortOrder
     imageUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    generationTimeMs?: SortOrderInput | SortOrder
     sceneId?: SortOrder
     _count?: GeneratedAssetCountOrderByAggregateInput
+    _avg?: GeneratedAssetAvgOrderByAggregateInput
     _max?: GeneratedAssetMaxOrderByAggregateInput
     _min?: GeneratedAssetMinOrderByAggregateInput
+    _sum?: GeneratedAssetSumOrderByAggregateInput
   }
 
   export type GeneratedAssetScalarWhereWithAggregatesInput = {
@@ -12983,6 +13075,7 @@ export namespace Prisma {
     caption?: StringNullableWithAggregatesFilter<"GeneratedAsset"> | string | null
     imageUrl?: StringNullableWithAggregatesFilter<"GeneratedAsset"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"GeneratedAsset"> | Date | string
+    generationTimeMs?: IntNullableWithAggregatesFilter<"GeneratedAsset"> | number | null
     sceneId?: StringWithAggregatesFilter<"GeneratedAsset"> | string
   }
 
@@ -13324,6 +13417,7 @@ export namespace Prisma {
     author?: string | null
     processingStatus?: string
     status?: string
+    sourceKey?: string | null
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
@@ -13341,6 +13435,7 @@ export namespace Prisma {
     author?: string | null
     processingStatus?: string
     status?: string
+    sourceKey?: string | null
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
@@ -13358,6 +13453,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    sourceKey?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13375,6 +13471,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    sourceKey?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13392,6 +13489,7 @@ export namespace Prisma {
     author?: string | null
     processingStatus?: string
     status?: string
+    sourceKey?: string | null
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
@@ -13407,6 +13505,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    sourceKey?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13421,6 +13520,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    sourceKey?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13524,6 +13624,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
+    isHidden?: boolean
     chapter: ChapterCreateNestedOneWithoutScenesInput
     assets?: GeneratedAssetCreateNestedManyWithoutSceneInput
   }
@@ -13542,6 +13643,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
+    isHidden?: boolean
     chapterId: string
     assets?: GeneratedAssetUncheckedCreateNestedManyWithoutSceneInput
   }
@@ -13560,6 +13662,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     chapter?: ChapterUpdateOneRequiredWithoutScenesNestedInput
     assets?: GeneratedAssetUpdateManyWithoutSceneNestedInput
   }
@@ -13578,6 +13681,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     chapterId?: StringFieldUpdateOperationsInput | string
     assets?: GeneratedAssetUncheckedUpdateManyWithoutSceneNestedInput
   }
@@ -13596,6 +13700,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
+    isHidden?: boolean
     chapterId: string
   }
 
@@ -13613,6 +13718,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SceneUncheckedUpdateManyInput = {
@@ -13629,6 +13735,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     chapterId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -13729,6 +13836,7 @@ export namespace Prisma {
     caption?: string | null
     imageUrl?: string | null
     createdAt?: Date | string
+    generationTimeMs?: number | null
     scene: SceneCreateNestedOneWithoutAssetsInput
   }
 
@@ -13739,6 +13847,7 @@ export namespace Prisma {
     caption?: string | null
     imageUrl?: string | null
     createdAt?: Date | string
+    generationTimeMs?: number | null
     sceneId: string
   }
 
@@ -13749,6 +13858,7 @@ export namespace Prisma {
     caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    generationTimeMs?: NullableIntFieldUpdateOperationsInput | number | null
     scene?: SceneUpdateOneRequiredWithoutAssetsNestedInput
   }
 
@@ -13759,6 +13869,7 @@ export namespace Prisma {
     caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    generationTimeMs?: NullableIntFieldUpdateOperationsInput | number | null
     sceneId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -13769,6 +13880,7 @@ export namespace Prisma {
     caption?: string | null
     imageUrl?: string | null
     createdAt?: Date | string
+    generationTimeMs?: number | null
     sceneId: string
   }
 
@@ -13779,6 +13891,7 @@ export namespace Prisma {
     caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    generationTimeMs?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type GeneratedAssetUncheckedUpdateManyInput = {
@@ -13788,6 +13901,7 @@ export namespace Prisma {
     caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    generationTimeMs?: NullableIntFieldUpdateOperationsInput | number | null
     sceneId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -14124,6 +14238,7 @@ export namespace Prisma {
     author?: SortOrder
     processingStatus?: SortOrder
     status?: SortOrder
+    sourceKey?: SortOrder
     fileName?: SortOrder
     filePath?: SortOrder
     sourcePath?: SortOrder
@@ -14139,6 +14254,7 @@ export namespace Prisma {
     author?: SortOrder
     processingStatus?: SortOrder
     status?: SortOrder
+    sourceKey?: SortOrder
     fileName?: SortOrder
     filePath?: SortOrder
     sourcePath?: SortOrder
@@ -14154,6 +14270,7 @@ export namespace Prisma {
     author?: SortOrder
     processingStatus?: SortOrder
     status?: SortOrder
+    sourceKey?: SortOrder
     fileName?: SortOrder
     filePath?: SortOrder
     sourcePath?: SortOrder
@@ -14326,6 +14443,7 @@ export namespace Prisma {
     rawAiOutput?: SortOrder
     order?: SortOrder
     createdAt?: SortOrder
+    isHidden?: SortOrder
     chapterId?: SortOrder
   }
 
@@ -14346,6 +14464,7 @@ export namespace Prisma {
     anchorIndex?: SortOrder
     order?: SortOrder
     createdAt?: SortOrder
+    isHidden?: SortOrder
     chapterId?: SortOrder
   }
 
@@ -14361,6 +14480,7 @@ export namespace Prisma {
     anchorIndex?: SortOrder
     order?: SortOrder
     createdAt?: SortOrder
+    isHidden?: SortOrder
     chapterId?: SortOrder
   }
 
@@ -14458,7 +14578,12 @@ export namespace Prisma {
     caption?: SortOrder
     imageUrl?: SortOrder
     createdAt?: SortOrder
+    generationTimeMs?: SortOrder
     sceneId?: SortOrder
+  }
+
+  export type GeneratedAssetAvgOrderByAggregateInput = {
+    generationTimeMs?: SortOrder
   }
 
   export type GeneratedAssetMaxOrderByAggregateInput = {
@@ -14468,6 +14593,7 @@ export namespace Prisma {
     caption?: SortOrder
     imageUrl?: SortOrder
     createdAt?: SortOrder
+    generationTimeMs?: SortOrder
     sceneId?: SortOrder
   }
 
@@ -14478,7 +14604,12 @@ export namespace Prisma {
     caption?: SortOrder
     imageUrl?: SortOrder
     createdAt?: SortOrder
+    generationTimeMs?: SortOrder
     sceneId?: SortOrder
+  }
+
+  export type GeneratedAssetSumOrderByAggregateInput = {
+    generationTimeMs?: SortOrder
   }
 
   export type SessionCreateNestedManyWithoutUserInput = {
@@ -15230,6 +15361,7 @@ export namespace Prisma {
     author?: string | null
     processingStatus?: string
     status?: string
+    sourceKey?: string | null
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
@@ -15246,6 +15378,7 @@ export namespace Prisma {
     author?: string | null
     processingStatus?: string
     status?: string
+    sourceKey?: string | null
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
@@ -15356,6 +15489,7 @@ export namespace Prisma {
     author?: StringNullableFilter<"Book"> | string | null
     processingStatus?: StringFilter<"Book"> | string
     status?: StringFilter<"Book"> | string
+    sourceKey?: StringNullableFilter<"Book"> | string | null
     fileName?: StringNullableFilter<"Book"> | string | null
     filePath?: StringNullableFilter<"Book"> | string | null
     sourcePath?: StringNullableFilter<"Book"> | string | null
@@ -15691,6 +15825,7 @@ export namespace Prisma {
     author?: string | null
     processingStatus?: string
     status?: string
+    sourceKey?: string | null
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
@@ -15707,6 +15842,7 @@ export namespace Prisma {
     author?: string | null
     processingStatus?: string
     status?: string
+    sourceKey?: string | null
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
@@ -15736,6 +15872,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
+    isHidden?: boolean
     assets?: GeneratedAssetCreateNestedManyWithoutSceneInput
   }
 
@@ -15753,6 +15890,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
+    isHidden?: boolean
     assets?: GeneratedAssetUncheckedCreateNestedManyWithoutSceneInput
   }
 
@@ -15783,6 +15921,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    sourceKey?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15799,6 +15938,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    sourceKey?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15842,6 +15982,7 @@ export namespace Prisma {
     rawAiOutput?: JsonNullableFilter<"Scene">
     order?: IntFilter<"Scene"> | number
     createdAt?: DateTimeFilter<"Scene"> | Date | string
+    isHidden?: BoolFilter<"Scene"> | boolean
     chapterId?: StringFilter<"Scene"> | string
   }
 
@@ -15879,6 +16020,7 @@ export namespace Prisma {
     caption?: string | null
     imageUrl?: string | null
     createdAt?: Date | string
+    generationTimeMs?: number | null
   }
 
   export type GeneratedAssetUncheckedCreateWithoutSceneInput = {
@@ -15888,6 +16030,7 @@ export namespace Prisma {
     caption?: string | null
     imageUrl?: string | null
     createdAt?: Date | string
+    generationTimeMs?: number | null
   }
 
   export type GeneratedAssetCreateOrConnectWithoutSceneInput = {
@@ -15959,6 +16102,7 @@ export namespace Prisma {
     caption?: StringNullableFilter<"GeneratedAsset"> | string | null
     imageUrl?: StringNullableFilter<"GeneratedAsset"> | string | null
     createdAt?: DateTimeFilter<"GeneratedAsset"> | Date | string
+    generationTimeMs?: IntNullableFilter<"GeneratedAsset"> | number | null
     sceneId?: StringFilter<"GeneratedAsset"> | string
   }
 
@@ -15968,6 +16112,7 @@ export namespace Prisma {
     author?: string | null
     processingStatus?: string
     status?: string
+    sourceKey?: string | null
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
@@ -15984,6 +16129,7 @@ export namespace Prisma {
     author?: string | null
     processingStatus?: string
     status?: string
+    sourceKey?: string | null
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
@@ -16016,6 +16162,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    sourceKey?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16032,6 +16179,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    sourceKey?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16056,6 +16204,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
+    isHidden?: boolean
     chapter: ChapterCreateNestedOneWithoutScenesInput
   }
 
@@ -16073,6 +16222,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
+    isHidden?: boolean
     chapterId: string
   }
 
@@ -16106,6 +16256,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     chapter?: ChapterUpdateOneRequiredWithoutScenesNestedInput
   }
 
@@ -16123,6 +16274,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     chapterId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -16157,6 +16309,7 @@ export namespace Prisma {
     author?: string | null
     processingStatus?: string
     status?: string
+    sourceKey?: string | null
     fileName?: string | null
     filePath?: string | null
     sourcePath?: string | null
@@ -16246,6 +16399,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    sourceKey?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16262,6 +16416,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    sourceKey?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16278,6 +16433,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     processingStatus?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    sourceKey?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     filePath?: NullableStringFieldUpdateOperationsInput | string | null
     sourcePath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16390,6 +16546,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order: number
     createdAt?: Date | string
+    isHidden?: boolean
   }
 
   export type SceneUpdateWithoutChapterInput = {
@@ -16406,6 +16563,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     assets?: GeneratedAssetUpdateManyWithoutSceneNestedInput
   }
 
@@ -16423,6 +16581,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     assets?: GeneratedAssetUncheckedUpdateManyWithoutSceneNestedInput
   }
 
@@ -16440,6 +16599,7 @@ export namespace Prisma {
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     order?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type GeneratedAssetCreateManySceneInput = {
@@ -16449,6 +16609,7 @@ export namespace Prisma {
     caption?: string | null
     imageUrl?: string | null
     createdAt?: Date | string
+    generationTimeMs?: number | null
   }
 
   export type GeneratedAssetUpdateWithoutSceneInput = {
@@ -16458,6 +16619,7 @@ export namespace Prisma {
     caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    generationTimeMs?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type GeneratedAssetUncheckedUpdateWithoutSceneInput = {
@@ -16467,6 +16629,7 @@ export namespace Prisma {
     caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    generationTimeMs?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type GeneratedAssetUncheckedUpdateManyWithoutSceneInput = {
@@ -16476,6 +16639,7 @@ export namespace Prisma {
     caption?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    generationTimeMs?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
 

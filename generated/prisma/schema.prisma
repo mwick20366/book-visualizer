@@ -88,6 +88,8 @@ model Book {
   processingStatus String @default("UPLOADING")
   status           String @default("uploaded")
 
+  sourceKey String?
+
   fileName   String?
   filePath   String?
   sourcePath String?
@@ -156,6 +158,7 @@ model Scene {
 
   createdAt DateTime @default(now())
 
+  isHidden  Boolean @default(false)
   chapterId String
   chapter   Chapter @relation(fields: [chapterId], references: [id])
 
@@ -197,6 +200,7 @@ model GeneratedAsset {
 
   createdAt DateTime @default(now())
 
-  sceneId String
-  scene   Scene  @relation(fields: [sceneId], references: [id])
+  generationTimeMs Int?
+  sceneId          String
+  scene            Scene  @relation(fields: [sceneId], references: [id])
 }

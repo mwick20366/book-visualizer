@@ -7,6 +7,8 @@ import { processBookCharacters } from "@/server/ai/process-book-characters";
 import { processBookScenes } from "@/server/ai/process-book-scenes";
 
 import { generateSceneImage } from "@/server/ai/generate-scene-image";
+import { uploadFile } from "@/server/storage/upload-file";
+import { getPublicUrl } from "@/server/storage/get-public-url";
 
 export async function processBook(bookId: string) {
   // Get all main characters
@@ -96,13 +98,23 @@ export async function processBook(bookId: string) {
         sceneId: firstScene.id,
       });
 
+      const key = `books/${bookId}/hero.png`;
+
+      await uploadFile({
+        key,
+        body: result.imageBuffer,
+        contentType: "image/png",
+      });
+
+      const imageUrl = getPublicUrl(key);
+
       await db.generatedAsset.create({
         data: {
           type: "image",
 
           prompt: result.prompt,
 
-          imageUrl: result.imageUrl,
+          imageUrl,
 
           sceneId: firstScene.id,
         },
@@ -114,7 +126,7 @@ export async function processBook(bookId: string) {
         },
 
         data: {
-          heroImageUrl: result.imageUrl,
+          heroImageUrl: imageUrl,
         },
       });
     } catch (error) {

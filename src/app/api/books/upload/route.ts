@@ -1,13 +1,10 @@
 // src/app/api/books/upload/route.ts
-
-import { mkdir, writeFile } from "fs/promises";
-import path from "path";
-
 import { NextResponse } from "next/server";
 
 import { db } from "@/server/db";
 import { parseEpub } from "@/server/services/books/parse-epub";
 import { processBook } from "@/server/services/books/process-book";
+import { uploadFile } from "@/server/storage/upload-file";
 
 export async function POST(req: Request) {
   try {
@@ -31,13 +28,23 @@ export async function POST(req: Request) {
 
     const bookId = crypto.randomUUID();
 
-    const uploadDir = path.join(process.cwd(), "uploads", bookId);
+    const key = `books/${bookId}/original.epub`;
 
-    await mkdir(uploadDir, { recursive: true });
+    await uploadFile({
+      key,
 
-    const filePath = path.join(uploadDir, file.name);
+      body: buffer,
 
-    await writeFile(filePath, buffer);
+      contentType: "application/epub+zip",
+    });
+
+    // const uploadDir = path.join(process.cwd(), "uploads", bookId);
+
+    // await mkdir(uploadDir, { recursive: true });
+
+    // const filePath = path.join(uploadDir, file.name);
+
+    // await writeFile(filePath, buffer);
 
     // TEMP USER LOOKUP
     let user = await db.user.findFirst();
@@ -54,7 +61,7 @@ export async function POST(req: Request) {
     }
 
     // Parse EPUB
-    const parsedBook = await parseEpub(filePath);
+    const parsedBook = await parseEpub(buffer);
 
     // Create Book
     const book = await db.book.create({
@@ -63,7 +70,7 @@ export async function POST(req: Request) {
         title: parsedBook.title,
         author: parsedBook.author,
         fileName: file.name,
-        filePath,
+        sourceKey: key,
         status: "processed",
         userId: user.id,
 
