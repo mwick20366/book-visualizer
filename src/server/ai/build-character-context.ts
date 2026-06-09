@@ -14,6 +14,12 @@ type CharacterForContext = {
   personality: string | null;
 
   castingArchetype?: string | null;
+
+  canonicalVisualIdentity?: string | null;
+
+  visualAge?: string | null;
+
+  species?: string | null;
 };
 
 type BuildCharacterContextInput = {
@@ -65,13 +71,25 @@ Canonical Character Profiles:
 ${matchingCharacters
   .map(
     (character) => `
+CHARACTER CONTINUITY REQUIREMENTS
+
 ${character.name}
 
 Casting archetype:
 ${character.castingArchetype ?? "None specified"}
 
-Appearance:
-${character.appearance ?? "Unknown"}
+Canonical Visual Identity:
+${character.canonicalVisualIdentity ?? "Unknown"}
+
+Visual Age:
+${character.visualAge ?? "Unknown"}
+
+Species:
+${character.species ?? "Unknown"}
+
+Important:
+Maintain this appearance exactly across all illustrations.
+Do not reinterpret age, scale, species, wardrobe, facial structure, or hair color.
 
 Personality:
 ${character.personality ?? "Unknown"}

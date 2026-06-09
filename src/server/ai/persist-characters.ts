@@ -46,7 +46,21 @@ export async function persistCharacters({
               
               castingArchetype:
                 character.castingArchetype,
-                
+              
+              species: character.species,
+
+              visualAge: character.visualAge,
+
+              scale: character.scale,
+
+              anthropomorphism:
+                character.anthropomorphism,
+
+              wardrobe: character.wardrobe,
+
+              canonicalVisualIdentity:
+                character.canonicalVisualIdentity,
+
               rawAiOutput: character,
 
               bookId,

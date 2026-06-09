@@ -9967,6 +9967,12 @@ export namespace Prisma {
     appearance: string | null
     castingArchetype: string | null
     personality: string | null
+    species: string | null
+    visualAge: string | null
+    scale: string | null
+    anthropomorphism: string | null
+    wardrobe: string | null
+    canonicalVisualIdentity: string | null
     createdAt: Date | null
     bookId: string | null
   }
@@ -9978,6 +9984,12 @@ export namespace Prisma {
     appearance: string | null
     castingArchetype: string | null
     personality: string | null
+    species: string | null
+    visualAge: string | null
+    scale: string | null
+    anthropomorphism: string | null
+    wardrobe: string | null
+    canonicalVisualIdentity: string | null
     createdAt: Date | null
     bookId: string | null
   }
@@ -9990,6 +10002,13 @@ export namespace Prisma {
     appearance: number
     castingArchetype: number
     personality: number
+    species: number
+    visualAge: number
+    scale: number
+    anthropomorphism: number
+    wardrobe: number
+    canonicalVisualIdentity: number
+    metadata: number
     rawAiOutput: number
     createdAt: number
     bookId: number
@@ -10004,6 +10023,12 @@ export namespace Prisma {
     appearance?: true
     castingArchetype?: true
     personality?: true
+    species?: true
+    visualAge?: true
+    scale?: true
+    anthropomorphism?: true
+    wardrobe?: true
+    canonicalVisualIdentity?: true
     createdAt?: true
     bookId?: true
   }
@@ -10015,6 +10040,12 @@ export namespace Prisma {
     appearance?: true
     castingArchetype?: true
     personality?: true
+    species?: true
+    visualAge?: true
+    scale?: true
+    anthropomorphism?: true
+    wardrobe?: true
+    canonicalVisualIdentity?: true
     createdAt?: true
     bookId?: true
   }
@@ -10027,6 +10058,13 @@ export namespace Prisma {
     appearance?: true
     castingArchetype?: true
     personality?: true
+    species?: true
+    visualAge?: true
+    scale?: true
+    anthropomorphism?: true
+    wardrobe?: true
+    canonicalVisualIdentity?: true
+    metadata?: true
     rawAiOutput?: true
     createdAt?: true
     bookId?: true
@@ -10113,6 +10151,13 @@ export namespace Prisma {
     appearance: string | null
     castingArchetype: string | null
     personality: string | null
+    species: string | null
+    visualAge: string | null
+    scale: string | null
+    anthropomorphism: string | null
+    wardrobe: string | null
+    canonicalVisualIdentity: string | null
+    metadata: JsonValue | null
     rawAiOutput: JsonValue | null
     createdAt: Date
     bookId: string
@@ -10143,6 +10188,13 @@ export namespace Prisma {
     appearance?: boolean
     castingArchetype?: boolean
     personality?: boolean
+    species?: boolean
+    visualAge?: boolean
+    scale?: boolean
+    anthropomorphism?: boolean
+    wardrobe?: boolean
+    canonicalVisualIdentity?: boolean
+    metadata?: boolean
     rawAiOutput?: boolean
     createdAt?: boolean
     bookId?: boolean
@@ -10157,6 +10209,13 @@ export namespace Prisma {
     appearance?: boolean
     castingArchetype?: boolean
     personality?: boolean
+    species?: boolean
+    visualAge?: boolean
+    scale?: boolean
+    anthropomorphism?: boolean
+    wardrobe?: boolean
+    canonicalVisualIdentity?: boolean
+    metadata?: boolean
     rawAiOutput?: boolean
     createdAt?: boolean
     bookId?: boolean
@@ -10171,6 +10230,13 @@ export namespace Prisma {
     appearance?: boolean
     castingArchetype?: boolean
     personality?: boolean
+    species?: boolean
+    visualAge?: boolean
+    scale?: boolean
+    anthropomorphism?: boolean
+    wardrobe?: boolean
+    canonicalVisualIdentity?: boolean
+    metadata?: boolean
     rawAiOutput?: boolean
     createdAt?: boolean
     bookId?: boolean
@@ -10185,12 +10251,19 @@ export namespace Prisma {
     appearance?: boolean
     castingArchetype?: boolean
     personality?: boolean
+    species?: boolean
+    visualAge?: boolean
+    scale?: boolean
+    anthropomorphism?: boolean
+    wardrobe?: boolean
+    canonicalVisualIdentity?: boolean
+    metadata?: boolean
     rawAiOutput?: boolean
     createdAt?: boolean
     bookId?: boolean
   }
 
-  export type CharacterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "aliases" | "description" | "appearance" | "castingArchetype" | "personality" | "rawAiOutput" | "createdAt" | "bookId", ExtArgs["result"]["character"]>
+  export type CharacterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "aliases" | "description" | "appearance" | "castingArchetype" | "personality" | "species" | "visualAge" | "scale" | "anthropomorphism" | "wardrobe" | "canonicalVisualIdentity" | "metadata" | "rawAiOutput" | "createdAt" | "bookId", ExtArgs["result"]["character"]>
   export type CharacterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     book?: boolean | BookDefaultArgs<ExtArgs>
   }
@@ -10214,6 +10287,13 @@ export namespace Prisma {
       appearance: string | null
       castingArchetype: string | null
       personality: string | null
+      species: string | null
+      visualAge: string | null
+      scale: string | null
+      anthropomorphism: string | null
+      wardrobe: string | null
+      canonicalVisualIdentity: string | null
+      metadata: Prisma.JsonValue | null
       rawAiOutput: Prisma.JsonValue | null
       createdAt: Date
       bookId: string
@@ -10648,6 +10728,13 @@ export namespace Prisma {
     readonly appearance: FieldRef<"Character", 'String'>
     readonly castingArchetype: FieldRef<"Character", 'String'>
     readonly personality: FieldRef<"Character", 'String'>
+    readonly species: FieldRef<"Character", 'String'>
+    readonly visualAge: FieldRef<"Character", 'String'>
+    readonly scale: FieldRef<"Character", 'String'>
+    readonly anthropomorphism: FieldRef<"Character", 'String'>
+    readonly wardrobe: FieldRef<"Character", 'String'>
+    readonly canonicalVisualIdentity: FieldRef<"Character", 'String'>
+    readonly metadata: FieldRef<"Character", 'Json'>
     readonly rawAiOutput: FieldRef<"Character", 'Json'>
     readonly createdAt: FieldRef<"Character", 'DateTime'>
     readonly bookId: FieldRef<"Character", 'String'>
@@ -13447,6 +13534,13 @@ export namespace Prisma {
     appearance: 'appearance',
     castingArchetype: 'castingArchetype',
     personality: 'personality',
+    species: 'species',
+    visualAge: 'visualAge',
+    scale: 'scale',
+    anthropomorphism: 'anthropomorphism',
+    wardrobe: 'wardrobe',
+    canonicalVisualIdentity: 'canonicalVisualIdentity',
+    metadata: 'metadata',
     rawAiOutput: 'rawAiOutput',
     createdAt: 'createdAt',
     bookId: 'bookId'
@@ -14271,6 +14365,13 @@ export namespace Prisma {
     appearance?: StringNullableFilter<"Character"> | string | null
     castingArchetype?: StringNullableFilter<"Character"> | string | null
     personality?: StringNullableFilter<"Character"> | string | null
+    species?: StringNullableFilter<"Character"> | string | null
+    visualAge?: StringNullableFilter<"Character"> | string | null
+    scale?: StringNullableFilter<"Character"> | string | null
+    anthropomorphism?: StringNullableFilter<"Character"> | string | null
+    wardrobe?: StringNullableFilter<"Character"> | string | null
+    canonicalVisualIdentity?: StringNullableFilter<"Character"> | string | null
+    metadata?: JsonNullableFilter<"Character">
     rawAiOutput?: JsonNullableFilter<"Character">
     createdAt?: DateTimeFilter<"Character"> | Date | string
     bookId?: StringFilter<"Character"> | string
@@ -14285,6 +14386,13 @@ export namespace Prisma {
     appearance?: SortOrderInput | SortOrder
     castingArchetype?: SortOrderInput | SortOrder
     personality?: SortOrderInput | SortOrder
+    species?: SortOrderInput | SortOrder
+    visualAge?: SortOrderInput | SortOrder
+    scale?: SortOrderInput | SortOrder
+    anthropomorphism?: SortOrderInput | SortOrder
+    wardrobe?: SortOrderInput | SortOrder
+    canonicalVisualIdentity?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
     rawAiOutput?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     bookId?: SortOrder
@@ -14302,6 +14410,13 @@ export namespace Prisma {
     appearance?: StringNullableFilter<"Character"> | string | null
     castingArchetype?: StringNullableFilter<"Character"> | string | null
     personality?: StringNullableFilter<"Character"> | string | null
+    species?: StringNullableFilter<"Character"> | string | null
+    visualAge?: StringNullableFilter<"Character"> | string | null
+    scale?: StringNullableFilter<"Character"> | string | null
+    anthropomorphism?: StringNullableFilter<"Character"> | string | null
+    wardrobe?: StringNullableFilter<"Character"> | string | null
+    canonicalVisualIdentity?: StringNullableFilter<"Character"> | string | null
+    metadata?: JsonNullableFilter<"Character">
     rawAiOutput?: JsonNullableFilter<"Character">
     createdAt?: DateTimeFilter<"Character"> | Date | string
     bookId?: StringFilter<"Character"> | string
@@ -14316,6 +14431,13 @@ export namespace Prisma {
     appearance?: SortOrderInput | SortOrder
     castingArchetype?: SortOrderInput | SortOrder
     personality?: SortOrderInput | SortOrder
+    species?: SortOrderInput | SortOrder
+    visualAge?: SortOrderInput | SortOrder
+    scale?: SortOrderInput | SortOrder
+    anthropomorphism?: SortOrderInput | SortOrder
+    wardrobe?: SortOrderInput | SortOrder
+    canonicalVisualIdentity?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
     rawAiOutput?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     bookId?: SortOrder
@@ -14335,6 +14457,13 @@ export namespace Prisma {
     appearance?: StringNullableWithAggregatesFilter<"Character"> | string | null
     castingArchetype?: StringNullableWithAggregatesFilter<"Character"> | string | null
     personality?: StringNullableWithAggregatesFilter<"Character"> | string | null
+    species?: StringNullableWithAggregatesFilter<"Character"> | string | null
+    visualAge?: StringNullableWithAggregatesFilter<"Character"> | string | null
+    scale?: StringNullableWithAggregatesFilter<"Character"> | string | null
+    anthropomorphism?: StringNullableWithAggregatesFilter<"Character"> | string | null
+    wardrobe?: StringNullableWithAggregatesFilter<"Character"> | string | null
+    canonicalVisualIdentity?: StringNullableWithAggregatesFilter<"Character"> | string | null
+    metadata?: JsonNullableWithAggregatesFilter<"Character">
     rawAiOutput?: JsonNullableWithAggregatesFilter<"Character">
     createdAt?: DateTimeWithAggregatesFilter<"Character"> | Date | string
     bookId?: StringWithAggregatesFilter<"Character"> | string
@@ -15176,6 +15305,13 @@ export namespace Prisma {
     appearance?: string | null
     castingArchetype?: string | null
     personality?: string | null
+    species?: string | null
+    visualAge?: string | null
+    scale?: string | null
+    anthropomorphism?: string | null
+    wardrobe?: string | null
+    canonicalVisualIdentity?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     book: BookCreateNestedOneWithoutCharactersInput
@@ -15189,6 +15325,13 @@ export namespace Prisma {
     appearance?: string | null
     castingArchetype?: string | null
     personality?: string | null
+    species?: string | null
+    visualAge?: string | null
+    scale?: string | null
+    anthropomorphism?: string | null
+    wardrobe?: string | null
+    canonicalVisualIdentity?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     bookId: string
@@ -15202,6 +15345,13 @@ export namespace Prisma {
     appearance?: NullableStringFieldUpdateOperationsInput | string | null
     castingArchetype?: NullableStringFieldUpdateOperationsInput | string | null
     personality?: NullableStringFieldUpdateOperationsInput | string | null
+    species?: NullableStringFieldUpdateOperationsInput | string | null
+    visualAge?: NullableStringFieldUpdateOperationsInput | string | null
+    scale?: NullableStringFieldUpdateOperationsInput | string | null
+    anthropomorphism?: NullableStringFieldUpdateOperationsInput | string | null
+    wardrobe?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalVisualIdentity?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     book?: BookUpdateOneRequiredWithoutCharactersNestedInput
@@ -15215,6 +15365,13 @@ export namespace Prisma {
     appearance?: NullableStringFieldUpdateOperationsInput | string | null
     castingArchetype?: NullableStringFieldUpdateOperationsInput | string | null
     personality?: NullableStringFieldUpdateOperationsInput | string | null
+    species?: NullableStringFieldUpdateOperationsInput | string | null
+    visualAge?: NullableStringFieldUpdateOperationsInput | string | null
+    scale?: NullableStringFieldUpdateOperationsInput | string | null
+    anthropomorphism?: NullableStringFieldUpdateOperationsInput | string | null
+    wardrobe?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalVisualIdentity?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookId?: StringFieldUpdateOperationsInput | string
@@ -15228,6 +15385,13 @@ export namespace Prisma {
     appearance?: string | null
     castingArchetype?: string | null
     personality?: string | null
+    species?: string | null
+    visualAge?: string | null
+    scale?: string | null
+    anthropomorphism?: string | null
+    wardrobe?: string | null
+    canonicalVisualIdentity?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     bookId: string
@@ -15241,6 +15405,13 @@ export namespace Prisma {
     appearance?: NullableStringFieldUpdateOperationsInput | string | null
     castingArchetype?: NullableStringFieldUpdateOperationsInput | string | null
     personality?: NullableStringFieldUpdateOperationsInput | string | null
+    species?: NullableStringFieldUpdateOperationsInput | string | null
+    visualAge?: NullableStringFieldUpdateOperationsInput | string | null
+    scale?: NullableStringFieldUpdateOperationsInput | string | null
+    anthropomorphism?: NullableStringFieldUpdateOperationsInput | string | null
+    wardrobe?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalVisualIdentity?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15253,6 +15424,13 @@ export namespace Prisma {
     appearance?: NullableStringFieldUpdateOperationsInput | string | null
     castingArchetype?: NullableStringFieldUpdateOperationsInput | string | null
     personality?: NullableStringFieldUpdateOperationsInput | string | null
+    species?: NullableStringFieldUpdateOperationsInput | string | null
+    visualAge?: NullableStringFieldUpdateOperationsInput | string | null
+    scale?: NullableStringFieldUpdateOperationsInput | string | null
+    anthropomorphism?: NullableStringFieldUpdateOperationsInput | string | null
+    wardrobe?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalVisualIdentity?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookId?: StringFieldUpdateOperationsInput | string
@@ -16093,6 +16271,13 @@ export namespace Prisma {
     appearance?: SortOrder
     castingArchetype?: SortOrder
     personality?: SortOrder
+    species?: SortOrder
+    visualAge?: SortOrder
+    scale?: SortOrder
+    anthropomorphism?: SortOrder
+    wardrobe?: SortOrder
+    canonicalVisualIdentity?: SortOrder
+    metadata?: SortOrder
     rawAiOutput?: SortOrder
     createdAt?: SortOrder
     bookId?: SortOrder
@@ -16105,6 +16290,12 @@ export namespace Prisma {
     appearance?: SortOrder
     castingArchetype?: SortOrder
     personality?: SortOrder
+    species?: SortOrder
+    visualAge?: SortOrder
+    scale?: SortOrder
+    anthropomorphism?: SortOrder
+    wardrobe?: SortOrder
+    canonicalVisualIdentity?: SortOrder
     createdAt?: SortOrder
     bookId?: SortOrder
   }
@@ -16116,6 +16307,12 @@ export namespace Prisma {
     appearance?: SortOrder
     castingArchetype?: SortOrder
     personality?: SortOrder
+    species?: SortOrder
+    visualAge?: SortOrder
+    scale?: SortOrder
+    anthropomorphism?: SortOrder
+    wardrobe?: SortOrder
+    canonicalVisualIdentity?: SortOrder
     createdAt?: SortOrder
     bookId?: SortOrder
   }
@@ -17470,6 +17667,13 @@ export namespace Prisma {
     appearance?: string | null
     castingArchetype?: string | null
     personality?: string | null
+    species?: string | null
+    visualAge?: string | null
+    scale?: string | null
+    anthropomorphism?: string | null
+    wardrobe?: string | null
+    canonicalVisualIdentity?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
@@ -17482,6 +17686,13 @@ export namespace Prisma {
     appearance?: string | null
     castingArchetype?: string | null
     personality?: string | null
+    species?: string | null
+    visualAge?: string | null
+    scale?: string | null
+    anthropomorphism?: string | null
+    wardrobe?: string | null
+    canonicalVisualIdentity?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
@@ -17588,6 +17799,13 @@ export namespace Prisma {
     appearance?: StringNullableFilter<"Character"> | string | null
     castingArchetype?: StringNullableFilter<"Character"> | string | null
     personality?: StringNullableFilter<"Character"> | string | null
+    species?: StringNullableFilter<"Character"> | string | null
+    visualAge?: StringNullableFilter<"Character"> | string | null
+    scale?: StringNullableFilter<"Character"> | string | null
+    anthropomorphism?: StringNullableFilter<"Character"> | string | null
+    wardrobe?: StringNullableFilter<"Character"> | string | null
+    canonicalVisualIdentity?: StringNullableFilter<"Character"> | string | null
+    metadata?: JsonNullableFilter<"Character">
     rawAiOutput?: JsonNullableFilter<"Character">
     createdAt?: DateTimeFilter<"Character"> | Date | string
     bookId?: StringFilter<"Character"> | string
@@ -18241,6 +18459,13 @@ export namespace Prisma {
     appearance?: string | null
     castingArchetype?: string | null
     personality?: string | null
+    species?: string | null
+    visualAge?: string | null
+    scale?: string | null
+    anthropomorphism?: string | null
+    wardrobe?: string | null
+    canonicalVisualIdentity?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
@@ -18285,6 +18510,13 @@ export namespace Prisma {
     appearance?: NullableStringFieldUpdateOperationsInput | string | null
     castingArchetype?: NullableStringFieldUpdateOperationsInput | string | null
     personality?: NullableStringFieldUpdateOperationsInput | string | null
+    species?: NullableStringFieldUpdateOperationsInput | string | null
+    visualAge?: NullableStringFieldUpdateOperationsInput | string | null
+    scale?: NullableStringFieldUpdateOperationsInput | string | null
+    anthropomorphism?: NullableStringFieldUpdateOperationsInput | string | null
+    wardrobe?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalVisualIdentity?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18297,6 +18529,13 @@ export namespace Prisma {
     appearance?: NullableStringFieldUpdateOperationsInput | string | null
     castingArchetype?: NullableStringFieldUpdateOperationsInput | string | null
     personality?: NullableStringFieldUpdateOperationsInput | string | null
+    species?: NullableStringFieldUpdateOperationsInput | string | null
+    visualAge?: NullableStringFieldUpdateOperationsInput | string | null
+    scale?: NullableStringFieldUpdateOperationsInput | string | null
+    anthropomorphism?: NullableStringFieldUpdateOperationsInput | string | null
+    wardrobe?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalVisualIdentity?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18309,6 +18548,13 @@ export namespace Prisma {
     appearance?: NullableStringFieldUpdateOperationsInput | string | null
     castingArchetype?: NullableStringFieldUpdateOperationsInput | string | null
     personality?: NullableStringFieldUpdateOperationsInput | string | null
+    species?: NullableStringFieldUpdateOperationsInput | string | null
+    visualAge?: NullableStringFieldUpdateOperationsInput | string | null
+    scale?: NullableStringFieldUpdateOperationsInput | string | null
+    anthropomorphism?: NullableStringFieldUpdateOperationsInput | string | null
+    wardrobe?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalVisualIdentity?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     rawAiOutput?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

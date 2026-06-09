@@ -221,6 +221,13 @@ exports.Prisma.CharacterScalarFieldEnum = {
   appearance: 'appearance',
   castingArchetype: 'castingArchetype',
   personality: 'personality',
+  species: 'species',
+  visualAge: 'visualAge',
+  scale: 'scale',
+  anthropomorphism: 'anthropomorphism',
+  wardrobe: 'wardrobe',
+  canonicalVisualIdentity: 'canonicalVisualIdentity',
+  metadata: 'metadata',
   rawAiOutput: 'rawAiOutput',
   createdAt: 'createdAt',
   bookId: 'bookId'

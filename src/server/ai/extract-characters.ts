@@ -14,6 +14,18 @@ export type ExtractedCharacter = {
   personality: string;
 
   castingArchetype?: string | null;
+
+  species?: string;
+
+  visualAge?: string;
+
+  scale?: string;
+
+  anthropomorphism?: string;
+
+  wardrobe?: string;
+
+  canonicalVisualIdentity?: string;
 };
 
 export type CharacterExtractionResult = {
@@ -61,15 +73,45 @@ Prefer actors with highly distinctive facial structure and recognizable visual i
 
 Physical appearance descriptions must be highly specific and stable.
 
+For each character determine:
+
+- species
+- canonical visual age
+- scale
+- anthropomorphism level
+
+Then generate a canonicalVisualIdentity field
+that can be reused verbatim in image generation
+to maintain visual continuity.
+
 Always specify:
+
+Humans:
 - hair color
 - hairstyle
-- facial hair
-- approximate age
+- age (single canonical age, never a range)
 - skin tone
 - facial structure
 - distinguishing features
-- typical wardrobe
+- wardrobe
+
+Non-human characters:
+- species
+- anthropomorphism level
+- relative scale
+- locomotion style
+- distinguishing features
+- wardrobe
+
+The goal is visual continuity across many illustrations.
+
+Do not provide age ranges.
+
+Choose one stable visual age.
+
+Choose one stable scale.
+
+Choose one stable body form.
 
 Return ONLY valid JSON.
 
@@ -82,8 +124,14 @@ Format:
       "aliases": ["string"],
       "description": "string",
       "appearance": "string",
+      "visualAge": "string",
+      "species": "string",
+      "anthropomorphism": "string",
+      "scale": "string",
+      "wardrobe": "string",
+      "personality": "string",
       "castingArchetype": "string",
-      "personality": "string"
+      "canonicalVisualIdentity": "string"
     }
   ]
 }

@@ -189,6 +189,16 @@ model Character {
   castingArchetype String?
   personality      String?
 
+  species          String?
+  visualAge        String?
+  scale            String?
+  anthropomorphism String?
+  wardrobe         String?
+
+  canonicalVisualIdentity String?
+
+  metadata Json?
+
   rawAiOutput Json?
 
   createdAt DateTime @default(now())
