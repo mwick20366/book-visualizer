@@ -132,6 +132,14 @@ model Chapter {
   scenes Scene[]
 }
 
+enum ImageStatus {
+  NONE
+  PENDING
+  PROCESSING
+  READY
+  FAILED
+}
+
 model Scene {
   id String @id @default(cuid())
 
@@ -157,6 +165,8 @@ model Scene {
   order Int
 
   createdAt DateTime @default(now())
+
+  imageStatus ImageStatus @default(NONE)
 
   isHidden  Boolean @default(false)
   chapterId String
@@ -203,4 +213,38 @@ model GeneratedAsset {
   generationTimeMs Int?
   sceneId          String
   scene            Scene  @relation(fields: [sceneId], references: [id])
+}
+
+model Job {
+  id String @id @default(cuid())
+
+  type JobType
+
+  status JobStatus @default(PENDING)
+
+  payload Json
+
+  attempts Int @default(0)
+
+  dedupeKey String? @unique
+
+  startedAt   DateTime?
+  completedAt DateTime?
+  failedAt    DateTime?
+
+  error String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum JobType {
+  CREATE_SCENE_IMAGE
+}
+
+enum JobStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
 }

@@ -79,8 +79,8 @@ export default async function ReadChapterPage({
     notFound();
   }
 
-  if (currentChapter.processingStatus !== "ready") {
-    await prepareChapter(currentChapter.id);
+  if (currentChapter.processingStatus !== "ready" && currentChapter.processingStatus !== "processing") {
+    void prepareChapter(currentChapter.id);
 
     return redirect(`/dashboard/books/${id}/read/${chapter}`);
   }
@@ -175,8 +175,8 @@ export default async function ReadChapterPage({
                         sceneId={scene.id}
                         title={scene.title}
                         summary={scene.summary}
-                        visualDescription={scene.visualDescription!}
                         existingImageUrl={image?.imageUrl}
+                        existingImageStatus={scene.imageStatus}
                         existingCaption={scene?.caption ?? image?.caption}
                       />
                     );

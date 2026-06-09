@@ -9,6 +9,8 @@ import { processBookScenes } from "@/server/ai/process-book-scenes";
 import { generateSceneImage } from "@/server/ai/generate-scene-image";
 import { uploadFile } from "@/server/storage/upload-file";
 import { getPublicUrl } from "@/server/storage/get-public-url";
+import { enqueueJob } from "@/server/jobs/enqueue-job";
+import { triggerWorker } from "@/server/jobs/trigger-worker";
 
 export async function processBook(bookId: string) {
   // Get all main characters
@@ -93,45 +95,55 @@ export async function processBook(bookId: string) {
       },
     });
 
-    try {
-      const result = await generateSceneImage({
+    await enqueueJob(
+      "CREATE_SCENE_IMAGE",
+      {
         sceneId: firstScene.id,
-      });
+      },
+      `scene:${firstScene.id}`,
+    );
 
-      const key = `books/${bookId}/hero.png`;
+    void triggerWorker();
 
-      await uploadFile({
-        key,
-        body: result.imageBuffer,
-        contentType: "image/png",
-      });
+    // try {
+    //   const result = await generateSceneImage({
+    //     sceneId: firstScene.id,
+    //   });
 
-      const imageUrl = getPublicUrl(key);
+    //   const key = `books/${bookId}/hero.png`;
 
-      await db.generatedAsset.create({
-        data: {
-          type: "image",
+    //   await uploadFile({
+    //     key,
+    //     body: result.imageBuffer,
+    //     contentType: "image/png",
+    //   });
 
-          prompt: result.prompt,
+    //   const imageUrl = getPublicUrl(key);
 
-          imageUrl,
+    //   await db.generatedAsset.create({
+    //     data: {
+    //       type: "image",
 
-          sceneId: firstScene.id,
-        },
-      });
+    //       prompt: result.prompt,
 
-      await db.book.update({
-        where: {
-          id: bookId,
-        },
+    //       imageUrl,
 
-        data: {
-          heroImageUrl: imageUrl,
-        },
-      });
-    } catch (error) {
-      console.error("Failed to generate preview image:", error);
-    }
+    //       sceneId: firstScene.id,
+    //     },
+    //   });
+
+    //   await db.book.update({
+    //     where: {
+    //       id: bookId,
+    //     },
+
+    //     data: {
+    //       heroImageUrl: imageUrl,
+    //     },
+    //   });
+    // } catch (error) {
+    //   console.error("Failed to generate preview image:", error);
+    // }
   }
 
   // Done

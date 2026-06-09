@@ -3,9 +3,12 @@ import { generateSceneImage } from "@/server/ai/generate-scene-image";
 import { persistSceneImage } from "@/server/ai/persist-scene-image";
 import { persistScenes } from "@/server/ai/persist-scenes";
 import { db } from "@/server/db";
-import { OpenAI } from "openai/client";
+import { enqueueJob } from "@/server/jobs/enqueue-job";
+import { triggerWorker } from "@/server/jobs/trigger-worker";
 
 export async function prepareChapter(chapterId: string) {
+  const started = Date.now();
+
   const chapter = await db.chapter.findUnique({
     where: {
       id: chapterId,
@@ -59,46 +62,15 @@ export async function prepareChapter(chapterId: string) {
       const firstScene = createdScenes[0];
 
       if (firstScene) {
-        let result;
-
-        try {
-          result = await generateSceneImage({
+        await enqueueJob(
+          "CREATE_SCENE_IMAGE",
+          {
             sceneId: firstScene.id,
-          });
-        } catch (error) {
-          if (
-            error instanceof OpenAI.APIError &&
-            error.code === "moderation_blocked"
-          ) {
-            await db.scene.update({
-              where: {
-                id: firstScene.id,
-              },
+          },
+          `scene:${firstScene.id}`,
+        );
 
-              data: {
-                isHidden: true,
-              },
-            });
-          }
-
-          const nextScene = createdScenes.length > 1 ? createdScenes[1] : null;
-
-          if (nextScene) {
-            // Just try the next ones, don't fail the whole chapter if the image generation fails for one scene
-            result = await generateSceneImage({
-              sceneId: nextScene.id,
-            });
-          }
-        }
-
-        if (result) {
-          await persistSceneImage({
-            sceneId: firstScene.id,
-            imageBuffer: result.imageBuffer,
-            prompt: result.prompt,
-            generationTimeMs: result.generationTimeMs,
-          });
-        }
+        void triggerWorker();
       }
     }
 
@@ -111,6 +83,10 @@ export async function prepareChapter(chapterId: string) {
         processingStatus: "ready",
       },
     });
+
+    const duration = Date.now() - started;
+
+    console.log(`Chapter ${chapterId} prepared in ${duration}ms`);
   } catch (error) {
     await db.chapter.update({
       where: {

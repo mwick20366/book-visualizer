@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { FilmCountdown } from "./film-countdown";
@@ -12,7 +11,7 @@ type InlineSceneProps = {
 
   summary: string;
 
-  visualDescription: string;
+  existingImageStatus: "NONE" | "PENDING" | "PROCESSING" | "READY" | "FAILED";
 
   existingImageUrl?: string | null;
 
@@ -33,29 +32,39 @@ export function InlineScene({
   sceneId,
   title,
   summary,
-  visualDescription,
   existingImageUrl,
+  existingImageStatus,
   existingCaption,
 }: InlineSceneProps) {
   const [isLoading, setIsLoading] = useState(false);
-
-  const router = useRouter();
 
   const [showVisualizer, setShowVisualizer] = useState(false);
 
   const [showImage, setShowImage] = useState(!!existingImageUrl);
 
+  const [imageStatus, setImageStatus] = useState(existingImageStatus);
   const [imageUrl, setImageUrl] = useState(existingImageUrl);
 
-  const [revealedText, setRevealedText] = useState("");
   const [progress, setProgress] = useState(0);
 
   const teaser = buildTeaser(summary, 10);
 
   useEffect(() => {
+    if (imageStatus === "PENDING" || imageStatus === "PROCESSING") {
+      setShowVisualizer(true);
+      setIsLoading(true);
+    }
+  }, [imageStatus]);
+
+  useEffect(() => {
+    if (imageStatus === "READY" && imageUrl) {
+      setShowImage(true);
+    }
+  }, [imageStatus, imageUrl]);
+
+  useEffect(() => {
     if (!isLoading) {
       setProgress(0);
-      setRevealedText("");
 
       return;
     }
@@ -70,21 +79,64 @@ export function InlineScene({
       const nextProgress = Math.min(elapsed / DURATION_MS, 0.95);
 
       setProgress(nextProgress);
-
-      const visibleChars = Math.floor(teaser.length * nextProgress);
-
-      setRevealedText(teaser.slice(0, visibleChars));
     }, 100);
 
     return () => clearInterval(interval);
   }, [isLoading, teaser]);
 
+  useEffect(() => {
+    if (imageStatus !== "PENDING" && imageStatus !== "PROCESSING") {
+      return;
+    }
+
+    const interval = setInterval(async () => {
+      try {
+        const response = await fetch(`/api/scenes/${sceneId}`);
+
+        if (!response.ok) {
+          return;
+        }
+
+        const scene: {
+          imageStatus: "NONE" | "PENDING" | "PROCESSING" | "READY" | "FAILED";
+
+          imageUrl?: string | null;
+        } = await response.json();
+
+        setImageStatus(scene.imageStatus);
+
+        if (scene.imageStatus === "READY" && scene.imageUrl) {
+          setImageUrl(scene.imageUrl);
+
+          setProgress(1);
+
+          setTimeout(() => {
+            setShowImage(true);
+
+            setIsLoading(false);
+          }, 400);
+
+          clearInterval(interval);
+        }
+
+        if (scene.imageStatus === "FAILED") {
+          toast.error("This scene is unavailable for illustration.");
+
+          setIsLoading(false);
+
+          clearInterval(interval);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }, 1500);
+
+    return () => clearInterval(interval);
+  }, [sceneId, imageStatus]);
+
   async function generateImage() {
     try {
       setShowVisualizer(true);
-
-      // Allow cinematic layer
-      // to softly fade in first
 
       setTimeout(async () => {
         setIsLoading(true);
@@ -96,39 +148,14 @@ export function InlineScene({
         });
 
         if (!response.ok) {
-          throw new Error("Failed to generate image");
+          throw new Error("Failed to queue image");
         }
 
         const data: {
-          blocked?: boolean;
-          imageUrl: string;
+          imageStatus: "NONE" | "PENDING" | "PROCESSING" | "READY" | "FAILED";
         } = await response.json();
 
-        if (data.blocked) {
-          toast.error("This scene is unavailable for illustration.");
-
-          router.refresh();
-
-          return;
-        }
-
-        console.log("Received image data:", data);
-
-        setImageUrl(data.imageUrl);
-
-        setProgress(1);
-
-        // setCaption(data.caption);
-
-        // Small pause so the
-        // cinematic layer breathes
-        // before image emerges
-
-        setTimeout(() => {
-          setShowImage(true);
-
-          setIsLoading(false);
-        }, 400);
+        setImageStatus(data.imageStatus);
       }, 300);
     } catch (error) {
       console.error(error);
@@ -136,6 +163,64 @@ export function InlineScene({
       setIsLoading(false);
     }
   }
+
+  // async function generateImage() {
+  //   try {
+  //     setShowVisualizer(true);
+
+  //     // Allow cinematic layer
+  //     // to softly fade in first
+
+  //     setTimeout(async () => {
+  //       setIsLoading(true);
+
+  //       setShowImage(false);
+
+  //       const response = await fetch(`/api/scenes/${sceneId}/generate-image`, {
+  //         method: "POST",
+  //       });
+
+  //       if (!response.ok) {
+  //         throw new Error("Failed to generate image");
+  //       }
+
+  //       const data: {
+  //         blocked?: boolean;
+  //         imageUrl: string;
+  //       } = await response.json();
+
+  //       if (data.blocked) {
+  //         toast.error("This scene is unavailable for illustration.");
+
+  //         router.refresh();
+
+  //         return;
+  //       }
+
+  //       console.log("Received image data:", data);
+
+  //       setImageUrl(data.imageUrl);
+
+  //       setProgress(1);
+
+  //       // setCaption(data.caption);
+
+  //       // Small pause so the
+  //       // cinematic layer breathes
+  //       // before image emerges
+
+  //       setTimeout(() => {
+  //         setShowImage(true);
+
+  //         setIsLoading(false);
+  //       }, 400);
+  //     }, 300);
+  //   } catch (error) {
+  //     console.error(error);
+
+  //     setIsLoading(false);
+  //   }
+  // }
 
   // const showCinematicLayer = showVisualizer && (isLoading || !showImage);
 
@@ -153,12 +238,14 @@ export function InlineScene({
               : "opacity-100"
           } `}
         >
-          <button
-            onClick={generateImage}
-            className="rounded-full border border-zinc-700 bg-zinc-900 px-5 py-2 text-sm text-zinc-300 transition hover:border-zinc-500 hover:bg-zinc-800"
-          >
-            Visualize Scene
-          </button>
+          {imageStatus === "NONE" && (
+            <button
+              onClick={generateImage}
+              className="rounded-full border border-zinc-700 bg-zinc-900 px-5 py-2 text-sm text-zinc-300 transition hover:border-zinc-500 hover:bg-zinc-800"
+            >
+              Visualize Scene
+            </button>
+          )}
         </div>
 
         {/* Cinematic layer */}

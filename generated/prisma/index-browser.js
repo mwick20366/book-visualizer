@@ -208,6 +208,7 @@ exports.Prisma.SceneScalarFieldEnum = {
   rawAiOutput: 'rawAiOutput',
   order: 'order',
   createdAt: 'createdAt',
+  imageStatus: 'imageStatus',
   isHidden: 'isHidden',
   chapterId: 'chapterId'
 };
@@ -236,6 +237,21 @@ exports.Prisma.GeneratedAssetScalarFieldEnum = {
   sceneId: 'sceneId'
 };
 
+exports.Prisma.JobScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  status: 'status',
+  payload: 'payload',
+  attempts: 'attempts',
+  dedupeKey: 'dedupeKey',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  failedAt: 'failedAt',
+  error: 'error',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -243,6 +259,10 @@ exports.Prisma.SortOrder = {
 
 exports.Prisma.NullableJsonNullValueInput = {
   DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.JsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
@@ -268,6 +288,25 @@ exports.ProcessingStatus = exports.$Enums.ProcessingStatus = {
   failed: 'failed'
 };
 
+exports.ImageStatus = exports.$Enums.ImageStatus = {
+  NONE: 'NONE',
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  READY: 'READY',
+  FAILED: 'FAILED'
+};
+
+exports.JobType = exports.$Enums.JobType = {
+  CREATE_SCENE_IMAGE: 'CREATE_SCENE_IMAGE'
+};
+
+exports.JobStatus = exports.$Enums.JobStatus = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
@@ -277,7 +316,8 @@ exports.Prisma.ModelName = {
   Chapter: 'Chapter',
   Scene: 'Scene',
   Character: 'Character',
-  GeneratedAsset: 'GeneratedAsset'
+  GeneratedAsset: 'GeneratedAsset',
+  Job: 'Job'
 };
 
 /**

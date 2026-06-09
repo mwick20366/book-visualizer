@@ -92,6 +92,10 @@ export default async function ReadPage({ params }: ReadPageProps) {
                           <p>{paragraph}</p>
 
                           {matchingScenes.map((scene) => {
+                            if (scene.isHidden) {
+                              return null;
+                            }
+                            
                             const image = scene.assets.find(
                               (asset) => asset.type === "image",
                             );
@@ -105,43 +109,9 @@ export default async function ReadPage({ params }: ReadPageProps) {
                                   sceneId={scene.id}
                                   title={scene.title}
                                   summary={scene.summary}
-                                  visualDescription={scene.visualDescription!}
+                                  existingImageStatus={scene.imageStatus}
                                   existingImageUrl={image?.imageUrl}
                                 />
-                                {/* {image ? (
-                                  <div className="aspect-video overflow-hidden">
-                                    <img
-                                      src={image.imageUrl}
-                                      alt={scene.title}
-                                      className="h-full w-full object-cover"
-                                    />
-                                  </div>
-                                ) : (
-                                  <form
-                                    action={`/api/scenes/${scene.id}/generate-image`}
-                                    method="POST"
-                                    className="p-6"
-                                  >
-                                    <div className="space-y-4">
-                                      <div>
-                                        <h3 className="text-xl font-semibold text-white">
-                                          {scene.title}
-                                        </h3>
-
-                                        <p className="mt-2 text-sm text-zinc-400">
-                                          {scene.summary}
-                                        </p>
-                                      </div>
-
-                                      <button
-                                        type="submit"
-                                        className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-zinc-200"
-                                      >
-                                        Visualize Scene
-                                      </button>
-                                    </div>
-                                  </form>
-                                )} */}
                               </div>
                             );
                           })}

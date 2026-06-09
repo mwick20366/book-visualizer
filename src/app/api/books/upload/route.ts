@@ -5,6 +5,7 @@ import { db } from "@/server/db";
 import { parseEpub } from "@/server/services/books/parse-epub";
 import { processBook } from "@/server/services/books/process-book";
 import { uploadFile } from "@/server/storage/upload-file";
+import { inngest } from "@/inngest/client";
 
 export async function POST(req: Request) {
   try {
@@ -90,7 +91,17 @@ export async function POST(req: Request) {
       },
     });
 
-    void processBook(book.id);
+    void processBook(book.id).catch((error) => {
+      console.error("Failed to process book:", error);
+    });
+
+    // await inngest.send({
+    //   name: "book/process",
+
+    //   data: {
+    //     bookId: book.id,
+    //   },
+    // });
 
     return NextResponse.json({
       success: true,

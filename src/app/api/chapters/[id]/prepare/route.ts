@@ -1,18 +1,38 @@
+// src/app/api/chapters/[id]/prepare/route.ts
+
 import { NextResponse } from "next/server";
-import { prepareChapter } from "@/server/services/books/prepare-chapter";
 
-type RouteContext = {
-  params: Promise<{
-    id: string;
-  }>;
-};
+import { prepareChapter }
+  from "@/server/services/books/prepare-chapter";
 
-export async function POST(_req: Request, context: RouteContext) {
-  const { id } = await context.params;
+type Params = Promise<{
+  id: string;
+}>;
 
-  await prepareChapter(id);
+export async function POST(
+  req: Request,
+  { params }: { params: Params },
+) {
+  try {
+    const { id } =
+      await params;
 
-  return NextResponse.json({
-    success: true,
-  });
+    void prepareChapter(id);
+
+    return NextResponse.json({
+      success: true,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return NextResponse.json(
+      {
+        error:
+          "Failed to prepare chapter",
+      },
+      {
+        status: 500,
+      },
+    );
+  }
 }
