@@ -7,7 +7,7 @@ import OpenAI from "openai";
 import { getPublicUrl } from "@/server/storage/get-public-url";
 
 export async function createSceneImage(sceneId: string) {
-  const scene = await db.scene.findUniqueOrThrow({
+  await db.scene.findUniqueOrThrow({
     where: {
       id: sceneId,
     },
@@ -55,6 +55,7 @@ export async function createSceneImage(sceneId: string) {
         imageStatus: "FAILED",
       },
     });
+
     throw error;
   }
 

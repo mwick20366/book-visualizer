@@ -68,6 +68,8 @@ export async function processNextJob() {
             : "Unknown error",
       },
     });
+
+    throw error;
   }
 
   return true;
